@@ -11,7 +11,9 @@ class Requests {
 
   protected function __construct($environmentConfig = null, Browser $browser = null)
   {
-    $dotenv = Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : __DIR__);
+    if(empty(session_id())) session_start();
+
+    $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
     $dotenv->load();
 
     if(function_exists('curl_exec')) $selectedMethod = new Curl();
@@ -21,6 +23,27 @@ class Requests {
     else $setBrowser = $browser;
 
     $this->browser = $setBrowser;
+  }
+
+  private function setHeaders($headers = [])
+  {
+    if(!empty($headers)) {
+      foreach($headers as $key => $value) {
+        $this->headers[strtolower($key)] = $key.": ".$value;
+      }
+    }
+  }
+
+  private function setAuth($bearer)
+  {
+    $_SESSION['bearer'] = $bearer;
+  }
+
+  private function getAuth()
+  {
+    if(isset($_SESSION['bearer'])) return $_SESSION['bearer'];
+
+    return null;
   }
 
   protected function get($path)
@@ -42,16 +65,19 @@ class Requests {
     return $response->getContent();
   }
 
-  protected function put($path, $content = '')
+  protected function put($path, $query = null, $headers = [], $data = [])
   {
-    $headers = [];
-    if (is_array($content)) {
-        $content = json_encode($content);
-        $headers[] = 'Content-Type: application/json';
-    }
-    $response = $this->browser->put(getenv('ENDPOINT').$path, $headers, $content);
-    $this->handleResponse($response);
-    return $response->getContent();
+    if(!is_null($query)) '?'.$query = http_build_query($query);
+    if(is_array($data)) $data = json_encode($data);
+
+    if($this->getAuth()) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    array_push($headers, 'Content-Type: application/json');
+    array_push($headers, 'Content-Length: '.strlen($data));
+
+    $response = $this->browser->put(getenv('ENDPOINT').$path.$query, $headers, $data);
+
+    return $this->handleResponse($response);
   }
 
   protected function delete($path)
@@ -68,16 +94,20 @@ class Requests {
 
   private function handleResponse(Response $response)
   {
-    if($response->getStatusCode() === 200) return;
+    if($response->getStatusCode() === 200) {
+      $bearer = $response->getHeader('authorization');
 
-    $this->handleError($response);
-  }
+      if(!is_null($bearer)) $this->setAuth($bearer);
 
-  private function handleError(Response $response)
-  {
-    $body = $response->getContent();
-    $code = $response->getStatusCode();
-    $content = json_decode($body);
-    throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+      return [
+        'http_status' => $response->getStatusCode(),
+        'response' => $response->getContent()
+      ];
+    }
+
+    return [
+      'http_status' => $response->getStatusCode(),
+      'response' => $response->getContent()
+    ];
   }
 }
