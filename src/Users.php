@@ -1,18 +1,9 @@
 <?php
 namespace Fincore;
-use Fincore\Requests;
 
-class Users extends Requests {
-
- const Endpoint = 'https://api.fincore.co';
- //const Endpoint = 'https://httpbin.org';
- protected $endpoint;
- protected $browser;
-
-  public function __construct($endpoint = null ,Browser $browser = null) {
+class Users extends \Fincore\Requests {
+  public function __construct() {
     parent::__construct();
-    $this->endpoint = $endpoint ?: static::Endpoint;
-
   }
 
  function Register($fields){
@@ -22,19 +13,19 @@ class Users extends Requests {
     		if($count_fields < 5 || $count_fields > 5) {
     			echo 'There is no need for 5 parameter for registration in Api';
     		}
-    
-    	if  (!empty($fields['document']) and  !empty($fields['email']) and 
+
+    	if  (!empty($fields['document']) and  !empty($fields['email']) and
 		  !empty($fields['password']) and  !empty($fields['termsOfUse']) and
 		  !empty($fields['privacyPolicy'])
 		  )
         {
       	$browser = $this->post($this->endpoint.'/register',$fields);
-      	return $browser;         
+      	return $browser;
         }
         else {
            	echo "Some fields are empty to be able to register";
        }
-   	} 		  	
+   	}
   }
 
   function Passwordrecovery($email){
@@ -53,7 +44,7 @@ class Users extends Requests {
 
 	  }
 
-	  
+
 
 	  function Administrative_Login(){
 
