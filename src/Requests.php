@@ -85,7 +85,7 @@ class Requests {
 
   private function handleResponse(Response $response)
   {
-    if($response->getStatusCode() === 200) {
+    if($response->getStatusCode() < 400) {
       $bearer = $response->getHeader('authorization');
 
       if(!is_null($bearer)) $this->setAuth($bearer);
