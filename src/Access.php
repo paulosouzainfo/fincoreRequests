@@ -8,7 +8,7 @@ class Access extends \Fincore\Requests {
 
   public function administrative($email, $password)
   {
-    print_r($this->put(
+    return $this->put(
       '/',
       [],
       [],
@@ -16,7 +16,7 @@ class Access extends \Fincore\Requests {
         'email' => $email,
         'password' => $password
       ]
-    ));
+    );
   }
 
   public function apps($secret, $userID, $token)
