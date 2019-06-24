@@ -1,0 +1,33 @@
+{
+    "name": "Biblioteca PHP para integração e consultas na API Fincore",
+    "description": "API Fincore",
+    "keywords": ["fintech", "API", "Fincore"],
+    "type": "project",
+
+    "require": {
+          "ext-json": "*"
+        },
+
+        "require-dev": {
+            "kriswallsmith/buzz": "^0.16",
+            "phpunit/phpunit": "^7.1"
+        },
+
+        "suggest": {
+            "kriswallsmith/buzz": "To use BuzzAdapter, require kriswallsmith/buzz:^0.16."
+               },
+    "autoload": {
+        "psr-4": {
+          "Fincore\\": "src"
+         
+        }
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Henrique Guedes",
+            "email": "kakaroto1500@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
