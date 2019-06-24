@@ -25,15 +25,6 @@ class Requests {
     $this->browser = $setBrowser;
   }
 
-  private function setHeaders($headers = [])
-  {
-    if(!empty($headers)) {
-      foreach($headers as $key => $value) {
-        $this->headers[strtolower($key)] = $key.": ".$value;
-      }
-    }
-  }
-
   private function setAuth($bearer)
   {
     $_SESSION['bearer'] = $bearer;
