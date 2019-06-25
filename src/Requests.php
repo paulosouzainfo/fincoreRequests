@@ -44,22 +44,30 @@ class Requests extends \Fincore\Helpers {
     return $response->getContent();
   }
 
-  protected function post($path, $content = '')
+  protected function post($path, $query = null, $headers = [], $data = [], $formData = 'application/json')
   {
-    $headers = [];
-    if (is_array($content)) {
-      $content = json_encode($content);
-      $headers[] = 'Content-Type: application/json';
+    if(!is_null($query)) '?'.$query = http_build_query($query);
+
+    if($this->getAuth()) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    if($formData === 'application/json') {
+      array_push($headers, 'Content-Type: application/json');
+      $data = json_encode($data);
     }
-    $response = $this->browser->post(getenv('ENDPOINT').$path, $headers, $content);
-    $this->handleResponse($response);
-    return $response->getContent();
+    else {
+      array_push($headers, 'Content-Type: '.$formData);
+      $data = http_build_query($data);
+    }
+
+    $response = $this->browser->post(getenv('ENDPOINT').$path.$query, $headers, $data);
+
+    return $this->handleResponse($response);
   }
 
   protected function put($path, $query = null, $headers = [], $data = [])
   {
     if(!is_null($query)) '?'.$query = http_build_query($query);
-    if(is_array($data)) $data = json_encode($data);
+    $data = json_encode($data);
 
     if($this->getAuth()) array_push($headers, 'Authorization: '.$this->getAuth());
 
