@@ -36,7 +36,7 @@ class Requests extends \Fincore\Helpers {
   private function getAuth(): string
   {
     if(is_file($this->temporaryTokenFile)) {
-      if($authToken = file_get_contents($this->temporaryTokenFile) return $authToken;
+      if($authToken = file_get_contents($this->temporaryTokenFile)) return $authToken;
     }
 
     return null;
