@@ -90,15 +90,15 @@ class Requests {
 
       if(!is_null($bearer)) $this->setAuth($bearer);
 
-      return [
+      return json_encode([
         'http_status' => $response->getStatusCode(),
         'response' => $response->getContent()
-      ];
+      ]);
     }
 
-    return [
+    return json_encode([
       'http_status' => $response->getStatusCode(),
       'response' => $response->getContent()
-    ];
+    ]);
   }
 }
