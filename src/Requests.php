@@ -10,7 +10,7 @@ class Requests extends \Fincore\Helpers {
   protected $browser;
   private $temporaryTokenFile = './authTemporaryToken.txt';
 
-  protected function __construct($environmentConfig = null, Browser $browser = null): void
+  protected function __construct($environmentConfig = null, Browser $browser = null)
   {
     $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
     $dotenv->load();
