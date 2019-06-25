@@ -46,7 +46,11 @@ class Requests extends \Fincore\Helpers {
 
   protected function post($path, $queryString = null, $headers = [], $data = [], $formData = 'application/json')
   {
-    if(!is_null($queryString)) $query = '?'.http_build_query($queryString);
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
 
     if($this->getAuth()) array_push($headers, 'Authorization: '.$this->getAuth());
 
@@ -66,7 +70,12 @@ class Requests extends \Fincore\Helpers {
 
   protected function put($path, $queryString = null, $headers = [], $data = [])
   {
-    if(!is_null($queryString)) $query = '?'.http_build_query($queryString);
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
+
     $data = json_encode($data);
 
     if($this->getAuth()) array_push($headers, 'Authorization: '.$this->getAuth());

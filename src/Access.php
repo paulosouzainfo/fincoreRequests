@@ -8,22 +8,15 @@ class Access extends \Fincore\Requests {
 
   public function administrative($email, $password)
   {
-   if (!empty($password) and !empty($email)) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $data =[
-           'email' => $email,
-           'password' => $password
-           ];
-          return  $this->put('/',[],[],$data);
-         }
-       else {
-        return 'add a valid email address for your login';
-       }            
-    }
-     else {
-      return 'you need to add the email and password field to make the query';
-     }
-    
+    $request = [
+      'path' => '/',
+      'data' => [
+       'email' => $email,
+       'password' => $password
+      ]
+    ];
+
+    return  $this->put($this->buildQuery($request));
   }
 
   public function apps($secret, $userID, $token)
