@@ -1,7 +1,7 @@
 <?php
 namespace Fincore;
 
-class Accont extends \Fincore\Requests {
+class Account extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
   }
