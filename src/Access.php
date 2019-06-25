@@ -19,6 +19,7 @@ class Access extends \Fincore\Requests {
     return  $this->put($this->buildQuery($request));
   }
 
+
   public function apps($secret, $userID, $token)
   {
     return $this->put(
