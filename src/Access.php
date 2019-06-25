@@ -23,7 +23,7 @@ class Access extends \Fincore\Requests {
      else {
       return 'you need to add the email and password field to make the query';
      }
-    }
+    
   }
 
   public function apps($secret, $userID, $token)
