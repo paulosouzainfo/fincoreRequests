@@ -8,11 +8,10 @@ use \Buzz\Message\Response;
 
 class Requests extends \Fincore\Helpers {
   protected $browser;
+  private $temporaryTokenFile = './authTemporaryToken.txt';
 
-  protected function __construct($environmentConfig = null, Browser $browser = null)
+  protected function __construct($environmentConfig = null, Browser $browser = null): void
   {
-    if(empty(session_id())) session_start();
-
     $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
     $dotenv->load();
 
@@ -25,14 +24,20 @@ class Requests extends \Fincore\Helpers {
     $this->browser = $setBrowser;
   }
 
-  private function setAuth($bearer)
+  private function setAuth($bearer): void
   {
-    $_SESSION['bearer'] = $bearer;
+    if(!is_file($this->temporaryTokenFile)) {
+      touch($this->temporaryTokenFile);
+    }
+    
+    file_put_contents($this->temporaryTokenFile, $bearer);
   }
 
-  private function getAuth()
+  private function getAuth(): string
   {
-    if(isset($_SESSION['bearer'])) return $_SESSION['bearer'];
+    if(is_file($this->temporaryTokenFile)) {
+      if($authToken = file_get_contents($this->temporaryTokenFile) return $authToken;
+    }
 
     return null;
   }
@@ -111,6 +116,11 @@ class Requests extends \Fincore\Helpers {
         'http_status' => $response->getStatusCode(),
         'response' => $response->getContent()
       ]);
+    }
+    else {
+      if($response->getStatusCode() === 401) {
+        if(is_file($this->temporaryTokenFile)) unlink($this->temporaryTokenFile);
+      }
     }
 
     return json_encode([
