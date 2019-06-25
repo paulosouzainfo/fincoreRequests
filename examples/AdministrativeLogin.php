@@ -4,9 +4,9 @@ require_once './vendor/autoload.php';
 $shiftScript = array_shift($argv);
 list($email, $password) = $argv;
 
-$println = function($text, $dump = false) {
-  if($dump) print_r($dump).PHP_EOL;
-  else echo $text.PHP_EOL;
+$println = function($textArrayOrObject, $dump = false) {
+  if($dump) print_r($textArrayOrObject).PHP_EOL;
+  else echo $textArrayOrObject.PHP_EOL;
 };
 
 $action = new \Fincore\Access();
