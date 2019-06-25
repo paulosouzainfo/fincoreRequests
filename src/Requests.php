@@ -6,7 +6,7 @@ use \Buzz\Client\Curl;
 use \Buzz\Client\FileGetContents;
 use \Buzz\Message\Response;
 
-class Requests {
+class Requests extends \Fincore\Helpers {
   protected $browser;
 
   protected function __construct($environmentConfig = null, Browser $browser = null)
