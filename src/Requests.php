@@ -56,7 +56,7 @@ class Requests extends \Fincore\Helpers {
 
     $query = null;
     if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-
+  
     if(empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
 
     if($formData === 'application/json') {
@@ -82,14 +82,13 @@ class Requests extends \Fincore\Helpers {
     if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
 
     $data = json_encode($data);
-
-    if(empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+   
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
 
     array_push($headers, 'Content-Type: application/json');
     array_push($headers, 'Content-Length: '.strlen($data));
 
     $response = $this->browser->put(getenv('ENDPOINT').$path.$query, $headers, $data);
-
     return $this->handleResponse($response);
   }
 
