@@ -42,12 +42,31 @@ class Requests extends \Fincore\Helpers {
     return '';
   }
 
-  protected function get($path)
+ 
+protected function get($path, $queryString = null, $headers = [], $data = [], $formData = 'application/json')
   {
-    $response = $this->browser->get(getenv('ENDPOINT').$path);
-    $this->handleResponse($response);
-    return $response->getContent();
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
+  
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    if($formData === 'application/json') {
+      array_push($headers, 'Content-Type: application/json');
+      $data = json_encode($data);
+    }
+    else {
+      array_push($headers, 'Content-Type: '.$formData);
+      $data = http_build_query($data);
+    }
+
+    $response = $this->browser->get(getenv('ENDPOINT').$path.$query, $headers, $data);
+
+    return $this->handleResponse($response);
   }
+
 
   protected function post($path, $queryString = null, $headers = [], $data = [], $formData = 'application/json')
   {
@@ -56,8 +75,8 @@ class Requests extends \Fincore\Helpers {
 
     $query = null;
     if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-
-    if(empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+  
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
 
     if($formData === 'application/json') {
       array_push($headers, 'Content-Type: application/json');
@@ -82,14 +101,13 @@ class Requests extends \Fincore\Helpers {
     if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
 
     $data = json_encode($data);
-
-    if(empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+   
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
 
     array_push($headers, 'Content-Type: application/json');
     array_push($headers, 'Content-Length: '.strlen($data));
 
     $response = $this->browser->put(getenv('ENDPOINT').$path.$query, $headers, $data);
-
     return $this->handleResponse($response);
   }
 
