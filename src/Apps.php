@@ -6,13 +6,13 @@ class Apps extends \Fincore\Requests {
     parent::__construct();
   }
 
-public function NewApps($url,$dns)
+public function NewApps($url,$dsn)
   {
     $request = [
       'path' => '/apps',
          'data' => [
           'url' => $url,
-          'dns' => $dns
+          'dsn' => $dsn
       ]
     ];
 
