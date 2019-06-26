@@ -96,7 +96,7 @@ protected function get($path, $queryString = null, $headers = [], $data = [], $f
   {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
-
+    
     $query = null;
     if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
 
