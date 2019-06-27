@@ -25,7 +25,8 @@ class Administrative extends \Fincore\Requests {
       'path' => '/apps/'.$IdApp
     ];
 
-    return  $this->delete($this->buildQuery($request));
+
+return  $this->delete($this->buildQuery($request));
   }
 
 
