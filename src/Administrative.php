@@ -6,7 +6,7 @@ class Administrative extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public UpdatingApps ($url,$dsn,$IdApp){
+  public function UpdatingApps ($url,$dsn,$IdApp){
 
     $request = [
       'path' => '/apps/'.$IdApp.'?force=1',
