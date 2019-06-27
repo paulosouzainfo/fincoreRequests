@@ -2,3 +2,4 @@ vendor/
 composer.lock
 .env
 authTemporaryToken.txt
+.gitignore.orig
