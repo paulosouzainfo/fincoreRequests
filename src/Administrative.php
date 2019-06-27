@@ -27,15 +27,13 @@ class Administrative extends \Fincore\Requests {
 
     return  $this->get($this->buildQuery($request));
   }
-}
 
-public function DisableApps()
+public function DisableApps($IdApp)
   {
     $request = [
-      'path' => '/apps'
+      'path' => '/apps/'.$IdApp
     ];
 
-    return  $this->get($this->buildQuery($request));
+    return  $this->delete($this->buildQuery($request));
   }
-
 }
