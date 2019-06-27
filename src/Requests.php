@@ -118,8 +118,21 @@ protected function get($path, $queryString = null, $headers = [])
   }
 
 
-  protected function patch()
-  {}
+  protected function patch($path, $queryString = null, $headers = [])
+  {
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
+  
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    $request = $this->browser->patch(getenv('ENDPOINT').$path.$query, $headers);
+
+    return $this->handleResponse($request);
+
+  }
 
   protected function head()
   {}
