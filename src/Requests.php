@@ -43,7 +43,7 @@ class Requests extends \Fincore\Helpers {
   }
 
  
-protected function get($path, $queryString = null, $headers = [], $data = [], $formData = 'application/json')
+protected function get($path, $queryString = null, $headers = [])
   {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
@@ -53,18 +53,9 @@ protected function get($path, $queryString = null, $headers = [], $data = [], $f
   
     if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
 
-    if($formData === 'application/json') {
-      array_push($headers, 'Content-Type: application/json');
-      $data = json_encode($data);
-    }
-    else {
-      array_push($headers, 'Content-Type: '.$formData);
-      $data = http_build_query($data);
-    }
+    $request = $this->browser->get(getenv('ENDPOINT').$path.$query, $headers);
 
-    $response = $this->browser->get(getenv('ENDPOINT').$path.$query, $headers, $data);
-
-    return $this->handleResponse($response);
+    return $this->handleResponse($request);
   }
 
 
