@@ -15,7 +15,7 @@ class Administrative extends \Fincore\Requests {
           'dsn' => $dsn
       ]
     ];
-    return  $this->put($this->buildQuery($request));
+     return  $this->put($this->buildQuery($request));
  
   }
 
@@ -25,8 +25,7 @@ class Administrative extends \Fincore\Requests {
       'path' => '/apps/'.$IdApp
     ];
 
-
-return  $this->delete($this->buildQuery($request));
+    return  $this->delete($this->buildQuery($request));
   }
 
 
@@ -52,17 +51,13 @@ public function ListApps()
     return  $this->post($this->buildQuery($request));
   }
 
-  public function ReactivatingApps($url,$dsn)
+  public function ReactivatingApps($IdApp)
   {
     $request = [
-      'path' => '/apps',
-         'data' => [
-          'url' => $url,
-          'dsn' => $dsn
-      ]
+      'path' => '/apps/'.$IdApp
     ];
 
-    return  $this->post($this->buildQuery($request));
+    return  $this->patch($this->buildQuery($request));
   }
 
   public function RetrieveApps($IdApp)
