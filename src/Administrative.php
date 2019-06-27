@@ -18,5 +18,14 @@ class Administrative extends \Fincore\Requests {
 
     return  $this->post($this->buildQuery($request));
   }
-  
+
+  public function ListApps()
+  {
+    $request = [
+      'path' => '/apps'
+    ];
+
+    return  $this->get($this->buildQuery($request));
+  }
+
 }
