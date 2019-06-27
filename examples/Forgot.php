@@ -1,16 +1,5 @@
 <?php
-
 require_once 'vendor/autoload.php';
 
-$action = new \Fincore\AccessHelper();
-
-$forgot = new AccessHelper();
-
-$data='kakaroto1500@gmail.com';
-
-$result=$registration->forgot($data);
-
-
-var_dump($result);
-//Success or error response appears in the line above
-
+$request = new \Fincore\AccessHelper();
+$request->println($request->forgot($argv[1]), true);
