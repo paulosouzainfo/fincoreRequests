@@ -111,11 +111,24 @@ protected function get($path, $queryString = null, $headers = [], $data = [], $f
     return $this->handleResponse($response);
   }
 
-  protected function delete($path)
+  protected function delete($path, $queryString = null, $headers = [], $data = [])
   {
+    $parser = $this->parseStr($path);
+     if(!empty($parser)) extract($parser);
+      $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
+
+    $data = json_encode($data);
+   
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    array_push($headers, 'Content-Type: application/json');
+    array_push($headers, 'Content-Length: '.strlen($data));
+
     $response = $this->browser->delete(getenv('ENDPOINT').$path);
     $this->handleResponse($response);
   }
+
 
   protected function patch()
   {}
