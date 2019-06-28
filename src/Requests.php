@@ -134,8 +134,26 @@ class Requests extends \Fincore\Helpers {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
+<<<<<<< HEAD
     $this->setHeaders($headers);  
     $this->setQueryString($queryString);
+=======
+  protected function patch($path, $queryString = null, $headers = [])
+  {
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $query = null;
+    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
+  
+    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+
+    $request = $this->browser->patch(getenv('ENDPOINT').$path.$query, $headers);
+
+    return $this->handleResponse($request);
+
+  }
+>>>>>>> a5843afb18c0a135584134f923a528d0eeaa743b
 
     $request = $this->browser->head($this->setPathToRequest($path), $this->headers);
     return $this->handleResponse($request);

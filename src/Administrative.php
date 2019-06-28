@@ -10,8 +10,22 @@ class Administrative extends \Fincore\Requests {
     $request = [
       'path' => "/apps/{$id}"
     ];
+<<<<<<< HEAD
 
     return $this->get($this->buildQuery($request));
+=======
+     return  $this->put($this->buildQuery($request));
+ 
+  }
+
+  public function DisableApps($IdApp)
+  {
+    $request = [
+      'path' => '/apps/'.$IdApp
+    ];
+
+    return  $this->delete($this->buildQuery($request));
+>>>>>>> a5843afb18c0a135584134f923a528d0eeaa743b
   }
   
   public function ListApps(): string {
@@ -33,6 +47,7 @@ class Administrative extends \Fincore\Requests {
 
     return $this->post($this->buildQuery($request));
   }
+<<<<<<< HEAD
   
   public function UpdatingApps(string $url, string $dsn, string $appId): string {
     $request = [
@@ -44,6 +59,16 @@ class Administrative extends \Fincore\Requests {
     ];
     
     return  $this->put($this->buildQuery($request)); 
+=======
+
+  public function ReactivatingApps($IdApp)
+  {
+    $request = [
+      'path' => '/apps/'.$IdApp
+    ];
+
+    return  $this->patch($this->buildQuery($request));
+>>>>>>> a5843afb18c0a135584134f923a528d0eeaa743b
   }
 
   public function DisableApps(string $appId): string {
