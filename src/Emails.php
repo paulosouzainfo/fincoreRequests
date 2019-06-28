@@ -6,13 +6,14 @@ class Emails extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function SearchNetworks($email) 
-   {
-   	 $request = [
-      'path' => '/_/outsourcing/emails',
-      'email' => $email
+  public function SearchNetworks(string $email): object {
+    $request = [
+    'path' => '/_/outsourcing/emails',
+    'queryString' => [
+    'email' => $email
+    ]
     ];
 
-   return  $this->get($this->buildQuery($request));
-	 }
+    return  $this->get($this->buildQuery($request));
+  }
 }
