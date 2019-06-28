@@ -6,79 +6,91 @@ class PJ extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function CompaniesAds($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/ads?document='.$Cnpj
+  public function CompaniesAds(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/ads',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesBasic($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/basic?document='.$Cnpj
+  public function CompaniesBasic(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/basic',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesDomains($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/domains?document='.$Cnpj
+  public function CompaniesDomains(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/domains',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesEmails($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/emails?document='.$Cnpj
+  public function CompaniesEmails(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/emails',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function Companiesunemployment_insurance($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/media-exposure?document='.$Cnpj
+   public function Companiesunemployment_insurance(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/media-exposure',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Companiesactivity_indicators($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/activity-indicators?document='.$Cnpj
+  public function Companiesactivity_indicators(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/activity-indicators',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesRelationships($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/relationships?document='.$Cnpj
+  public function CompaniesRelationships(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/relationships',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesPhones($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/phones?document='.$Cnpj
+  public function CompaniesPhones(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/phones',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
-
-
-
-
 }
