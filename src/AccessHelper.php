@@ -6,10 +6,15 @@ class AccessHelper extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function forgot($email)
-   {
-   	 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-     	return $this->put('/forgot','[]','[]',$email);
-     }
+  public function forgot(string $email): object {
+     $request = [
+       'path' => '/forgot',
+       'data' => [
+         'email' => $email
+       ], 
+       'formData' => 'application/x-www-form-urlencoded'
+     ];
+   	 
+     return $this->post($this->buildQuery($request));
    }
 }
