@@ -6,196 +6,234 @@ class PF extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function OnlineAds($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/ads?document='.$Cpf
+  public function OnlineAds(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/ads',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function BasicCadastral($cpf){
-
+  public function BasicCadastral(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/basic?document='.$Cpf
+      'path' => '/_/outsourcing/persons/basic',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function ClassAdvice($cpf){
-
+  public function ClassAdvice(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/memberships?document='.$Cpf
+      'path' => '/_/outsourcing/persons/memberships',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PublicPprofessions($cpf){
-
+  public function PublicPprofessions(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/public-professions?document='.$Cpf
+      'path' => '/_/outsourcing/persons/public-professions',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsProfessions($cpf){
-
+   public function PersonsProfessions(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/professions?document='.$Cpf
+      'path' => '/_/outsourcing/persons/professions',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function UniversitySstudents($cpf){
-
+  public function UniversitySstudents(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/university-students?document='.$Cpf
+      'path' => '/_/outsourcing/persons/university-students',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsDomains($cpf){
-
+  public function PersonsDomains(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/domains?document='.$Cpf
+      'path' => '/_/outsourcing/persons/domains',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsEmails($cpf){
-
+  public function PersonsEmails(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/email?document='.$Cpf
+      'path' => '/_/outsourcing/persons/email',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsAddresses($cpf){
-
+  public function PersonsAddresses(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/addresses?document='.$Cpf
+      'path' => '/_/outsourcing/persons/addresses',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
 
-  public function PersonsMediaExposure($cpf){
-
+  public function PersonsMediaExposure(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/media-exposure?document='.$Cpf
+      'path' => '/_/outsourcing/persons/media-exposure',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsFlagsAndFeatures($cpf){
-
+  public function PersonsFlagsAndFeatures(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/flags-and-features?document='.$Cpf
+      'path' => '/_/outsourcing/persons/flags-and-features',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsFinancial($cpf){
-
+  public function PersonsFinancial(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/financial?document='.$Cpf
+      'path' => '/_/outsourcing/persons/financial',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsKyc($cpf){
-
+  public function PersonsKyc(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/kyc?document='.$Cpf
+      'path' => '/_/outsourcing/persons/kyc',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsDemographic($cpf){
-
+  public function PersonsDemographic(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/interests?document='.$Cpf
+      'path' => '/_/outsourcing/persons/interests',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsWebPassages($cpf){
-
+  public function PersonsWebPassages(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/web-passages?document='.$Cpf
+      'path' => '/_/outsourcing/persons/web-passages',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsOnlinePresence($cpf){
-
+  public function PersonsOnlinePresence(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/online-presence?document='.$Cpf
+      'path' => '/_/outsourcing/persons/online-presence',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsRecurrencyToCharging($cpf){
-
+  public function PersonsRecurrencyToCharging(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/recurrency-to-charging?document='.$Cpf
+      'path' => '/_/outsourcing/persons/recurrency-to-charging',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsProcesses($cpf){
-
+   public function PersonsProcesses(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/processes?document='.$Cpf
+      'path' => '/_/outsourcing/persons/processes',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsSocialAssistences($cpf){
-
+   public function PersonsSocialAssistences(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/social-assistences?document='.$Cpf
+      'path' => '/_/outsourcing/persons/social-assistences',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsBusiness($cpf){
-
+  public function PersonsBusiness(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/business-relationships?document='.$Cpf
+      'path' => '/_/outsourcing/persons/business-relationships',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsNearbyRelationships($cpf){
-
+  public function PersonsNearbyRelationships(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/nearby-relationships?document='.$Cpf
+      'path' => '/_/outsourcing/persons/nearby-relationships',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsPhones($cpf){
-
+  public function PersonsPhones(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/phones?document='.$Cpf
+      'path' => '/_/outsourcing/persons/phones',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsPhones($cpf){
-
+  public function PersonsVehicles(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/phones?document='.$Cpf
-    ];
-    return  $this->get($this->buildQuery($request)); 
-  }
-
-  public function PersonsVehicles($cpf){
-
-  	$request = [
-      'path' => '/_/outsourcing/persons/vehicles?document='.$Cpf
+      'path' => '/_/outsourcing/persons/vehicles',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
     return  $this->get($this->buildQuery($request)); 
   }
