@@ -259,24 +259,4 @@ class PF extends \Fincore\Requests {
     
     return $this->get($this->buildQuery($request)); 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
 }

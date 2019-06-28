@@ -6,95 +6,113 @@ class PJOnDemand extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function CompaniesIbamaEmbargo($Cnpj)
-  {
-	$request = [
-      'path' => '/_/outsourcing/companies/ibama-embargo?document='.$Cnpj
+  public function CompaniesIbamaEmbargo(string $document): object {
+    $request = [
+        'path' => '/_/outsourcing/companies/ibama-embargo',
+        'queryString' => [
+          'document' => $document
+        ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesIbamaNegativeCertificate($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/ibama-negative-certificate?document='.$Cnpj
+  public function CompaniesIbamaNegativeCertificate(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/ibama-negative-certificate',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Companiesnegative_certificate($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/ibama-negative-certificate?document='.$Cnpj
+  public function Companiesnegative_certificate(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/ibama-negative-certificate',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesPgfn($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/pgfn?document='.$Cnpj
+  public function CompaniesPgfn(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/pgfn',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesSiproquim($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/siproquim?document='.$Cnpj
+  public function CompaniesSiproquim(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/siproquim',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesCnpj($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/cnpj?document='.$Cnpj
+  public function CompaniesCnpj(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/cnpj',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesUnemployment($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/qsa?document='.$Cnpj
+  public function CompaniesUnemployment(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/qsa',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesFgts($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/fgts?document='.$Cnpj
+  public function CompaniesFgts(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/fgts',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function LegalRepresentative($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/legal-representative?document='.$Cnpj
+  public function LegalRepresentative(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/legal-representative',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesSimples($Cnpj)
-  {
-	$request = [
-    'path' => '/_/outsourcing/companies/simples?document='.$Cnpj
+  public function CompaniesSimples(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/companies/simples',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
- 
-
 }

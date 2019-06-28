@@ -5,96 +5,113 @@ class PFOnDemand extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
   }
-  public function Personscriminal_records($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/criminal-records?document='.$Cpf
+  public function Personscriminal_records(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/criminal-records',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsibama_embargo($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/ibama-embargo?document='.$Cpf
+  public function Personsibama_embargo(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/ibama-embargo',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsnegative_certificate($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/negative-certificate?document='.$Cpf
+  public function Personsnegative_certificate(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/negative-certificate',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
- public function Personspgfn($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/pgfn?document='.$Cpf
+ public function Personspgfn(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/pgfn',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsnothing_contained($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/nothing-contained?document='.$Cpf
+  public function Personsnothing_contained(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/nothing-contained',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personscpf($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/cpf?document='.$Cpf
+  public function Personscpf(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/cpf',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personshealth_plans($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/health-plans?document='.$Cpf
+  public function Personshealth_plans(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/health-plans',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function PersonsincomeRefunds($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/income-tax-refunds?document='.$Cpf
+   public function PersonsincomeRefunds(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/income-tax-refunds',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function Personsrais($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/rais?document='.$Cpf
+   public function Personsrais(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/rais',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsunemployment_insurance($Cpf)
-  {
-	$request = [
-      'path' => '/_/outsourcing/persons/unemployment-insurance?document='.$Cpf
+  public function Personsunemployment_insurance(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/unemployment-insurance',
+      'queryString' => [
+        'document' => $document
+      ]
     ];
 
     return  $this->get($this->buildQuery($request)); 	
   }
-
-
-
 }
