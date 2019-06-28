@@ -1,7 +1,5 @@
 <?php
 require_once './vendor/autoload.php';
-$shiftScript = array_shift($argv);
-list($email) = $argv;
 
 $request = new \Fincore\Emails();
-$request->println($request->SearchNetworks($email), true);
+$request->println($request->SearchNetworks($argv[1]), true);
