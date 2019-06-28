@@ -6,7 +6,7 @@ class BackgroundCheck extends \Fincore\Requests {
     parent::__construct();
   }
   
-  public function question(int $document): objetct {
+  public function question(int $document): object {
     $request = [
       'path' => '/_/outsourcing/questions',
       'queryString' => [
@@ -17,7 +17,7 @@ class BackgroundCheck extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request));
   }
   
-  public function answers(string $questionTicket, array $answers): objetct {
+  public function answers(string $questionTicket, array $answers): object {
     $request = [
       'path' => "/_/outsourcing/background-check/answer-me/{$ticket}",
       'data' => $answers
@@ -26,7 +26,7 @@ class BackgroundCheck extends \Fincore\Requests {
     return  $this->post($this->buildQuery($request));
   }
   
-  public function documentsOCR(string $imageURL, string $type, string $side): objetct {
+  public function documentsOCR(string $imageURL, string $type, string $side): object {
     $request = [
       'path' => "/_/outsourcing/verify-id",
       'data' => [
@@ -39,7 +39,7 @@ class BackgroundCheck extends \Fincore\Requests {
     return  $this->post($this->buildQuery($request));
   }
   
-  public function facematch(string $documentURL, string $selfieURL): objetct {
+  public function facematch(string $documentURL, string $selfieURL): object {
     $request = [
       'path' => "/_/outsourcing/background-check/facematch",
       'data' => [
