@@ -6,72 +6,59 @@ class Administrative extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function UpdatingApps ($url,$dsn,$IdApp){
-
+  public function RetrieveApp(string $id): string {
     $request = [
-      'path' => '/apps/'.$IdApp.'?force=1',
-      'data' => [
-          'url' => $url,
-          'dsn' => $dsn
-      ]
-    ];
-    return  $this->put($this->buildQuery($request));
- 
-  }
-
-  public function DisableApps($IdApp)
-  {
-    $request = [
-      'path' => '/apps/'.$IdApp
+      'path' => "/apps/{$id}"
     ];
 
-
-return  $this->delete($this->buildQuery($request));
+    return $this->get($this->buildQuery($request));
   }
-
-
-public function ListApps()
-  {
+  
+  public function ListApps(): string {
     $request = [
       'path' => '/apps'
     ];
 
     return  $this->get($this->buildQuery($request));
   }
-
-  public function NewApps($url,$dsn)
-  {
+  
+  public function NewApp(string $url, string $dsn): string {
     $request = [
       'path' => '/apps',
-         'data' => [
-          'url' => $url,
-          'dsn' => $dsn
+      'data' => [
+        'url' => $url,
+        'dsn' => $dsn
       ]
     ];
 
-    return  $this->post($this->buildQuery($request));
+    return $this->post($this->buildQuery($request));
   }
-
-  public function ReactivatingApps($url,$dsn)
-  {
+  
+  public function UpdatingApps(string $url, string $dsn, string $appId): string {
     $request = [
-      'path' => '/apps',
-         'data' => [
-          'url' => $url,
-          'dsn' => $dsn
+      'path' => "/apps/{$appId}?force=1",
+      'data' => [
+        'url' => $url,
+        'dsn' => $dsn
       ]
     ];
-
-    return  $this->post($this->buildQuery($request));
+    
+    return  $this->put($this->buildQuery($request)); 
   }
 
-  public function RetrieveApps($IdApp)
-  {
+  public function DisableApps(string $appId): string {
     $request = [
-      'path' => '/apps/'.$IdApp
+      'path' => "/apps/{$appId}"
     ];
 
-    return  $this->get($this->buildQuery($request));
+    return $this->delete($this->buildQuery($request));
   }
 
+  public function ReactivatingApps(string $appId): string {
+    $request = [
+      'path' => "/apps/{$appId}"
+    ];
+
+    return $this->patch($this->buildQuery($request));
+  }
 }

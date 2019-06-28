@@ -6,31 +6,28 @@ class Access extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function administrative($email, $password)
-  {
+  public function administrative(?string $email = null, ?string $password = null): string {
     $request = [
       'path' => '/',
       'data' => [
-       'email' => $email,
-       'password' => $password
+       'email' => !is_null($email) ? $email : getenv('EMAIL'),
+       'password' => !is_null($password) ? $password : getenv('PASSWORD')
       ]
     ];
 
     return  $this->put($this->buildQuery($request));
   }
 
-
-  public function apps($secret, $userID, $token)
-  {
+  public function apps(?string $secret = null, ?string $userID = null, ?string $token = null): string {
     return $this->put(
       '/',
       [
-        'secret' => $secret
+        'secret' => !is_null($secret) ? $secret : getenv('SECRET')
       ],
       [],
       [
-        'userID' => $userID,
-        'token' => $token
+        'user_id' => !is_null($userID) ? $userID : getenv('USERID'),
+        'token' => !is_null($token) ? $token : getenv('TOKEN')
       ]
     );
   }
