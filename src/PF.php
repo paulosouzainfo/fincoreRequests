@@ -24,7 +24,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function ClassAdvice(string $document): object {
@@ -34,7 +35,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PublicPprofessions(string $document): object {
@@ -44,7 +46,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
    public function PersonsProfessions(string $document): object {
@@ -54,7 +57,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function UniversitySstudents(string $document): object {
@@ -64,7 +68,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsDomains(string $document): object {
@@ -74,7 +79,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsEmails(string $document): object {
@@ -84,7 +90,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsAddresses(string $document): object {
@@ -94,7 +101,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
 
@@ -105,7 +113,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsFlagsAndFeatures(string $document): object {
@@ -115,7 +124,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsFinancial(string $document): object {
@@ -125,7 +135,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsKyc(string $document): object {
@@ -135,7 +146,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsDemographic(string $document): object {
@@ -145,7 +157,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsWebPassages(string $document): object {
@@ -155,7 +168,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsOnlinePresence(string $document): object {
@@ -165,7 +179,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsRecurrencyToCharging(string $document): object {
@@ -175,7 +190,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
    public function PersonsProcesses(string $document): object {
@@ -185,7 +201,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
    public function PersonsSocialAssistences(string $document): object {
@@ -195,7 +212,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsBusiness(string $document): object {
@@ -205,7 +223,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsNearbyRelationships(string $document): object {
@@ -215,7 +234,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsPhones(string $document): object {
@@ -225,7 +245,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
   public function PersonsVehicles(string $document): object {
@@ -235,7 +256,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    return  $this->get($this->buildQuery($request)); 
+    
+    return $this->get($this->buildQuery($request)); 
   }
 
 
