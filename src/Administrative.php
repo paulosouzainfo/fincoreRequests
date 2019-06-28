@@ -6,29 +6,15 @@ class Administrative extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function RetrieveApp(string $id): string {
+  public function RetrieveApp(string $id): object {
     $request = [
       'path' => "/apps/{$id}"
     ];
-<<<<<<< HEAD
-
+    
     return $this->get($this->buildQuery($request));
-=======
-     return  $this->put($this->buildQuery($request));
- 
-  }
-
-  public function DisableApps($IdApp)
-  {
-    $request = [
-      'path' => '/apps/'.$IdApp
-    ];
-
-    return  $this->delete($this->buildQuery($request));
->>>>>>> a5843afb18c0a135584134f923a528d0eeaa743b
   }
   
-  public function ListApps(): string {
+  public function ListApps(): object {
     $request = [
       'path' => '/apps'
     ];
@@ -36,7 +22,7 @@ class Administrative extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request));
   }
   
-  public function NewApp(string $url, string $dsn): string {
+  public function NewApp(string $url, string $dsn): object {
     $request = [
       'path' => '/apps',
       'data' => [
@@ -47,9 +33,8 @@ class Administrative extends \Fincore\Requests {
 
     return $this->post($this->buildQuery($request));
   }
-<<<<<<< HEAD
   
-  public function UpdatingApps(string $url, string $dsn, string $appId): string {
+  public function UpdatingApps(string $url, string $dsn, string $appId): object {
     $request = [
       'path' => "/apps/{$appId}?force=1",
       'data' => [
@@ -59,19 +44,9 @@ class Administrative extends \Fincore\Requests {
     ];
     
     return  $this->put($this->buildQuery($request)); 
-=======
-
-  public function ReactivatingApps($IdApp)
-  {
-    $request = [
-      'path' => '/apps/'.$IdApp
-    ];
-
-    return  $this->patch($this->buildQuery($request));
->>>>>>> a5843afb18c0a135584134f923a528d0eeaa743b
   }
 
-  public function DisableApps(string $appId): string {
+  public function DisableApps(string $appId): object {
     $request = [
       'path' => "/apps/{$appId}"
     ];
@@ -79,7 +54,7 @@ class Administrative extends \Fincore\Requests {
     return $this->delete($this->buildQuery($request));
   }
 
-  public function ReactivatingApps(string $appId): string {
+  public function ReactivatingApps(string $appId): object {
     $request = [
       'path' => "/apps/{$appId}"
     ];

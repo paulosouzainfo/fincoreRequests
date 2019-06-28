@@ -6,7 +6,7 @@ class Access extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function administrative(?string $email = null, ?string $password = null): string {
+  public function administrative(?string $email = null, ?string $password = null): object {
     $request = [
       'path' => '/',
       'data' => [
@@ -18,7 +18,7 @@ class Access extends \Fincore\Requests {
     return  $this->put($this->buildQuery($request));
   }
 
-  public function apps(?string $secret = null, ?string $userID = null, ?string $token = null): string {
+  public function apps(?string $secret = null, ?string $userID = null, ?string $token = null): object {
     return $this->put(
       '/',
       [

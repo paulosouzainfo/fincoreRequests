@@ -1,5 +1,5 @@
 <?php
 require_once './vendor/autoload.php';
 
-$action = new \Fincore\Access();
-print_r($action->apps()).PHP_EOL;
+$request = new \Fincore\Access();
+$request->println($request->apps(), true);

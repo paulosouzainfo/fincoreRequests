@@ -63,7 +63,7 @@ class Requests extends \Fincore\Helpers {
     return getenv('ENDPOINT').$path.$this->queryString;
   }
   
-  protected function get(string $path, array $queryString = [], array $headers = []): string {
+  protected function get(string $path, array $queryString = [], array $headers = []): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
         
@@ -74,7 +74,7 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($request);
   }
 
-  protected function post(string $path, array $queryString = [], array $headers = [], array $data = [], $formData = 'application/json'): string {
+  protected function post(string $path, array $queryString = [], array $headers = [], array $data = [], $formData = 'application/json'): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
@@ -92,7 +92,7 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($response);
   }
 
-  protected function put(string $path, ?array $queryString = [], ?array $headers = [], ?array $data = []): string {
+  protected function put(string $path, ?array $queryString = [], ?array $headers = [], ?array $data = []): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
     
@@ -108,7 +108,7 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($response);
   }
 
-  protected function delete(string $path, array $queryString = [], array $headers = []): string {
+  protected function delete(string $path, array $queryString = [], array $headers = []): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
@@ -119,7 +119,7 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($request);
   }
 
-  protected function patch(string $path, array $queryString = [], array $headers = []): string {
+  protected function patch(string $path, array $queryString = [], array $headers = []): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
@@ -130,7 +130,7 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($request);
   }
 
-  protected function head(string $path, array $queryString = [], array $headers = []): string {
+  protected function head(string $path, array $queryString = [], array $headers = []): object {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
@@ -141,16 +141,18 @@ class Requests extends \Fincore\Helpers {
     return $this->handleResponse($request);
   }
 
-  private function handleResponse(Response $response): string {
+  private function handleResponse(Response $response): object {
+    $responseData = new \stdClass();
+    
     if($response->getStatusCode() < 400) {
       $bearer = $response->getHeader('authorization');
 
       if(!is_null($bearer)) $this->setAuth($bearer);
 
-      return json_encode([
-        'http_status' => $response->getStatusCode(),
-        'response' => $response->getContent()
-      ]);
+      $responseData->http_status = $response->getStatusCode();
+      $responseData->response = json_decode($response->getContent());
+      
+      return $responseData;
     }
     else {
       if($response->getStatusCode() === 401) {
@@ -158,9 +160,9 @@ class Requests extends \Fincore\Helpers {
       }
     }
 
-    return json_encode([
-      'http_status' => $response->getStatusCode(),
-      'response' => $response->getContent()
-    ]);
+    $responseData->http_status = $response->getStatusCode();
+    $responseData->response = json_decode($response->getContent());
+    
+    return $responseData;
   }
 }
