@@ -6,23 +6,16 @@ class Account extends \Fincore\Requests {
     parent::__construct();
   }
 
- public function UpdatingRegistration($data) 
-   {
-   	 $request = [
+  public function UpdatingRegistration(array $data = []): object {
+    $request = [
       'path' => '/users',
       'data' => $data
     ];
 
-	return  $this->put($this->buildQuery($request));
-	 }
+    return  $this->put($this->buildQuery($request));
+  }
  
- public function RecoveringData()
-	 {
-		$request = [
-	      'path' => '/users'
-	    ];
-
-	    return  $this->get($this->buildQuery($request));
-	//Returns the user data.
-	 }
- }	 
+  public function RecoveringData(): object {
+    return  $this->get('/users');
+	}
+}	
