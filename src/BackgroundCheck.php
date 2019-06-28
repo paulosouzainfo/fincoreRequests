@@ -26,7 +26,7 @@ class BackgroundCheck extends \Fincore\Requests {
     return  $this->post($this->buildQuery($request));
   }
   
-  public function documentsOCR(string $imageURL, string $type, string $side): object {
+  public function documents(string $imageURL, string $type, string $side): object {
     $request = [
       'path' => "/_/outsourcing/verify-id",
       'data' => [
