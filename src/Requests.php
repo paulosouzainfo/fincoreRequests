@@ -7,13 +7,16 @@ use \Buzz\Client\FileGetContents;
 use \Buzz\Message\Response;
 
 class Requests extends \Fincore\Helpers {
-  protected $browser;
+  private $browser;
+  private $queryString = null;
+  private $headers = [];
   private $temporaryTokenFile = './authTemporaryToken.txt';
 
-  protected function __construct($environmentConfig = null, Browser $browser = null)
-  {
-    $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
-    $dotenv->load();
+  protected function __construct(?string $environmentConfig = null, ?Browser $browser = null) {
+    if(null !== getenv('environment') and getenv('environment') !== 'production') {
+      $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
+      $dotenv->load();
+    }
 
     if(function_exists('curl_exec')) $selectedMethod = new Curl();
     else $selectedMethod = new FileGetContents();
@@ -24,8 +27,7 @@ class Requests extends \Fincore\Helpers {
     $this->browser = $setBrowser;
   }
 
-  private function setAuth($bearer): void
-  {
+  private function setAuth(string $bearer): void {
     if(!is_file($this->temporaryTokenFile)) {
       touch($this->temporaryTokenFile);
     }
@@ -33,8 +35,7 @@ class Requests extends \Fincore\Helpers {
     file_put_contents($this->temporaryTokenFile, $bearer);
   }
 
-  private function getAuth(): string
-  {
+  private function getAuth(): string {
     if(is_file($this->temporaryTokenFile)) {
       if($authToken = file_get_contents($this->temporaryTokenFile)) return $authToken;
     }
@@ -42,90 +43,105 @@ class Requests extends \Fincore\Helpers {
     return '';
   }
 
- 
-protected function get($path, $queryString = null, $headers = [])
-  {
+  private function setHeaders(array $headers): void {
+    $this->headers = $headers;
+    
+    if(!empty($this->getAuth())) $this->setHeader('Authorization: '.$this->getAuth());
+  }
+  
+  private function setHeader(string $header): void {
+    array_push($this->headers, $header);
+  }
+  
+  private function setQueryString(array $queryString): void {
+    if(!empty($queryString)) $this->queryString = '?'.$this->buildQuery($queryString);
+  }
+  
+  private function setPathToRequest(string $path): string {
+    if(substr($path, 0, 1) !== '/') $path = '/'.$path;
+    
+    return getenv('ENDPOINT').$path.$this->queryString;
+  }
+  
+  protected function get(string $path, array $queryString = [], array $headers = []): string {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
+        
+    $this->setHeaders($headers);  
+    $this->setQueryString($queryString);
 
-    $query = null;
-    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-  
-    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
-
-    $request = $this->browser->get(getenv('ENDPOINT').$path.$query, $headers);
-
+    $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
     return $this->handleResponse($request);
   }
 
-
-  protected function post($path, $queryString = null, $headers = [], $data = [], $formData = 'application/json')
-  {
+  protected function post(string $path, array $queryString = [], array $headers = [], array $data = [], $formData = 'application/json'): string {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
-    $query = null;
-    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-  
-    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+    $this->setHeaders($headers);  
+    $this->setHeader("Content-Type: {$formData}");
+    $this->setQueryString($queryString);
 
     if($formData === 'application/json') {
-      array_push($headers, 'Content-Type: application/json');
       $data = json_encode($data);
+      $this->setHeader('Content-Length: '.strlen($data));
     }
-    else {
-      array_push($headers, 'Content-Type: '.$formData);
-      $data = http_build_query($data);
-    }
+    else $data = http_build_query($data);
 
-    $response = $this->browser->post(getenv('ENDPOINT').$path.$query, $headers, $data);
-
+    $response = $this->browser->post($this->setPathToRequest($path), $this->headers, $data);
     return $this->handleResponse($response);
   }
 
-  protected function put($path, $queryString = null, $headers = [], $data = [])
-  {
+  protected function put(string $path, ?array $queryString = [], ?array $headers = [], ?array $data = []): string {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
     
-    $query = null;
-    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-
+    $this->setHeaders($headers); 
+    $this->setQueryString($queryString);
+    
     $data = json_encode($data);
-   
-    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+    
+    $this->setHeader('Content-Type: application/json');
+    $this->setHeader('Content-Length: '.strlen($data));
 
-    array_push($headers, 'Content-Type: application/json');
-    array_push($headers, 'Content-Length: '.strlen($data));
-
-    $response = $this->browser->put(getenv('ENDPOINT').$path.$query, $headers, $data);
+    $response = $this->browser->put($this->setPathToRequest($path), $this->headers, $data);
     return $this->handleResponse($response);
   }
 
-  protected function delete($path, $queryString = null, $headers = [])
-  {
+  protected function delete(string $path, array $queryString = [], array $headers = []): string {
     $parser = $this->parseStr($path);
     if(!empty($parser)) extract($parser);
 
-    $query = null;
-    if(!is_null($queryString)) $query = '?'.$this->buildQuery($queryString);
-  
-    if(!empty($this->getAuth())) array_push($headers, 'Authorization: '.$this->getAuth());
+    $this->setHeaders($headers);  
+    $this->setQueryString($queryString);
 
-    $request = $this->browser->delete(getenv('ENDPOINT').$path.$query, $headers);
-
+    $request = $this->browser->delete($this->setPathToRequest($path), $this->headers);
     return $this->handleResponse($request);
   }
 
+  protected function patch(string $path, array $queryString = [], array $headers = []): string {
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
 
-  protected function patch()
-  {}
+    $this->setHeaders($headers);  
+    $this->setQueryString($queryString);
 
-  protected function head()
-  {}
+    $request = $this->browser->patch($this->setPathToRequest($path), $this->headers);
+    return $this->handleResponse($request);
+  }
 
-  private function handleResponse(Response $response)
-  {
+  protected function head(string $path, array $queryString = [], array $headers = []): string {
+    $parser = $this->parseStr($path);
+    if(!empty($parser)) extract($parser);
+
+    $this->setHeaders($headers);  
+    $this->setQueryString($queryString);
+
+    $request = $this->browser->head($this->setPathToRequest($path), $this->headers);
+    return $this->handleResponse($request);
+  }
+
+  private function handleResponse(Response $response): string {
     if($response->getStatusCode() < 400) {
       $bearer = $response->getHeader('authorization');
 
