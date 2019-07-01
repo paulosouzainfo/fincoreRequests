@@ -1,33 +1,26 @@
 <?php
-declare(strict_types=1);
-
 namespace Fincore\Test;
-require_once 'vendor/autoload.php';
 
-use PHPUnit\Framework\TestCase;
+final class EmailTest extends \PHPUnit\Framework\TestCase {
+  public function testCanBeCreatedFromValidEmailAddress(): void
+  {
+    $this->assertInstanceOf(
+      \Fincore\Email::class,
+      \Fincore\Email::fromString('user@example.com')
+    );
+  }
 
-final class EmailTest extends TestCase
-{
-    public function testCanBeCreatedFromValidEmailAddress(): void
-    {
-        $this->assertInstanceOf(
-            Email::class,
-            Email::fromString('user@example.com')
-        );
-    }
+  public function testCannotBeCreatedFromInvalidEmailAddress(): void
+  {
+    $this->expectException(\InvalidArgumentException::class);
+    \Fincore\Email::fromString('invalid');
+  }
 
-    public function testCannotBeCreatedFromInvalidEmailAddress(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        Email::fromString('invalid');
-    }
-
-    public function testCanBeUsedAsString(): void
-    {
-        $this->assertEquals(
-            'user@example.com',
-            Email::fromString('user@example.com')
-        );
-    }
+  public function testCanBeUsedAsString(): void
+  {
+    $this->assertEquals(
+      'user@example.com',
+      \Fincore\Email::fromString('user@example.com')
+    );
+  }
 }
