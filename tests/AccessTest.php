@@ -1,31 +1,29 @@
 <?php
 namespace Fincore\Test;
 
-final class AccessTest extends  \PHPUnit\Framework\TestCase {
+final class AccessTest extends \PHPUnit\Framework\TestCase {
+	private $access;
 	
-	protected function setUp()
-    {
-        $this->Access = new \Fincore\Access();
-    }
+	protected function setup(): void {
+		$this->access = new \Fincore\Access();
+  }
 
-   public function Senhaleatoria()
-  {
+	public function senhaAleatoria(): array {
     return [
-      ['email@email.com','mypassword'],
-      ['meunovo@email.com','mysenha'],
-      ['pepe@gamil.co','teste'],
-      ['pepe','teste','testada']
+      ['email@email.com', 'mypassword'],
+      ['meunovo@email.com', 'mysenha'],
+      ['pepe@gamil.co', 'teste'],
+      ['pepe', 'teste']
     ];
   }
-   /**
-   * @dataProvider Senhaleatoria
-   */
-	public function testeverificarAcesso($email,$password) {
-		$retorno=$this->Access->administrative($email,$password);
-		$this->assertContains($email,
-			     array($retorno['data']['email'],$retorno['data']['password']));
-		$this->assertContains($password,
-			   array($retorno['data']['email'],$retorno['data']['password']));
-    }
-
- }
+	
+	/**
+	* @dataProvider senhaAleatoria
+	*/
+	public function testVerificarAcesso($email, $password): void {
+		$request = $this->access->administrative($email,$password);
+		
+		$this->assertEquals(200, $request->http_status);
+		$this->assertEquals($email, $request->response->email);
+	}
+}
