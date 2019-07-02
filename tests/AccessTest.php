@@ -1,6 +1,9 @@
 <?php
 namespace Fincore\Test;
 
+$dotenv = \Dotenv\Dotenv::create('./');
+$dotenv->load();
+
 final class AccessTest extends \PHPUnit\Framework\TestCase {
 	private $access;
 	
@@ -10,10 +13,7 @@ final class AccessTest extends \PHPUnit\Framework\TestCase {
 
 	public function senhaAleatoria(): array {
     return [
-      ['email@email.com', 'mypassword'],
-      ['meunovo@email.com', 'mysenha'],
-      ['pepe@gamil.co', 'teste'],
-      ['pepe', 'teste']
+      [getenv('EMAIL'), getenv('PASSWORD')]
     ];
   }
 	
@@ -21,6 +21,9 @@ final class AccessTest extends \PHPUnit\Framework\TestCase {
 	* @dataProvider senhaAleatoria
 	*/
 	public function testVerificarAcesso($email, $password): void {
+		$this->assertEquals($email, filter_var($email, FILTER_VALIDATE_EMAIL));
+		$this->assertTrue(strlen($password) >= 6);
+		
 		$request = $this->access->administrative($email,$password);
 		
 		$this->assertEquals(200, $request->http_status);
