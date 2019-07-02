@@ -20,7 +20,7 @@ final class AccessTest extends \PHPUnit\Framework\TestCase {
 	/**
 	* @dataProvider senhaAleatoria
 	*/
-	public function testVerificarAcesso($email, $password): void {
+	public function testVerificarAcessoAdministrativo($email, $password): void {
 		$this->assertEquals($email, filter_var($email, FILTER_VALIDATE_EMAIL));
 		$this->assertTrue(strlen($password) >= 6);
 		
