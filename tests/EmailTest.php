@@ -23,4 +23,13 @@ final class EmailTest extends \PHPUnit\Framework\TestCase {
       \Fincore\Email::fromString('user@example.com')
     );
   }
+
+
+  public function teste(): void
+  {
+    $this->assertEquals(
+      'user@example.com',
+      \Fincore\Email::fromString('user@example.com')
+    );
+  }
 }
