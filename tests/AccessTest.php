@@ -13,7 +13,8 @@ final class AccessTest extends \PHPUnit\Framework\TestCase {
 
 	public function senhaAleatoria(): array {
     return [
-      [getenv('EMAIL'), getenv('PASSWORD')]
+      // [getenv('EMAIL'), getenv('PASSWORD')]
+      ['EMAIL', 'SWORD']
     ];
   }
 	
