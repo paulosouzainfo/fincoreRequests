@@ -6,7 +6,7 @@ class Access extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function administrative(string $email, string $password): object {
+  public function Administrative(string $email, string $password): object {
     $request = [
       'path' => '/',
       'data' => [
@@ -18,16 +18,17 @@ class Access extends \Fincore\Requests {
     return $this->put($this->buildQuery($request));
   }
 
-  public function apps(?string $secret = null, ?string $userID = null, ?string $token = null): object {
+  public function Apps(string $secret, string $userID, string $token): object {
+
     return $this->put(
       '/',
       [
-        'secret' => !is_null($secret) ? $secret : getenv('SECRET')
+        'secret' => $secret
       ],
       [],
       [
-        'user_id' => !is_null($userID) ? $userID : getenv('USERID'),
-        'token' => !is_null($token) ? $token : getenv('TOKEN')
+        'user_id' =>$userID,
+        'token' =>$token
       ]
     );
   }

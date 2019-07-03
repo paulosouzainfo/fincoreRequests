@@ -29,9 +29,25 @@ final class AccessTest extends \PHPUnit\Framework\TestCase {
 	* @dataProvider senhaAleatoria
 	*/
 	public function testResponseAdministrativo($email, $password): void {
-		$request = $this->access->administrative($email, $password);
+		$request = $this->access->Administrative($email, $password);
 		
 		$this->assertEquals(200, $request->http_status);
 		$this->assertEquals($email, $request->response->email);
+	}
+
+  public function InfoDadosApps(): array {
+    return [
+      [getenv('SECRET'), getenv('USERID'),getenv('TOKEN')]
+    ];
+  }
+
+  /**
+  * @dataProvider InfoDadosApps
+  */
+  
+  public function testApps($secret, $userID,$token): void {
+	$request = $this->access->Apps($secret, $userID,$token);
+	$this->assertEquals(200, $request->http_status);
+	$this->assertEquals($userID, $request->response->user_id);
 	}
 }

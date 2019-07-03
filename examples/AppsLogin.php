@@ -2,4 +2,4 @@
 require_once './vendor/autoload.php';
 
 $request = new \Fincore\Access();
-$request->println($request->apps(), true);
+$request->println($request->Apps(), true);
