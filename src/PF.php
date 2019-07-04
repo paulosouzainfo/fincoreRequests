@@ -6,7 +6,7 @@ class PF extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function OnlineAds(string $document): object {
+  public function ads(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/ads',
       'queryString' => [
@@ -17,7 +17,7 @@ class PF extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function BasicCadastral(string $document): object {
+  public function basic(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/basic',
       'queryString' => [
@@ -28,7 +28,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function ClassAdvice(string $document): object {
+  public function memberships(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/memberships',
       'queryString' => [
@@ -39,7 +39,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PublicPprofessions(string $document): object {
+  public function publicProfessions(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/public-professions',
       'queryString' => [
@@ -50,7 +50,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsProfessions(string $document): object {
+   public function professions(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/professions',
       'queryString' => [
@@ -61,7 +61,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function UniversitySstudents(string $document): object {
+  public function universityStudents(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/university-students',
       'queryString' => [
@@ -72,7 +72,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsDomains(string $document): object {
+  public function domains(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/domains',
       'queryString' => [
@@ -83,7 +83,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsEmails(string $document): object {
+  public function email(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/email',
       'queryString' => [
@@ -94,7 +94,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsAddresses(string $document): object {
+  public function addresses(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/addresses',
       'queryString' => [
@@ -106,7 +106,7 @@ class PF extends \Fincore\Requests {
   }
 
 
-  public function PersonsMediaExposure(string $document): object {
+  public function mediaExposure(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/media-exposure',
       'queryString' => [
@@ -117,7 +117,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsFlagsAndFeatures(string $document): object {
+  public function flagsAndFeatures(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/flags-and-features',
       'queryString' => [
@@ -128,7 +128,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsFinancial(string $document): object {
+  public function financial(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/financial',
       'queryString' => [
@@ -139,7 +139,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsKyc(string $document): object {
+  public function kyc(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/kyc',
       'queryString' => [
@@ -150,7 +150,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsDemographic(string $document): object {
+  public function interests(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/interests',
       'queryString' => [
@@ -161,7 +161,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsWebPassages(string $document): object {
+  public function webPassages(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/web-passages',
       'queryString' => [
@@ -172,7 +172,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsOnlinePresence(string $document): object {
+  public function onlinePresence(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/online-presence',
       'queryString' => [
@@ -183,7 +183,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsRecurrencyToCharging(string $document): object {
+  public function recurrencyToCharging(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/recurrency-to-charging',
       'queryString' => [
@@ -194,7 +194,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsProcesses(string $document): object {
+   public function processes(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/processes',
       'queryString' => [
@@ -205,7 +205,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-   public function PersonsSocialAssistences(string $document): object {
+   public function socialAssistences(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/social-assistences',
       'queryString' => [
@@ -216,7 +216,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsBusiness(string $document): object {
+  public function businessRelationships(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/business-relationships',
       'queryString' => [
@@ -227,7 +227,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsNearbyRelationships(string $document): object {
+  public function nearbyRelationships(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/nearby-relationships',
       'queryString' => [
@@ -238,7 +238,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsPhones(string $document): object {
+  public function phones(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/phones',
       'queryString' => [
@@ -249,7 +249,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request)); 
   }
 
-  public function PersonsVehicles(string $document): object {
+  public function vehicles(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/vehicles',
       'queryString' => [
