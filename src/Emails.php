@@ -8,7 +8,7 @@ class Emails extends \Fincore\Requests {
 
   public function SearchNetworks(string $email): object {
     $request = [
-    'path' => '/_/outsourcing/emails',
+    'path' => '_/outsourcing/emails',
     'queryString' => [
     'email' => $email
     ]
