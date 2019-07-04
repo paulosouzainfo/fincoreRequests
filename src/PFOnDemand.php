@@ -5,7 +5,7 @@ class PFOnDemand extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
   }
-  public function Personscriminal_records(string $document): object {
+  public function criminalRecords(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/criminal-records',
       'queryString' => [
@@ -16,7 +16,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsibama_embargo(string $document): object {
+  public function ibamaEmbargo(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/ibama-embargo',
       'queryString' => [
@@ -27,7 +27,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsnegative_certificate(string $document): object {
+  public function negativeCertificate(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/negative-certificate',
       'queryString' => [
@@ -38,7 +38,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
- public function Personspgfn(string $document): object {
+ public function pgfn(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/pgfn',
       'queryString' => [
@@ -49,7 +49,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsnothing_contained(string $document): object {
+  public function nothingContained(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/nothing-contained',
       'queryString' => [
@@ -60,7 +60,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personscpf(string $document): object {
+  public function cpf(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/cpf',
       'queryString' => [
@@ -71,7 +71,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personshealth_plans(string $document): object {
+  public function healthPlans(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/health-plans',
       'queryString' => [
@@ -82,7 +82,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function PersonsincomeRefunds(string $document): object {
+   public function incomeTaxRefunds(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/income-tax-refunds',
       'queryString' => [
@@ -93,7 +93,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function Personsrais(string $document): object {
+   public function rais(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/rais',
       'queryString' => [
@@ -104,7 +104,7 @@ class PFOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Personsunemployment_insurance(string $document): object {
+  public function unemploymentInsurance(string $document): object {
     $request = [
       'path' => '/_/outsourcing/persons/unemployment-insurance',
       'queryString' => [
