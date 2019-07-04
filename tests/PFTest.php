@@ -10,24 +10,26 @@ final class PFTest extends \PHPUnit\Framework\TestCase {
   protected function setup(): void {
     $this->PF = new \Fincore\PF();
    }
+  
   public function CPF(): array {
     return [
       [getenv('CPF')]
     ];
   }
+  
  /**
   * @dataProvider CPF
   */
-   public function testOnlineAds($cpf): void {
-    $request =$this->PF->OnlineAds($cpf);
+   public function testAds($cpf): void {
+    $request =$this->PF->ads($cpf);
     $this->assertEquals(200, $request->http_status);   
     
   }
   /**
   * @dataProvider CPF
   */
-  public function testBasicCadastral($cpf): void {
-    $request =$this->PF->BasicCadastral($cpf);
+  public function testBasic($cpf): void {
+    $request =$this->PF->basic($cpf);
     $this->assertEquals(200, $request->http_status);
     $this->assertEquals($cpf, $request->response->document);
  
@@ -36,16 +38,16 @@ final class PFTest extends \PHPUnit\Framework\TestCase {
   * @dataProvider CPF
   */
 
-  public function testClassAdvice($cpf): void {
-    $request =$this->PF->ClassAdvice($cpf);
+  public function testMemberships($cpf): void {
+    $request =$this->PF->memberships($cpf);
     $this->assertEquals(200, $request->http_status);
   }
    /**
   * @dataProvider CPF
   */
 
-  public function testPublicPprofessions($cpf): void {
-    $request =$this->PF->PublicPprofessions($cpf);
+  public function testPublicProfessions($cpf): void {
+    $request =$this->PF->publicProfessions($cpf);
     $this->assertEquals(200, $request->http_status);  
     $this->assertEquals($cpf, $request->response->document);
    
@@ -54,16 +56,16 @@ final class PFTest extends \PHPUnit\Framework\TestCase {
   * @dataProvider CPF
   */
 
-  public function testUniversitySstudents($cpf): void {
-    $request =$this->PF->UniversitySstudents($cpf); 
+  public function testProfessions($cpf): void {
+    $request =$this->PF->professions($cpf); 
     $this->assertEquals(200, $request->http_status); 
   }
   /**
   * @dataProvider CPF
   */
 
-  public function testPersonsDomains($cpf): void {
-    $request =$this->PF->PersonsDomains($cpf); 
+  public function testUniversityStudents($cpf): void {
+    $request =$this->PF->universityStudents($cpf); 
      $this->assertEquals(200, $request->http_status); 
   }
 
@@ -71,8 +73,8 @@ final class PFTest extends \PHPUnit\Framework\TestCase {
   * @dataProvider CPF
   */
 
-  public function testPersonsAddresses($cpf): void {
-   $request =$this->PF->PersonsAddresses($cpf); 
+  public function testDomains($cpf): void {
+   $request =$this->PF->domains($cpf); 
    var_dump($request);
    $this->assertEquals(200, $request->http_status); 
    
@@ -82,8 +84,8 @@ final class PFTest extends \PHPUnit\Framework\TestCase {
   * @dataProvider CPF
   */
 
-  public function testPersonsMediaExposure($cpf): void {
-    $request =$this->PF->PersonsMediaExposure($cpf); 
+  public function testEmails($cpf): void {
+    $request =$this->PF->email($cpf); 
      $this->assertEquals(200, $request->http_status); 
 
   }
