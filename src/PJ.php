@@ -6,7 +6,7 @@ class PJ extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function CompaniesAds(string $document): object {
+  public function ads(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/ads',
       'queryString' => [
@@ -17,7 +17,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesBasic(string $document): object {
+  public function basic(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/basic',
       'queryString' => [
@@ -28,7 +28,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesDomains(string $document): object {
+  public function domains(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/domains',
       'queryString' => [
@@ -39,7 +39,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesEmails(string $document): object {
+  public function emails(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/emails',
       'queryString' => [
@@ -50,7 +50,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-   public function Companiesunemployment_insurance(string $document): object {
+   public function mediaExposure(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/media-exposure',
       'queryString' => [
@@ -61,7 +61,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Companiesactivity_indicators(string $document): object {
+  public function activityIndicators(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/activity-indicators',
       'queryString' => [
@@ -72,7 +72,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesRelationships(string $document): object {
+  public function relationships(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/relationships',
       'queryString' => [
@@ -83,7 +83,7 @@ class PJ extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesPhones(string $document): object {
+  public function phones(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/phones',
       'queryString' => [

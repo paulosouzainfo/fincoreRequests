@@ -6,7 +6,7 @@ class PJOnDemand extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function CompaniesIbamaEmbargo(string $document): object {
+  public function ibamaEmbargo(string $document): object {
     $request = [
         'path' => '/_/outsourcing/companies/ibama-embargo',
         'queryString' => [
@@ -17,7 +17,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesIbamaNegativeCertificate(string $document): object {
+  public function ibamaNegativeCertificate(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/ibama-negative-certificate',
       'queryString' => [
@@ -28,18 +28,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function Companiesnegative_certificate(string $document): object {
-    $request = [
-      'path' => '/_/outsourcing/companies/ibama-negative-certificate',
-      'queryString' => [
-        'document' => $document
-      ]
-    ];
-
-    return  $this->get($this->buildQuery($request)); 	
-  }
-
-  public function CompaniesPgfn(string $document): object {
+  public function pgfn(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/pgfn',
       'queryString' => [
@@ -50,7 +39,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesSiproquim(string $document): object {
+  public function siproquim(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/siproquim',
       'queryString' => [
@@ -61,7 +50,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesCnpj(string $document): object {
+  public function cnpj(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/cnpj',
       'queryString' => [
@@ -72,7 +61,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesUnemployment(string $document): object {
+  public function qsa(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/qsa',
       'queryString' => [
@@ -83,7 +72,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesFgts(string $document): object {
+  public function fgts(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/fgts',
       'queryString' => [
@@ -94,7 +83,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function LegalRepresentative(string $document): object {
+  public function legalRepresentative(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/legal-representative',
       'queryString' => [
@@ -105,7 +94,7 @@ class PJOnDemand extends \Fincore\Requests {
     return  $this->get($this->buildQuery($request)); 	
   }
 
-  public function CompaniesSimples(string $document): object {
+  public function simples(string $document): object {
     $request = [
       'path' => '/_/outsourcing/companies/simples',
       'queryString' => [
