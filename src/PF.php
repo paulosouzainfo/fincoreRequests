@@ -152,7 +152,7 @@ class PF extends \Fincore\Requests {
 
   public function interests(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/interests',
+      'path' => '/_/outsourcing/persons/interests-and-behaviors',
       'queryString' => [
         'document' => $document
       ]
