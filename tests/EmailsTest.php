@@ -20,11 +20,11 @@ final class EmailsTest extends \PHPUnit\Framework\TestCase {
   * @dataProvider Email
   */
 
-   public function testSearchNetworks($email): void {
+  /* public function testSearchNetworks($email): void {
     $request = $this->Emails->SearchNetworks($email);
-    var_dump($request);
+    //var_dump($request);
     
-  }
+  }*/
 
 
 
