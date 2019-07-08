@@ -22,63 +22,79 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider Cnpj
      */
-
-    public function testibamaEmbargo($cnpj): void
+    /*public function testibamaEmbargo($cnpj): void
     {
-        $request = $this->PJOnDemand->ibamaEmbargo($cnpj);
-
-        $this->assertEquals(200, $request->http_status);
-    }
-
+    $request = $this->PJOnDemand->ibamaEmbargo($cnpj);
+    $this->assertEquals(200, $request->http_status);
+    }*/
+    /**
+     * @dataProvider Cnpj
+     */
     public function testibamaNegativeCertificate($cnpj): void
     {
         $request = $this->PJOnDemand->ibamaNegativeCertificate($cnpj);
         $this->assertEquals(200, $request->http_status);
     }
-
-    public function testpgfn($cnpj): void
+    /**
+     * @dataProvider Cnpj
+     */
+    /*public function testpgfn($cnpj): void
     {
-        $request = $this->PJOnDemand->pgfn($cnpj);
-        $this->assertEquals(200, $request->http_status);
+    $request = $this->PJOnDemand->pgfn($cnpj);
 
-    }
+    $this->assertEquals(200, $request->http_status);
 
+    }*/
+    /**
+     * @dataProvider Cnpj
+     */
     public function testsiproquim($cnpj): void
     {
         $request = $this->PJOnDemand->siproquim($cnpj);
         $this->assertEquals(200, $request->http_status);
     }
-
-    public function testcnpj($cnpj): void
+    /**
+     * @dataProvider Cnpj
+     */
+    /* public function testcnpj($cnpj): void
     {
-        $request = $this->PJOnDemand->cnpj($cnpj);
-        $this->assertEquals(200, $request->http_status);
-    }
+    $request = $this->PJOnDemand->cnpj($cnpj);
 
+    $this->assertEquals(200, $request->http_status);
+    }*/
+    /**
+     * @dataProvider Cnpj
+     */
     public function testqsa($cnpj): void
     {
         $request = $this->PJOnDemand->qsa($cnpj);
         $this->assertEquals(200, $request->http_status);
     }
-
+    /**
+     * @dataProvider Cnpj
+     */
     public function testfgts($cnpj): void
     {
         $request = $this->PJOnDemand->fgts($cnpj);
         $this->assertEquals(200, $request->http_status);
 
     }
-
+    /**
+     * @dataProvider Cnpj
+     */
     public function testlegalRepresentative($cnpj): void
     {
         $request = $this->PJOnDemand->legalRepresentative($cnpj);
         $this->assertEquals(200, $request->http_status);
 
     }
-
+    /**
+     * @dataProvider Cnpj
+     */
     public function testsimples($cnpj): void
     {
+//esta funcionando
         $request = $this->PJOnDemand->simples($cnpj);
         $this->assertEquals(200, $request->http_status);
-
     }
 }
