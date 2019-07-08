@@ -6,15 +6,8 @@ class PJOnDemand extends \Fincore\Requests {
     parent::__construct();
   }
 
-  public function ibamaEmbargo(string $document): object {
-    $request = [
-        'path' => '/_/outsourcing/companies/ibama-embargo',
-        'queryString' => [
-          'document' => $document
-        ]
-    ];
-
-    return  $this->get($this->buildQuery($request)); 	
+  public function ibamaEmbargo($cnpj): void {
+    
   }
 
   public function ibamaNegativeCertificate(string $document): object {
