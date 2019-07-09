@@ -12,7 +12,7 @@ class Utilities extends \Fincore\Requests
     {
         $request = [
             'path' => '/json-to-xls',
-            'body' => $json
+            'data' => $json
         ];
 
         return $this->post($this->buildQuery($request));
