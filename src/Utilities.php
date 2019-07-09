@@ -8,7 +8,7 @@ class Utilities extends \Fincore\Requests
         parent::__construct();
     }
 
-    public function JsonToXls($json)
+    public function testJsonToXls($json)
     {
         $request = [
             'path' => '/json-to-xls',
