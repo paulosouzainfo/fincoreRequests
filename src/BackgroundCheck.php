@@ -11,7 +11,7 @@ class BackgroundCheck extends \Fincore\Requests
     public function question(int $document): object
     {
         $request = [
-            'path'        => '/_/outsourcing/questions',
+            'path'        => '/_/outsourcing/background-check/questions',
             'queryString' => [
                 'document' => $document,
             ],
@@ -28,10 +28,10 @@ class BackgroundCheck extends \Fincore\Requests
         return $this->post($this->buildQuery($request));
     }
 
-    public function documents(string $imageURL, string $type, string $side): object
+    public function documents(string $imageURL, string $type, string $side):object
     {
         $request = [
-            'path' => "/_/outsourcing/verify-id",
+            'path' => "/_/outsourcing/background-check/verify-id",
             'data' => [
                 'image' => $imageURL,
                 'type'  => $type,
