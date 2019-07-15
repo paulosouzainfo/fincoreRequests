@@ -21,21 +21,19 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
     //     $this->assertEquals(200, $request->http_status);
     // }
 
-    /* public function testquestion(): void
-{
-$document = getenv('CPF');
-$request  = $this->BackgroundCheck->question($document);
-$this->assertEquals(200, $request->http_status);
-} */
+    public function testquestion(): void
+    {
+        $document = getenv('CPF');
+        $request  = $this->BackgroundCheck->question($document);
+        $this->assertEquals(200, $request->http_status);
+    }
 
-    public function testFacematch(): void {
-      $frente  = getenv('FRENTE');
-      $selfie    = getenv('SELFIE');
-      $request = $this->BackgroundCheck->facematch($frente, $selfie);
+    public function testFacematch(): void
+    {
+        $frente  = getenv('FRENTE');
+        $selfie  = getenv('SELFIE');
+        $request = $this->BackgroundCheck->facematch($frente, $selfie);
+        $this->assertEquals(200, $request->http_status);
 
-      var_dump($request);
-      
-      //$this->assertEquals(200, $request->http_status);
-      // $this->assertEquals(true, $request->data->match);
     }
 }
