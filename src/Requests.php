@@ -24,9 +24,11 @@ class Requests extends \Fincore\Helpers
         $setBrowser = $browser;
         
         if (function_exists('curl_exec')) $selectedMethod = new Curl();
+        $selectedMethod->setTimeout(20);
         if (is_null($setBrowser)) $setBrowser = new Browser($selectedMethod);
 
         $this->browser = $setBrowser;
+
     }
 
     private function setAuth(string $bearer) : void
@@ -113,6 +115,7 @@ class Requests extends \Fincore\Helpers
         } else {
             $data = http_build_query($data);
         }
+
 
         $response = $this->browser->post($this->setPathToRequest($path), $this->headers, $data);
         return $this->handleResponse($response);
