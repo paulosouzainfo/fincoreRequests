@@ -30,26 +30,28 @@ class BackgroundCheck extends \Fincore\Requests
 
     public function documents(string $imageURL, string $type, string $side):object
     {
-        $request = [
-            'path' => "/_/outsourcing/background-check/verify-id",
-            'data' => [
-                'image' => $imageURL,
-                'type'  => $type,
-                'side'  => $side,
-            ],
-        ];
-        return $this->post($this->buildQuery($request));
+      $request = [
+          'path' => "/_/outsourcing/background-check/verify-id",
+          'data' => [
+              'image' => $imageURL,
+              'type'  => $type,
+              'side'  => $side,
+          ],
+      ];
+      
+      return $this->post($this->buildQuery($request));
     }
 
     public function facematch(string $documentURL, string $selfieURL): object
     {
-        $request = [
-            'path' => "/_/outsourcing/background-check/facematch",
-            'data' => [
-                'document' => $documentURL,
-                'selfie'   => $selfieURL,
-            ],
-        ];
-        return $this->post($this->buildQuery($request));
+      $request = [
+          'path' => "/_/outsourcing/background-check/facematch",
+          'data' => [
+              'document' => $documentURL,
+              'selfie'   => $selfieURL,
+          ],
+      ];
+      
+      return $this->post($this->buildQuery($request));
     }
 }

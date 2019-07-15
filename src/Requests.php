@@ -20,17 +20,11 @@ class Requests extends \Fincore\Helpers
             $dotenv->load();
         }
 
-        if (function_exists('curl_exec')) {
-            $selectedMethod = new Curl();
-        } else {
-            $selectedMethod = new FileGetContents();
-        }
-
-        if (is_null($browser)) {
-            $setBrowser = new Browser($selectedMethod);
-        } else {
-            $setBrowser = $browser;
-        }
+        $selectedMethod = new FileGetContents();
+        $setBrowser = $browser;
+        
+        if (function_exists('curl_exec')) $selectedMethod = new Curl();
+        if (is_null($setBrowser)) $setBrowser = new Browser($selectedMethod);
 
         $this->browser = $setBrowser;
     }
@@ -174,9 +168,7 @@ class Requests extends \Fincore\Helpers
     protected function head(string $path, array $queryString = [], array $headers = []): object
     {
         $parser = $this->parseStr($path);
-        if (!empty($parser)) {
-            extract($parser);
-        }
+        if (!empty($parser)) extract($parser);
 
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
@@ -205,7 +197,6 @@ class Requests extends \Fincore\Helpers
                 if (is_file($this->temporaryTokenFile)) {
                     unlink($this->temporaryTokenFile);
                 }
-
             }
         }
 
