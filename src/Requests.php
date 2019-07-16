@@ -21,11 +21,16 @@ class Requests extends \Fincore\Helpers
         }
 
         $selectedMethod = new FileGetContents();
-        $setBrowser = $browser;
-        
-        if (function_exists('curl_exec')) $selectedMethod = new Curl();
+        $setBrowser     = $browser;
+
+        if (function_exists('curl_exec')) {
+            $selectedMethod = new Curl();
+        }
+
         $selectedMethod->setTimeout(20);
-        if (is_null($setBrowser)) $setBrowser = new Browser($selectedMethod);
+        if (is_null($setBrowser)) {
+            $setBrowser = new Browser($selectedMethod);
+        }
 
         $this->browser = $setBrowser;
 
@@ -93,7 +98,6 @@ class Requests extends \Fincore\Helpers
 
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
-
         $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
         return $this->handleResponse($request);
     }
@@ -115,7 +119,6 @@ class Requests extends \Fincore\Helpers
         } else {
             $data = http_build_query($data);
         }
-
 
         $response = $this->browser->post($this->setPathToRequest($path), $this->headers, $data);
         return $this->handleResponse($response);
@@ -171,7 +174,9 @@ class Requests extends \Fincore\Helpers
     protected function head(string $path, array $queryString = [], array $headers = []): object
     {
         $parser = $this->parseStr($path);
-        if (!empty($parser)) extract($parser);
+        if (!empty($parser)) {
+            extract($parser);
+        }
 
         $this->setHeaders($headers);
         $this->setQueryString($queryString);

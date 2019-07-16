@@ -8,7 +8,7 @@ class BackgroundCheck extends \Fincore\Requests
         parent::__construct();
     }
 
-    public function question(int $document): object
+    public function question(string $document): object
     {
         $request = [
             'path'        => '/_/outsourcing/background-check/questions',
