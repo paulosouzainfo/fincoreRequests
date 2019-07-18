@@ -19,20 +19,28 @@ class Apps extends \Fincore\Requests
     }
 
     public function DocumentsUpdate(string $collection,
-        array $Filter , array $Options): object  {
+        array $data,  ? string $Filter = null,  ? string $Options = null) : object{
+        $headers = [];
+
+        if (!is_null($Filter)) {
+            array_push($headers, $Filter);
+        }
+
+        if (!is_null($Options)) {
+            array_push($headers, $Options);
+        }
+
         $request = [
-            'path' => "/_/{$collection}",
-            'data' => [
-                'Filter'  => $Filter,
-                'Options' => $Options,
-            ],
+            'path'    => "/_/{$collection}",
+            'headers' => $headers,
+            'data'    => $data
         ];
 
         return $this->put($this->buildQuery($request));
     }
 
     public function DocumentUpdate(string $collection, $Id,
-        array $Filter , array $Options ): object{
+        array $Filter, array $Options) : object{
         $request = [
             'path' => "/_/{$collection}/{$Id}",
             'data' => [
@@ -110,7 +118,7 @@ class Apps extends \Fincore\Requests
         return $this->get($this->buildQuery($request));
     }
 
-    public function DocumentData(string $collection, string $id, string $Filter, string $option ): object
+    public function DocumentData(string $collection, string $id, string $Filter, string $option): object
     {
         $request = [
             'path'    => "/_/{$collection}/{$id}",
