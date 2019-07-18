@@ -14,21 +14,24 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
     }
     public function testDocumentsUpdate()
     {
-        $collection = getenv('COLLECTION');
-        //$filter     = 'Filter:' . json_encode(['tipo' => 'Filho']);
         $headers = [
-            'filter'  => ['tipo' => 'Filho'],
-            'options' => ['multi' => true]
-        ]
+            'Filter'  => [
+              'tipo' => 'Filho'
+            ],
+            'Options' => [
+              'multi' => true
+            ]
+        ];
+        
         $data = [
             '$set' => [
                 'idade' => '50',
-            ],
+                'status' => 'ativo'
+            ]
         ];
 
-        $request = $this->Apps->DocumentsUpdate($collection, $data, $filter);
+        $request = $this->Apps->DocumentsUpdate('familia', $data, $headers);
         var_dump($request);
-
     }
 
 }

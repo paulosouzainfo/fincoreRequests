@@ -18,20 +18,9 @@ class Apps extends \Fincore\Requests
         return $this->patch($this->buildQuery($request));
     }
 
-    public function DocumentsUpdate(string $collection,
-        array $data,  ? string $Filter = null,  ? string $Options = null) : object{
-        $headers = [];
-
-        if (!is_null($Filter)) {
-            array_push($headers, $Filter);
-        }
-
-        if (!is_null($Options)) {
-            array_push($headers, $Options);
-        }
-
+    public function DocumentsUpdate(string $collection, array $data,  array $headers = []) : object{
         $request = [
-            'path'    => "/_/{$collection}",
+            'path'    => "/_/$collection",
             'headers' => $headers,
             'data'    => $data
         ];

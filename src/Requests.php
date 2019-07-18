@@ -59,17 +59,18 @@ class Requests extends \Fincore\Helpers
 
     private function setHeaders(array $headers): void
     {
-        $this->headers = $headers;
-
-        if (!empty($this->getAuth())) {
-            $this->setHeader('Authorization: ' . $this->getAuth());
-        }
-
+      foreach($headers as $key => $value) {
+        $this->setHeader($key, is_array($value) ? json_encode($value) : $value);
+      }
+      
+      if (!empty($this->getAuth())) {
+          $this->setHeader('Authorization', $this->getAuth());
+      }
     }
 
-    private function setHeader(string $header): void
+    private function setHeader(string $key, $value): void
     {
-        array_push($this->headers, $header);
+        array_push($this->headers, $key.': '.$value);
     }
 
     private function setQueryString(array $queryString): void
@@ -110,12 +111,12 @@ class Requests extends \Fincore\Helpers
         }
 
         $this->setHeaders($headers);
-        $this->setHeader("Content-Type: {$formData}");
+        $this->setHeader('Content-Type', $formData);
         $this->setQueryString($queryString);
 
         if ($formData === 'application/json') {
             $data = json_encode($data);
-            $this->setHeader('Content-Length: ' . strlen($data));
+            $this->setHeader('Content-Length', strlen($data));
         } else {
             $data = http_build_query($data);
         }
@@ -127,17 +128,15 @@ class Requests extends \Fincore\Helpers
     protected function put(string $path,  ? array $queryString = [],  ? array $headers = [],  ? array $data = []) : object
     {
         $parser = $this->parseStr($path);
-        if (!empty($parser)) {
-            extract($parser);
-        }
+        if(!empty($parser)) extract($parser);
 
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
 
         $data = json_encode($data);
 
-        $this->setHeader('Content-Type: application/json');
-        $this->setHeader('Content-Length: ' . strlen($data));
+        $this->setHeader('Content-Type', 'application/json');
+        $this->setHeader('Content-Length', strlen($data));
 
         $response = $this->browser->put($this->setPathToRequest($path), $this->headers, $data);
         return $this->handleResponse($response);
