@@ -19,7 +19,7 @@ class Apps extends \Fincore\Requests
     }
 
     public function DocumentsUpdate(string $collection,
-        array $Filter = [], array $Options = []) {
+        array $Filter , array $Options): object  {
         $request = [
             'path' => "/_/{$collection}",
             'data' => [
@@ -31,8 +31,8 @@ class Apps extends \Fincore\Requests
         return $this->put($this->buildQuery($request));
     }
 
-    public function DocumentUpdate(string $collection, $Id
-        array $Filter = [], array $Options = []): object{
+    public function DocumentUpdate(string $collection, $Id,
+        array $Filter , array $Options ): object{
         $request = [
             'path' => "/_/{$collection}/{$Id}",
             'data' => [
@@ -81,7 +81,7 @@ class Apps extends \Fincore\Requests
         return $this->post($this->buildQuery($request));
     }
 
-    public function DocumentsDelete(string $collection, string $filter = []): object
+    public function DocumentsDelete(string $collection, string $filter): object
     {
         $request = [
             'path' => "/_/{$collection}",
@@ -90,7 +90,7 @@ class Apps extends \Fincore\Requests
         return $this->delete($this->buildQuery($request));
     }
 
-    public function DocumentDelete(string $collection, string $option = []): object
+    public function DocumentDelete(string $collection, string $option): object
     {
         $request = [
             'path' => "/_/{$collection}",
@@ -100,7 +100,7 @@ class Apps extends \Fincore\Requests
         return $this->delete($this->buildQuery($request));
     }
 
-    public function filterData(string $collection, string $Filter = [], string $option = []): object
+    public function filterData(string $collection, string $Filter, string $option): object
     {
         $request = [
             'path'    => "/_/{$collection}",
@@ -110,7 +110,7 @@ class Apps extends \Fincore\Requests
         return $this->get($this->buildQuery($request));
     }
 
-    public function DocumentData(string $collection, string $id, string $Filter = [], string $option = []): object
+    public function DocumentData(string $collection, string $id, string $Filter, string $option ): object
     {
         $request = [
             'path'    => "/_/{$collection}/{$id}",
