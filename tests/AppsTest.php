@@ -12,100 +12,96 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
     {
         $this->Apps = new \Fincore\Apps();
     }
-    /* public function testDocumentsUpdate()
+    public function testDocumentsUpdate()
     {
-    $headers = [
-    'Filter' => [
-    'tipo' => 'Filho',
-    ],
-    ];
+        $headers = [
+            'Filter' => [
+                'tipo' => 'Filho',
+            ],
+        ];
 
-    $data = [
-    '$set' => [
-    'idade'  => '150',
-    'status' => 'ativo',
-    ],
-    ];
-    $request = $this->Apps->DocumentsUpdate(getenv('COLLECTION'), $data, $headers);
-    $this->assertEquals(200, $request->http_status);
-    }*/
-
-    /*public function testDocumentUpdate()
-    {
-    $data = [
-    '$set' => [
-    'idade'  => '30',
-    'status' => 'atualizado',
-    ],
-    ];
-    $request = $this->Apps->DocumentUpdate(getenv('COLLECTION'), '5d2cfb28c9a6ed2f535bc905',$data);
-    var_dump($request);
+        $data = [
+            '$set' => [
+                'idade'  => '150',
+                'status' => 'ativo',
+            ],
+        ];
+        $request = $this->Apps->DocumentsUpdate(getenv('COLLECTION'), $data, $headers);
+        $this->assertEquals(200, $request->http_status);
     }
 
-    /*public function testCollections()
+    public function testDocumentUpdate()
     {
-    $request = $this->Apps->Collections();
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $data = [
+            '$set' => [
+                'idade'  => '30',
+                'status' => 'atualizado',
+            ],
+        ];
+        $request = $this->Apps->DocumentUpdate(getenv('COLLECTION'), '5d2cfb28c9a6ed2f535bc905', $data);
+        var_dump($request);
+    }
 
-    /*  public function CollectionId() {
-
-    }*/
-
-    /*  public function testDocumentCreate()
+    public function testCollections()
     {
-    $data = [
-    'name'     => 'Will',
-    'lastname' => 'John',
-    'age'      => '11',
-    ];
-    $request = $this->Apps->DocumentCreate('people', $data);
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $request = $this->Apps->Collections();
+        $this->assertEquals(200, $request->http_status);
+    }
 
-    /* public function testDocumentsDelete()
+    public function testDocumentCreate()
     {
-    $headers = [
-    'Filter' => [
-    'tipo' => 'Avô'
-    ],
-    ];
-    $request = $this->Apps->DocumentsDelete(getenv('COLLECTION'), $headers);
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $data = [
+            'name'     => 'Will',
+            'lastname' => 'John',
+            'age'      => '11',
+        ];
+        $request = $this->Apps->DocumentCreate('people', $data);
+        $this->assertEquals(200, $request->http_status);
+    }
 
-    /*public function testDocumentDelete()
+    public function testDocumentsDelete()
     {
-    $request = $this->Apps->DocumentDelete(getenv('COLLECTION'), getenv('ID'));
-    $this->assertEquals(200, $request->http_status);
+        $headers = [
+            'Filter' => [
+                'tipo' => 'Avô',
+            ],
+        ];
+        $request = $this->Apps->DocumentsDelete(getenv('COLLECTION'), $headers);
+        $this->assertEquals(200, $request->http_status);
+    } *  /
 
-    }*/
-
-    /*public function testfilterData(): object
+    public function testDocumentDelete()
     {
-    $headers = [
-    'Filter' => [
-    'idade' => 32
-    ],
-    ];
-    $request = $this->Apps->filterData(getenv('COLLECTION'));
-    $this->assertEquals(200, $request->http_status);
+        $request = $this->Apps->DocumentDelete(getenv('COLLECTION'), getenv('ID'));
+        $this->assertEquals(200, $request->http_status);
 
-    }*/
-   /* public function testDocumentData(): object
+    }
+
+    public function testfilterData(): object
+    {
+        $headers = [
+            'Filter' => [
+                'idade' => 32,
+            ],
+        ];
+        $request = $this->Apps->filterData(getenv('COLLECTION'));
+        $this->assertEquals(200, $request->http_status);
+
+    }
+    public function testDocumentData(): object
     {
         $headers = [
             'Filter' => [
                 'tipo' => 'Mãe',
             ],
         ];
-        $request = $this->Apps->DocumentData(getenv('COLLECTION'), getenv('ID'),$headers);
+        $request = $this->Apps->DocumentData(getenv('COLLECTION'), getenv('ID'), $headers);
         var_dump($request);
-    }*/
+    }
 
     public function testTokenChecker()
     {
-        
+
         $request = $this->Apps->TokenChecker();
         var_dump($request);
 

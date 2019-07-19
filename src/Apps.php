@@ -56,33 +56,6 @@ class Apps extends \Fincore\Requests
         return $this->post($this->buildQuery($request));
     }
 
-    public function CollectionId(string $collection, string $Id,
-        $Options = []): object{
-        $request = [
-            'path' => "/_/{$collection}/{$Id}",
-            'data' => [
-                'Options' => $Options,
-            ],
-        ];
-        return $this->put($this->buildQuery($request));
-    }
-
-    public function ListCollection(): object
-    {
-        $request = [
-            'path' => "/_/collection",
-        ];
-        return $this->get($this->buildQuery($request));
-    }
-    public function CreateDocument(string $collection, array $data): object
-    {
-        $request = [
-            'path' => "/_/{$collection}",
-            'data' => $data,
-        ];
-        return $this->post($this->buildQuery($request));
-    }
-
     public function DocumentsDelete(string $collection, $headers = []): object
     {
         $request = [
@@ -104,16 +77,16 @@ class Apps extends \Fincore\Requests
     {
         $request = [
             'path'    => "/_/{$collection}",
-            'headers' => $headers
+            'headers' => $headers,
         ];
         return $this->get($this->buildQuery($request));
     }
 
-    public function DocumentData(string $collection,$Id,$headers = []): object
+    public function DocumentData(string $collection, $Id, $headers = []): object
     {
         $request = [
             'path'    => "/_/{$collection}/{$Id}",
-            'headers' => $headers
+            'headers' => $headers,
         ];
         return $this->get($this->buildQuery($request));
     }
@@ -121,7 +94,7 @@ class Apps extends \Fincore\Requests
     public function TokenChecker(): object
     {
         $request = [
-            'path' => "/auth"
+            'path' => "/auth",
         ];
         return $this->head($this->buildQuery($request));
 
