@@ -18,37 +18,42 @@ class Apps extends \Fincore\Requests
         return $this->patch($this->buildQuery($request));
     }
 
-    public function DocumentsUpdate(string $collection, array $data,  array $headers = []) : object{
+    public function DocumentsUpdate(string $collection, array $data, array $headers = []): object
+    {
         $request = [
             'path'    => "/_/$collection",
             'headers' => $headers,
-            'data'    => $data
+            'data'    => $data,
         ];
 
         return $this->put($this->buildQuery($request));
     }
 
-    public function DocumentUpdate(string $collection, $Id,
-        array $Filter, array $Options) : object{
+    public function DocumentUpdate(string $collection, string $Id, array $data): object
+    {
         $request = [
             'path' => "/_/{$collection}/{$Id}",
-            'data' => [
-                'Filter'  => $Filter,
-                'Options' => $Options,
-            ],
+            'data' => $data,
         ];
         return $this->put($this->buildQuery($request));
     }
-    public function Collection(string $collection,
-        array $Filter = [], array $Options = []): object{
+    public function Collections(): object
+    {
+        $request = [
+            'path' => "/_/collections",
+
+        ];
+        return $this->get($this->buildQuery($request));
+    }
+
+    public function DocumentCreate(string $collection, array $data): object
+    {
         $request = [
             'path' => "/_/{$collection}",
-            'data' => [
-                'Filter'  => $Filter,
-                'Options' => $Options,
-            ],
+            'data' => $data,
+
         ];
-        return $this->put($this->buildQuery($request));
+        return $this->post($this->buildQuery($request));
     }
 
     public function CollectionId(string $collection, string $Id,
@@ -78,41 +83,37 @@ class Apps extends \Fincore\Requests
         return $this->post($this->buildQuery($request));
     }
 
-    public function DocumentsDelete(string $collection, string $filter): object
+    public function DocumentsDelete(string $collection, $headers = []): object
     {
         $request = [
-            'path' => "/_/{$collection}",
-            'data' => $filter,
+            'path'    => "/_/$collection",
+            'headers' => $headers,
         ];
         return $this->delete($this->buildQuery($request));
     }
 
-    public function DocumentDelete(string $collection, string $option): object
+    public function DocumentDelete(string $collection, string $Id): object
     {
         $request = [
-            'path' => "/_/{$collection}",
-            'data' => $option,
-
+            'path' => "/_/{$collection}/{$Id}",
         ];
         return $this->delete($this->buildQuery($request));
     }
 
-    public function filterData(string $collection, string $Filter, string $option): object
+    public function filterData(string $collection, $headers = []): object
     {
         $request = [
             'path'    => "/_/{$collection}",
-            'Filter'  => $Filter,
-            'Options' => $Options,
+            'headers' => $headers
         ];
         return $this->get($this->buildQuery($request));
     }
 
-    public function DocumentData(string $collection, string $id, string $Filter, string $option): object
+    public function DocumentData(string $collection,$Id,$headers = []): object
     {
         $request = [
-            'path'    => "/_/{$collection}/{$id}",
-            'Filter'  => $Filter,
-            'Options' => $Options,
+            'path'    => "/_/{$collection}/{$Id}",
+            'headers' => $headers
         ];
         return $this->get($this->buildQuery($request));
     }
@@ -120,7 +121,7 @@ class Apps extends \Fincore\Requests
     public function TokenChecker(): object
     {
         $request = [
-            'path' => "/auth",
+            'path' => "/auth"
         ];
         return $this->head($this->buildQuery($request));
 
