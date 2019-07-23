@@ -93,7 +93,7 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
      */
     public function testsimples($cnpj): void
     {
-//esta funcionando
+
         $request = $this->PJOnDemand->simples($cnpj);
         $this->assertEquals(200, $request->http_status);
     }

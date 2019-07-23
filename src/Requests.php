@@ -19,10 +19,8 @@ class Requests extends \Fincore\Helpers
             $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
             $dotenv->load();
         }
-
         $selectedMethod = new FileGetContents();
         $setBrowser     = $browser;
-
         if (function_exists('curl_exec')) {
             $selectedMethod = new Curl();
         }
@@ -31,7 +29,6 @@ class Requests extends \Fincore\Helpers
         if (is_null($setBrowser)) {
             $setBrowser = new Browser($selectedMethod);
         }
-
         $this->browser = $setBrowser;
 
     }
@@ -41,7 +38,6 @@ class Requests extends \Fincore\Helpers
         if (!is_file($this->temporaryTokenFile)) {
             touch($this->temporaryTokenFile);
         }
-
         file_put_contents($this->temporaryTokenFile, $bearer);
     }
 
@@ -86,7 +82,6 @@ class Requests extends \Fincore\Helpers
         if (substr($path, 0, 1) !== '/') {
             $path = '/' . $path;
         }
-
         return getenv('ENDPOINT') . $path . $this->queryString;
     }
 
@@ -96,7 +91,6 @@ class Requests extends \Fincore\Helpers
         if (!empty($parser)) {
             extract($parser);
         }
-
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
         $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
@@ -109,26 +103,24 @@ class Requests extends \Fincore\Helpers
         if (!empty($parser)) {
             extract($parser);
         }
-
         $this->setHeaders($headers);
         $this->setHeader('Content-Type', $formData);
         $this->setQueryString($queryString);
-
         if ($formData === 'application/json') {
             $data = json_encode($data);
             $this->setHeader('Content-Length', strlen($data));
         } else {
             $data = http_build_query($data);
         }
-
         $response = $this->browser->post($this->setPathToRequest($path), $this->headers, $data);
+
         return $this->handleResponse($response);
     }
 
     protected function put(string $path,  ? array $queryString = [],  ? array $headers = [],  ? array $data = []) : object
     {
         $parser = $this->parseStr($path);
-        if (!empty($parser)) {extract($parser); }
+        if (!empty($parser)) {extract($parser);}
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
         $data = json_encode($data);
@@ -144,10 +136,8 @@ class Requests extends \Fincore\Helpers
         if (!empty($parser)) {
             extract($parser);
         }
-
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
-
         $request = $this->browser->delete($this->setPathToRequest($path), $this->headers);
         return $this->handleResponse($request);
     }
@@ -158,10 +148,8 @@ class Requests extends \Fincore\Helpers
         if (!empty($parser)) {
             extract($parser);
         }
-
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
-
         $request = $this->browser->patch($this->setPathToRequest($path), $this->headers);
         return $this->handleResponse($request);
     }
@@ -190,10 +178,12 @@ class Requests extends \Fincore\Helpers
             if (!is_null($bearer)) {
                 $this->setAuth($bearer);
             }
-
             $responseData->http_status = $response->getStatusCode();
             $responseData->response    = json_decode($response->getContent());
-
+            $attach                    = $response->getHeader('Content-Disposition');
+            if (!is_null($attach)) {
+                $responseData->response = $this->Filexlsx($attach, $response->getContent());
+            }
             return $responseData;
         } else {
             if ($response->getStatusCode() === 401) {
@@ -202,7 +192,6 @@ class Requests extends \Fincore\Helpers
                 }
             }
         }
-
         $responseData->http_status = $response->getStatusCode();
         $responseData->response    = json_decode($response->getContent());
 

@@ -7,15 +7,17 @@ $dotenv->load();
 
 final class UtilitiesTest extends \PHPUnit\Framework\TestCase
 {
-    private $Json;
+    private $Utilities;
     protected function setup(): void
     {
-        $this->Json = new \Fincore\Utilities();
+        $this->Utilities = new \Fincore\Utilities();
     }
-    public function testJsonToXls(): void
+    public function testJsonToXls()
     {
-        $data    = [['a' => 1], ['b' => 2], ['c' => 3], ['d' => 4], ['e' => 5]];
-        $request = $this->Json->JsonToXls($data);
+        $data    = ['a' => 1, 'b' => 1];
+        $request = $this->Utilities->JsonToXls($data);
+        var_dump($request);
         $this->assertEquals(200, $request->http_status);
+
     }
 }
