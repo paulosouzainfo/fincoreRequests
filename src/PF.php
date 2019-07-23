@@ -85,7 +85,7 @@ class PF extends \Fincore\Requests {
 
   public function email(string $document): object {
   	$request = [
-      'path' => '/_/outsourcing/persons/email',
+      'path' => '/_/outsourcing/persons/emails',
       'queryString' => [
         'document' => $document
       ]

@@ -77,16 +77,16 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider CPF
      */
-    //  public function testEmails($cpf): void
-    //  {
-    //   $request = $this->PF->email($cpf);
-    //   $this->assertEquals(200, $request->http_status);
+    public function testEmails($cpf): void
+    {
+        $request = $this->PF->email($cpf);
+        $this->assertEquals(200, $request->http_status);
 
-    //}
+    }
     /**
      * @dataProvider CPF
      */
-    
+
     /**
      * @dataProvider CPF
      */
