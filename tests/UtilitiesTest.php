@@ -15,9 +15,7 @@ final class UtilitiesTest extends \PHPUnit\Framework\TestCase
     public function testJsonToXls()
     {
         $data    = ['a' => 1, 'b' => 1];
-        $request = $this->Utilities->JsonToXls($data);
-        var_dump($request);
+        $request = $this->Utilities->JsonToXls($data);        
         $this->assertEquals(200, $request->http_status);
-
     }
 }
