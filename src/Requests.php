@@ -93,6 +93,7 @@ class Requests extends \Fincore\Helpers
         }
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
+        var_dump($this->setPathToRequest($path));
         $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
         return $this->handleResponse($request);
     }

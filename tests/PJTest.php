@@ -23,21 +23,21 @@ final class PJTest extends \PHPUnit\Framework\TestCase
      * @dataProvider Cnpj
      */
 
-    /* public function testads($cnpj): void
+    public function testads($cnpj): void
     {
 
-    $request = $this->PJ->ads($cnpj);
-    $this->assertEquals(200, $request->http_status);
+        $request = $this->PJ->ads($cnpj);
+        $this->assertEquals(200, $request->http_status);
 
-    }*/
+    }
     /**
      * @dataProvider Cnpj
      */
-    /* public function testbasic($cnpj): void
+    public function testbasic($cnpj): void
     {
-    $request = $this->PJ->basic($cnpj);
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $request = $this->PJ->basic($cnpj);
+        $this->assertEquals(200, $request->http_status);
+    }
     /**
      * @dataProvider Cnpj
      */
@@ -59,11 +59,11 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider Cnpj
      */
-    /* public function testmediaExposure($cnpj): void
+    public function testmediaExposure($cnpj): void
     {
-    $request = $this->PJ->mediaExposure($cnpj);
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $request = $this->PJ->mediaExposure($cnpj);
+        $this->assertEquals(200, $request->http_status);
+    }
     /**
      * @dataProvider Cnpj
      */

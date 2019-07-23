@@ -24,7 +24,8 @@ final class PhonesTest extends \PHPUnit\Framework\TestCase
     /*public function testPhonesHistory($phone)
     {
         $request = $this->Phones->PhonesHistory($phone);
-        $this->assertEquals(200, $request->http_status);
+       
+        //$this->assertEquals(200, $request->http_status);
     }*/
     /**
      * @dataProvider phone
@@ -32,6 +33,7 @@ final class PhonesTest extends \PHPUnit\Framework\TestCase
     /*public function testPhoneData($phone)
     {
         $request = $this->Phones->PhoneData($phone);
+        var_dump($request);
         $this->assertEquals(200, $request->http_status);
 
     }*/
