@@ -24,6 +24,9 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->criminalRecords($cpf);
         $this->assertEquals(200, $request->http_status);
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
     }
     /**
      * @dataProvider CPF
@@ -32,6 +35,8 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->ibamaEmbargo($cpf);
         $this->assertEquals(200, $request->http_status);
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider CPF
@@ -40,6 +45,8 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->negativeCertificate($cpf);
         $this->assertEquals(200, $request->http_status);
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider CPF
@@ -48,6 +55,8 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->pgfn($cpf);
         $this->assertEquals(200, $request->http_status);
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider CPF
@@ -55,16 +64,18 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     public function testnothingContained($cpf): void
     {
         $request = $this->PFOnDemand->nothingContained($cpf);
+        $cpf     = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
         $this->assertEquals(200, $request->http_status);
     }
     /**
      * @dataProvider CPF
      */
-    /*public function testcpf($cpf): void
+    public function testcpf($cpf): void
     {
         $request = $this->PFOnDemand->cpf($cpf);
         $this->assertEquals(200, $request->http_status);
-    }*/
+    }
     /**
      * @dataProvider CPF
      */
@@ -72,6 +83,8 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->healthPlans($cpf);
         $this->assertEquals(200, $request->http_status);
+        $cpf = preg_replace("/[^0-9]/", "", $cpf);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
 
     }
     /**
@@ -81,22 +94,25 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PFOnDemand->incomeTaxRefunds($cpf);
         $this->assertEquals(200, $request->http_status);
+        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
 
     }
     /**
      * @dataProvider CPF
      */
-    /*public function testrais($cpf): void
+    /* public function testrais($cpf): void
     {
-        $request = $this->PFOnDemand->rais($cpf);
-        $this->assertEquals(200, $request->http_status);
+    $request = $this->PFOnDemand->rais($cpf);
+    $this->assertEquals(200, $request->http_status);
+
     }*/
+
     /**
      * @dataProvider CPF
      */
-    public function testunemploymentInsurance($cpf): void
-    {
-        $request = $this->PFOnDemand->unemploymentInsurance($cpf);
-        $this->assertEquals(200, $request->http_status);
-    }
+    /*public function testunemploymentInsurance($cpf): void
+{
+$request = $this->PFOnDemand->unemploymentInsurance($cpf);
+$this->assertEquals(200, $request->http_status);
+}*/
 }
