@@ -22,11 +22,14 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider Cnpj
      */
-    /*public function testibamaEmbargo($cnpj): void
+    public function testibamaEmbargo($cnpj): void
     {
-    $request = $this->PJOnDemand->ibamaEmbargo($cnpj);
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $request = $this->PJOnDemand->ibamaEmbargo($cnpj);
+        $this->assertEquals(200, $request->http_status);
+        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
+    }
     /**
      * @dataProvider Cnpj
      */
@@ -34,15 +37,16 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PJOnDemand->ibamaNegativeCertificate($cnpj);
         $this->assertEquals(200, $request->http_status);
+        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider Cnpj
      */
     /*public function testpgfn($cnpj): void
     {
-    $request = $this->PJOnDemand->pgfn($cnpj);
-
-    $this->assertEquals(200, $request->http_status);
+        $request = $this->PJOnDemand->pgfn($cnpj);
+        $this->assertEquals(200, $request->http_status);
 
     }*/
     /**
@@ -52,16 +56,18 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PJOnDemand->siproquim($cnpj);
         $this->assertEquals(200, $request->http_status);
+        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider Cnpj
      */
-    /* public function testcnpj($cnpj): void
+    public function testcnpj($cnpj): void
     {
-    $request = $this->PJOnDemand->cnpj($cnpj);
-
-    $this->assertEquals(200, $request->http_status);
-    }*/
+        $request = $this->PJOnDemand->cnpj($cnpj);
+        $this->assertEquals(200, $request->http_status);
+        //nao funcionar
+    }
     /**
      * @dataProvider Cnpj
      */
@@ -69,6 +75,8 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PJOnDemand->qsa($cnpj);
         $this->assertEquals(200, $request->http_status);
+        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
     }
     /**
      * @dataProvider Cnpj
@@ -77,6 +85,8 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->PJOnDemand->fgts($cnpj);
         $this->assertEquals(200, $request->http_status);
+        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
 
     }
     /**
@@ -95,6 +105,7 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     {
 
         $request = $this->PJOnDemand->simples($cnpj);
+        var_dump($request);
         $this->assertEquals(200, $request->http_status);
     }
 }
