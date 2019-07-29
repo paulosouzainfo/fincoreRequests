@@ -33,9 +33,7 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('NAME', $arrayDocuments);
         $this->assertEquals(200, $request->http_status);
         $this->assertEquals('2019-07-26', date("Y-m-d", strtotime($arrayDocuments['createdAt'])));
-
         $this->assertEquals('2019-07-26', date("Y-m-d", strtotime($arrayDocuments['updatedAt'])));
-
         $this->assertEquals($imageURL, $arrayDocuments['document']);
         $this->assertEquals($type, $arrayDocuments['type']);
         $this->assertEquals($side, $arrayDocuments['side']);
@@ -58,15 +56,13 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(4, $arrayTestquestion->Questions);
         $document = preg_replace("/[^0-9]/", "", $document);
         $this->assertEquals($document, $arrayTestquestion->document);
-        var_dump($arrayTestquestion->TicketId);
-        var_dump($arrayTestquestion->Questions);
         $this->assertEquals(200, $request->http_status);
     }
 
     public function testanswers(): void
     {
         $ticket  = getenv('TICKET');
-        $answers = array('2', '2', '3', '3');
+        $answers = array('3', '2', '2', '1');
         $request = $this->BackgroundCheck->answers($ticket, $answers);
         $this->assertEquals(200, $request->http_status);
 
@@ -87,16 +83,12 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('CPF', $arrayFacematch);
         $this->assertArrayHasKey('DOCTYPE', $arrayFacematch);
         $this->assertArrayHasKey('EXPEDITIONDATE', $arrayFacematch);
-
         $this->assertArrayHasKey('FATHERNAME', $arrayFacematch);
         $this->assertArrayHasKey('MOTHERNAME', $arrayFacematch);
         $this->assertArrayHasKey('NAME', $arrayFacematch);
         $this->assertEquals(200, $request->http_status);
-
         $this->assertEquals('2019-07-29', date("Y-m-d", strtotime($arrayFacematch['createdAt'])));
-
         $this->assertEquals('2019-07-29', date("Y-m-d", strtotime($arrayFacematch['updatedAt'])));
-
         $this->assertEquals(true, $arrayFacematch['match']);
         $this->assertEquals($selfie, $arrayFacematch['selfie']);
         $this->assertEquals($frente, $arrayFacematch['document']);
