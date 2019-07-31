@@ -14,133 +14,140 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->Administrative->ListApps();
 
-        $this->assertCount(2, $request->response);
-        $this->assertArrayHasKey('url', $arrayList);
-        $this->assertArrayHasKey('dsn', $arrayList);
-        $this->assertArrayHasKey('user_id', $arrayList);
-        $this->assertArrayHasKey('updatedAt', $arrayList);
-        $this->assertArrayHasKey('createdAt', $arrayList);
-        $this->assertArrayHasKey('token', $arrayList);
-        $this->assertNotEmpty($arrayList['url']);
-        $this->assertNotEmpty($arrayList['dsn']);
-        $this->assertNotEmpty($arrayList['user_id']);
-        $this->assertNotEmpty($arrayList['updatedAt']);
-        $this->assertNotEmpty($arrayList['createdAt']);
-        $this->assertNotEmpty($arrayList['token']);
         $this->assertEquals(200, $request->http_status);
+
+        if(sizeof($request->response)) {
+          foreach($request->response as $application) {
+            $arrayList = (array)$application;
+
+            $this->assertArrayHasKey('url', $arrayList);
+            $this->assertArrayHasKey('dsn', $arrayList);
+            $this->assertArrayHasKey('user_id', $arrayList);
+            $this->assertArrayHasKey('updatedAt', $arrayList);
+            $this->assertArrayHasKey('createdAt', $arrayList);
+            $this->assertArrayHasKey('token', $arrayList);
+
+            $this->assertNotEmpty($application->url);
+            $this->assertNotEmpty($application->dsn);
+            $this->assertNotEmpty($application->user_id);
+            $this->assertNotEmpty($application->updatedAt);
+            $this->assertNotEmpty($application->createdAt);
+            $this->assertNotEmpty($application->token);
+
+            // setando na ENV dinamicamente o ID da APP para o próximo teste
+            putenv("ApplicationID={$application->_id}");
+          }
+        }
     }
 
-    public function ID(): array
+    public function testRetrieveApp(): void
     {
-        return [
-            [getenv('IDAPP')],
-        ];
-    }
-    /**
-     * @dataProvider ID
-     */
-    public function testRetrieveApp($id): void
-    {
-        $request = $this->Administrative->RetrieveApp($id);
+      $id = getenv('ApplicationID');
 
-        $arrayID = (array) $request->response;
+      $request = $this->Administrative->RetrieveApp($id);
+      $arrayList = (array)$request->response;
 
-        $this->assertArrayHasKey('_id', $arrayID);
-        $this->assertArrayHasKey('url', $arrayID);
-        $this->assertArrayHasKey('dsn', $arrayID);
-        $this->assertArrayHasKey('user_id', $arrayID);
-        $this->assertArrayHasKey('updatedAt', $arrayID);
-        $this->assertArrayHasKey('createdAt', $arrayID);
-        $this->assertArrayHasKey('token', $arrayID);
-        $this->assertNotEmpty($arrayID['url']);
-        $this->assertNotEmpty($arrayID['dsn']);
-        $this->assertNotEmpty($arrayID['user_id']);
-        $this->assertNotEmpty($arrayID['updatedAt']);
-        $this->assertNotEmpty($arrayID['createdAt']);
-        $this->assertNotEmpty($arrayID['token']);
-        $this->assertEquals($id, $arrayID['_id']);
-        $this->assertEquals(200, $request->http_status);
+      $this->assertArrayHasKey('_id', $arrayList);
+      $this->assertArrayHasKey('url', $arrayList);
+      $this->assertArrayHasKey('dsn', $arrayList);
+      $this->assertArrayHasKey('user_id', $arrayList);
+      $this->assertArrayHasKey('updatedAt', $arrayList);
+      $this->assertArrayHasKey('createdAt', $arrayList);
+      $this->assertArrayHasKey('token', $arrayList);
+
+      $this->assertNotEmpty($request->response->url);
+      $this->assertNotEmpty($request->response->dsn);
+      $this->assertNotEmpty($request->response->user_id);
+      $this->assertNotEmpty($request->response->updatedAt);
+      $this->assertNotEmpty($request->response->createdAt);
+      $this->assertNotEmpty($request->response->token);
+
+      $this->assertEquals($id, $request->response->_id);
+      $this->assertEquals(200, $request->http_status);
     }
 
-    public function Novoapp(): array
+    public function testNewApp(): void
     {
-        return [
-            [getenv('URL'), getenv('DSN')],
-        ];
-    }/**
-     * @dataProvider Novoapp
-     */
-    public function testNewApp($url, $dsn): void
-    {
-        $request = $this->Administrative->NewApp($url, $dsn);
+      $identity = preg_replace('/[^0-9]/', '', time());
 
-        $arrayNew = (array) $request->response;
+      putenv("URL=https://{$identity}.fincore.co");
+      putenv("DSN=mongodb://localhost:27017/{$identity}");
 
-        $this->assertArrayHasKey('url', $arrayNew);
-        $this->assertArrayHasKey('dsn', $arrayNew);
-        $this->assertArrayHasKey('user_id', $arrayNew);
-        $this->assertArrayHasKey('updatedAt', $arrayNew);
-        $this->assertArrayHasKey('createdAt', $arrayNew);
-        $this->assertArrayHasKey('token', $arrayNew);
-        $this->assertNotEmpty($arrayNew['url']);
-        $this->assertNotEmpty($arrayNew['dsn']);
-        $this->assertNotEmpty($arrayNew['user_id']);
-        $this->assertNotEmpty($arrayNew['createdAt']);
-        $this->assertNotEmpty($arrayNew['updatedAt']);
-        $this->assertNotEmpty($arrayNew['token']);
-        $this->assertEquals($url, $arrayNew['url']);
-        $this->assertEquals($dsn, $arrayNew['dsn']);
-        $this->assertEquals(200, $request->http_status);
-    }
-    /**
-     * @dataProvider ID
-     */
+      $request = $this->Administrative->NewApp(getenv('URL'), getenv('DSN'));
+      $arrayList = (array)$request->response;
 
-    public function testDisableApps($appId): void
-    {
-        $request      = $this->Administrative->DisableApps($appId);
-        
-        $arrayDisable = (array) $request->response;
+      $this->assertArrayHasKey('_id', $arrayList);
+      $this->assertArrayHasKey('url', $arrayList);
+      $this->assertArrayHasKey('dsn', $arrayList);
+      $this->assertArrayHasKey('user_id', $arrayList);
+      $this->assertArrayHasKey('updatedAt', $arrayList);
+      $this->assertArrayHasKey('createdAt', $arrayList);
+      $this->assertArrayHasKey('token', $arrayList);
 
-        $this->assertArrayHasKey('nModified', $arrayDisable);
-        $this->assertNotEmpty($arrayDisable['nModified']);
-        $this->assertEquals(1, $arrayDisable['nModified']);
-        $this->assertEquals(200, $request->http_status);
-    }
-    /**
-     * @dataProvider ID
-     */
-    public function testReactivatingApps($appId): void
-    {
-        $request           = $this->Administrative->ReactivatingApps($appId);
+      $this->assertNotEmpty($request->response->_id);
+      $this->assertNotEmpty($request->response->url);
+      $this->assertNotEmpty($request->response->dsn);
+      $this->assertNotEmpty($request->response->user_id);
+      $this->assertNotEmpty($request->response->createdAt);
+      $this->assertNotEmpty($request->response->updatedAt);
+      $this->assertNotEmpty($request->response->token);
 
-        $arrayReactivating = (array) $request->response;
-
-        $this->assertArrayHasKey('nModified', $Reactivating);
-        $this->assertNotEmpty($Reactivating['nModified']);
-        $this->assertEquals(1, $Reactivating['nModified']);
-        $this->assertEquals(200, $request->http_status);
-        $this->assertEquals(200, $request->http_status);
+      $this->assertEquals(getenv('URL'), $request->response->url);
+      $this->assertEquals(getenv('DSN'), str_replace(' ', '+', $request->response->dsn));
+      $this->assertEquals(200, $request->http_status);
     }
 
-    public function UpdateApp(): array
+    public function testDisableApps(): void
     {
-        return [
-            [getenv('URL'), getenv('DSN'), getenv('IDAPP')],
-        ];
+      $id = getenv('ApplicationID');
+
+      $request = $this->Administrative->DisableApps($id);
+      $arrayDisable = (array)$request->response;
+
+      $this->assertArrayHasKey('nModified', $arrayDisable);
+      $this->assertArrayHasKey('n', $arrayDisable);
+      $this->assertArrayHasKey('ok', $arrayDisable);
+
+      $this->assertEquals(1, $request->response->nModified);
+      $this->assertEquals(1, $request->response->n);
+      $this->assertEquals(1, $request->response->ok);
+
+      $this->assertEquals(200, $request->http_status);
     }
-    /**
-     * @dataProvider UpdateApp
-     */
-    public function testUpdatingApps($url, $dsn, $appId): void
+
+    public function testReactivatingApps(): void
     {
-        $request       = $this->Administrative->UpdatingApps($url, $dsn, $appId);
+      $id = getenv('ApplicationID');
 
-        $arrayUpdating = (array) $request->response;
+      $request = $this->Administrative->ReactivatingApps($id);
+      $arrayDisable = (array)$request->response;
 
-        $this->assertArrayHasKey('nModified', $arrayUpdating);
-        $this->assertNotEmpty($arrayUpdating['nModified']);
-        $this->assertEquals(1, $arrayUpdating['nModified']);
-        $this->assertEquals(200, $request->http_status);
+      $this->assertArrayHasKey('nModified', $arrayDisable);
+      $this->assertArrayHasKey('n', $arrayDisable);
+      $this->assertArrayHasKey('ok', $arrayDisable);
+
+      $this->assertEquals(1, $request->response->nModified);
+      $this->assertEquals(1, $request->response->n);
+      $this->assertEquals(1, $request->response->ok);
+
+      $this->assertEquals(200, $request->http_status);
+    }
+
+    public function testUpdatingApps(): void
+    {
+      list($url, $dsn, $appId) = [getenv('URL'), getenv('DSN'), getenv('ApplicationID')];
+
+      $request = $this->Administrative->UpdatingApps($url, $dsn, $appId);
+      $arrayUpdating = (array)$request->response;
+
+      $this->assertArrayHasKey('nModified', $arrayUpdating);
+      $this->assertArrayHasKey('n', $arrayUpdating);
+      $this->assertArrayHasKey('ok', $arrayUpdating);
+
+      $this->assertEquals(1, $request->response->nModified);
+      $this->assertEquals(1, $request->response->n);
+      $this->assertEquals(1, $request->response->ok);
+
+      $this->assertEquals(200, $request->http_status);
     }
 }
