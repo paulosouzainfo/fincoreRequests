@@ -8,3 +8,4 @@ composer.json
 phpunit.xml
 authTemporaryToken.txt
 .gitignore.orig
+*.orig

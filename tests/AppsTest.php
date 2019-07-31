@@ -25,6 +25,7 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
         ];
 
         $request  = $this->Apps->DocumentsUpdate(getenv('COLLECTION'), $data, $headers);
+
         $arrayDoc = (array) $request->response;
 
         $this->assertEquals(1, $arrayDoc['status']->nModified);
@@ -45,6 +46,7 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
         ];
 
         $request  = $this->Apps->DocumentUpdate(getenv('COLLECTION'), getenv('ID'), $data);
+
         $arrayDoc = (array) $request->response;
 
         $this->assertEquals(1, $arrayDoc['status']->nModified);
@@ -100,6 +102,7 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
     public function testDocumentDelete(): void
     {
         $request  = $this->Apps->DocumentDelete(getenv('COLLECTION'), getenv('ID'));
+
         $arrayDel = (array) $request->response;
 
         $this->assertEquals(1, $arrayDel['n']);
@@ -116,6 +119,7 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
         ];
 
         $request  = $this->Apps->filterData(getenv('COLLECTION'), $headers);
+        
         $arraydoc = (array) $request->response;
 
         $this->assertEquals($headers['Filter']['lastname'], $arraydoc['data'][0]->lastname);

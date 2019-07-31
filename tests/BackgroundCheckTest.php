@@ -78,7 +78,7 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
 
         $request = $this->BackgroundCheck->facematch($frente, $selfie);
 
-        $arrayFacematch = (array) $request->response;
+        $arrayFace = (array) $request->response;
 
         $this->assertArrayHasKey('createdAt', $arrayFace);
         $this->assertArrayHasKey('updatedAt', $arrayFace);

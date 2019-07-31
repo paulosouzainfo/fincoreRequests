@@ -29,6 +29,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     public function testBasic($cpf): void
     {
         $request = $this->PF->basic($cpf);
+
         $this->assertEquals(200, $request->http_status);
         $cpf = preg_replace("/[^0-9]/", "", $cpf);
         $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response->document));
@@ -39,8 +40,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Tiger', $request->response->ChineseSign);
         $this->assertEquals('RECEITA FEDERAL', $request->response->TaxIdOrigin);
         $this->assertEquals('BRASILEIRA', $request->response->BirthCountry);
-        $this->assertEquals('1986-03-05', date("Y-m-d", strtotime($request->response->BirthDate)));
-
+        $this->assertEquals('1986-03-05',date("Y-m-d",strtotime($request->response->BirthDate)));
     }
     /**
      * @dataProvider CPF
@@ -48,6 +48,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     public function testMemberships($cpf): void
     {
         $request = $this->PF->memberships($cpf);
+
         $this->assertEquals(200, $request->http_status);
         $this->assertCount(1, $request->response->Memberships);
 
@@ -60,7 +61,6 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('RegistrationId', $arrayMemberships);
         $this->assertArrayHasKey('Category', $arrayMemberships);
         $this->assertArrayHasKey('Status', $arrayMemberships);
-
         $this->assertEquals('CREARJ', $request->response->Memberships[0]->OrganizationName);
         $this->assertEquals('BRAZIL', $request->response->Memberships[0]->OrganizationCountry);
         $this->assertEquals('CLASS ASSOCIATION', $request->response->Memberships[0]->OrganizationType);
@@ -80,6 +80,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         public function testPublicProfessions($cpf): void
     {
             $request = $this->PF->publicProfessions($cpf);
+
             $this->assertEquals(200, $request->http_status);
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
             $this->assertEquals($cpf, $request->response->document);
@@ -90,9 +91,10 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         public function testProfessions($cpf): void
     {
             $request = $this->PF->professions($cpf);
+
             $this->assertEquals(200, $request->http_status);
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
-            $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response->document));
+            $this->assertEquals($cpf, preg_replace("/[^0-9]/", "",$request->response->document));
         }
         /**
          * @dataProvider CPF
@@ -100,6 +102,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         public function testUniversityStudents($cpf): void
     {
             $request = $this->PF->universityStudents($cpf);
+
             $this->assertEquals(200, $request->http_status);
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
             $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response->document));
@@ -112,8 +115,11 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         public function testDomains($cpf): void
     {
             $request = $this->PF->domains($cpf);
+
             $this->assertEquals(200, $request->http_status);
+
             $Domains = (array) $request->response[0];
+
             $this->assertArrayHasKey('HostName', $Domains);
             $this->assertArrayHasKey('DomainName', $Domains);
             $this->assertArrayHasKey('DomainClass', $Domains);
@@ -146,7 +152,6 @@ final class PFTest extends \PHPUnit\Framework\TestCase
             $this->assertNotEmpty($Domains['ExpirationDate']);
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
             $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $Domains['document']));
-
         }
         /**
          * @dataProvider CPF
@@ -154,6 +159,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         public function testEmails($cpf): void
     {
             $request = $this->PF->email($cpf);
+
             $this->assertCount(3, $request->response);
             $this->assertEquals(200, $request->http_status);
             $Email = (array) $request->response[0];
@@ -174,7 +180,6 @@ final class PFTest extends \PHPUnit\Framework\TestCase
             $cpf = preg_replace("/[^0-9]/", "", $cpf);
             $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $Email['document']));
             $this->assertEquals('2018-04-19', date("Y-m-d", strtotime($Email['FirstPassageDate'])));
-
         }
         /**
          * @dataProvider CPF

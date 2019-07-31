@@ -10,7 +10,7 @@ final class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $this->Utilities = new \Fincore\Utilities();
     }
 
-    public function testJsonToXls()
+    public function testJsonToXls(): void
     {
         $data       = ['a' => 1, 'b' => 1];
 

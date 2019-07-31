@@ -99,6 +99,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     public function testDisableApps($appId): void
     {
         $request      = $this->Administrative->DisableApps($appId);
+        
         $arrayDisable = (array) $request->response;
 
         $this->assertArrayHasKey('nModified', $arrayDisable);
@@ -112,6 +113,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     public function testReactivatingApps($appId): void
     {
         $request           = $this->Administrative->ReactivatingApps($appId);
+
         $arrayReactivating = (array) $request->response;
 
         $this->assertArrayHasKey('nModified', $Reactivating);
@@ -133,6 +135,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     public function testUpdatingApps($url, $dsn, $appId): void
     {
         $request       = $this->Administrative->UpdatingApps($url, $dsn, $appId);
+
         $arrayUpdating = (array) $request->response;
 
         $this->assertArrayHasKey('nModified', $arrayUpdating);
