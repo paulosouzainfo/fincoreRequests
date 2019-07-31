@@ -6,6 +6,7 @@ class PJOnDemand extends \Fincore\Requests
     public function __construct()
     {
         parent::__construct();
+        $this->autoApplicationsLogin();
     }
 
     public function ibamaEmbargo(string $document): object

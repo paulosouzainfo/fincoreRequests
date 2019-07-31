@@ -4,6 +4,7 @@ namespace Fincore;
 class PF extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
+    $this->autoApplicationsLogin();
   }
 
   public function ads(string $document): object {
@@ -14,7 +15,7 @@ class PF extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function basic(string $document): object {
@@ -24,8 +25,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function memberships(string $document): object {
@@ -35,8 +36,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function publicProfessions(string $document): object {
@@ -46,8 +47,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
    public function professions(string $document): object {
@@ -57,8 +58,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function universityStudents(string $document): object {
@@ -68,8 +69,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function domains(string $document): object {
@@ -79,8 +80,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function email(string $document): object {
@@ -90,8 +91,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function addresses(string $document): object {
@@ -101,8 +102,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
 
@@ -113,8 +114,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function flagsAndFeatures(string $document): object {
@@ -124,8 +125,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function financial(string $document): object {
@@ -135,8 +136,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function kyc(string $document): object {
@@ -146,8 +147,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function interests(string $document): object {
@@ -157,8 +158,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function webPassages(string $document): object {
@@ -168,8 +169,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function onlinePresence(string $document): object {
@@ -179,8 +180,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function recurrencyToCharging(string $document): object {
@@ -190,8 +191,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
    public function processes(string $document): object {
@@ -201,8 +202,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
    public function socialAssistences(string $document): object {
@@ -212,8 +213,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function businessRelationships(string $document): object {
@@ -223,8 +224,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function nearbyRelationships(string $document): object {
@@ -234,8 +235,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function phones(string $document): object {
@@ -245,8 +246,8 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 
   public function vehicles(string $document): object {
@@ -256,7 +257,7 @@ class PF extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-    
-    return $this->get($this->buildQuery($request)); 
+
+    return $this->get($this->buildQuery($request));
   }
 }

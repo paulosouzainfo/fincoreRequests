@@ -4,6 +4,7 @@ namespace Fincore;
 class PFOnDemand extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
+    $this->autoApplicationsLogin();
   }
   public function criminalRecords(string $document): object {
     $request = [
@@ -13,7 +14,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function ibamaEmbargo(string $document): object {
@@ -24,7 +25,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function negativeCertificate(string $document): object {
@@ -35,7 +36,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
  public function pgfn(string $document): object {
@@ -46,7 +47,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function nothingContained(string $document): object {
@@ -57,7 +58,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function cpf(string $document): object {
@@ -68,7 +69,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function healthPlans(string $document): object {
@@ -79,7 +80,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
    public function incomeTaxRefunds(string $document): object {
@@ -90,7 +91,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
    public function rais(string $document): object {
@@ -101,7 +102,7 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function unemploymentInsurance(string $document): object {
@@ -112,6 +113,6 @@ class PFOnDemand extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 }

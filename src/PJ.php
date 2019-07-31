@@ -4,6 +4,7 @@ namespace Fincore;
 class PJ extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
+    $this->autoApplicationsLogin();
   }
 
   public function ads(string $document): object {
@@ -14,7 +15,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function basic(string $document): object {
@@ -25,7 +26,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function domains(string $document): object {
@@ -36,7 +37,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function emails(string $document): object {
@@ -47,7 +48,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
    public function mediaExposure(string $document): object {
@@ -58,7 +59,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function activityIndicators(string $document): object {
@@ -69,7 +70,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function relationships(string $document): object {
@@ -80,7 +81,7 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 
   public function phones(string $document): object {
@@ -91,6 +92,6 @@ class PJ extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request)); 	
+    return  $this->get($this->buildQuery($request));
   }
 }

@@ -6,6 +6,7 @@ class BackgroundCheck extends \Fincore\Requests
     public function __construct()
     {
         parent::__construct();
+        $this->autoApplicationsLogin();
     }
 
     public function question(string $document): object

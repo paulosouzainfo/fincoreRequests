@@ -4,6 +4,7 @@ namespace Fincore;
 class Emails extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
+    $this->autoApplicationsLogin();
   }
 
   public function SearchNetworks(string $email): object {

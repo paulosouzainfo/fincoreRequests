@@ -11,9 +11,8 @@ class Requests extends \Fincore\Helpers
     private $browser;
     private $queryString        = null;
     private $headers            = [];
-    private $temporaryTokenFile = './authTemporaryToken.txt';
 
-    public function __construct(?string $environmentConfig = null, ?Browser $browser = null, string $routesType = 'applications')
+    public function __construct(?string $environmentConfig = null, ?Browser $browser = null)
     {
       // dotenv só é utilizado em ambiente de desenvolvimento por questões de segurança
       if (null !== getenv('environment') and getenv('environment') !== 'production') {
@@ -34,12 +33,9 @@ class Requests extends \Fincore\Helpers
 
       $this->browser = $setBrowser;
 
-      if($routesType === 'administrative') $this->autoAdministrativeLogin();
-      else $this->autoApplicationsLogin();
-
     }
 
-    private function autoAdministrativeLogin(): void {
+    protected function autoAdministrativeLogin(): void {
       $request = [
         'path' => '/',
         'data' => [
@@ -51,7 +47,7 @@ class Requests extends \Fincore\Helpers
       $this->put($this->buildQuery($request));
     }
 
-    private function autoApplicationsLogin(): void {
+    protected function autoApplicationsLogin(): void {
       $request = [
         'path' => '/',
         'queryString' => [
@@ -68,20 +64,12 @@ class Requests extends \Fincore\Helpers
 
     private function setAuth(string $bearer) : void
     {
-        if (!is_file($this->temporaryTokenFile)) {
-            touch($this->temporaryTokenFile);
-        }
-        file_put_contents($this->temporaryTokenFile, $bearer);
+        putenv("BEARER={$bearer}");
     }
 
     private function getAuth() : string
     {
-        if (is_file($this->temporaryTokenFile)) {
-            if ($authToken = file_get_contents($this->temporaryTokenFile)) {
-                return $authToken;
-            }
-
-        }
+        if(!is_null(getenv('BEARER'))) return getenv('BEARER');
 
         return '';
     }
@@ -228,11 +216,7 @@ class Requests extends \Fincore\Helpers
             }
             return $responseData;
         } else {
-            if ($response->getStatusCode() === 401) {
-                if (is_file($this->temporaryTokenFile)) {
-                    unlink($this->temporaryTokenFile);
-                }
-            }
+            if ($response->getStatusCode() === 401) putenv("BEARER=");
         }
         $responseData->http_status = $response->getStatusCode();
         $responseData->response    = json_decode($response->getContent());

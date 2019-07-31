@@ -3,7 +3,8 @@ namespace Fincore;
 
 class Administrative extends \Fincore\Requests {
   public function __construct() {
-    parent::__construct(null, null, 'administrative');
+    parent::__construct();
+    $this->autoAdministrativeLogin();
   }
 
   public function RetrieveApp(string $id): object {

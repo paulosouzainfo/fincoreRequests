@@ -6,16 +6,46 @@ class Apps extends \Fincore\Requests
     public function __construct()
     {
         parent::__construct();
+        $this->autoApplicationsLogin();
     }
-    public function Aggregate(string $Instructions): object
+
+    public function DocumentsCreate(string $collection, array $data): object
+    {
+      $request = [
+          'path' => "/_/{$collection}",
+          'data' => $data
+      ];
+
+      return $this->post($this->buildQuery($request));
+    }
+
+    public function filterData(string $collection, $headers = []): object
     {
         $request = [
-            'path' => "/_/aggregate",
-            'data' => [
-                'Instructions' => $Instructions,
-            ],
+            'path'    => "/_/{$collection}",
+            'headers' => $headers,
         ];
-        return $this->patch($this->buildQuery($request));
+
+        return $this->get($this->buildQuery($request));
+    }
+
+    public function DocumentData(string $collection, $Id, $headers = []): object
+    {
+        $request = [
+            'path'    => "/_/{$collection}/{$Id}",
+            'headers' => $headers,
+        ];
+
+        return $this->get($this->buildQuery($request));
+    }
+
+    public function DocumentUpdate(string $collection, string $Id, array $data): object
+    {
+        $request = [
+            'path' => "/_/{$collection}/{$Id}",
+            'data' => $data,
+        ];
+        return $this->put($this->buildQuery($request));
     }
 
     public function DocumentsUpdate(string $collection, array $data, array $headers = []): object
@@ -27,33 +57,6 @@ class Apps extends \Fincore\Requests
         ];
 
         return $this->put($this->buildQuery($request));
-    }
-
-    public function DocumentUpdate(string $collection, string $Id, array $data): object
-    {
-        $request = [
-            'path' => "/_/{$collection}/{$Id}",
-            'data' => $data,
-        ];
-        return $this->put($this->buildQuery($request));
-    }
-    public function Collections(): object
-    {
-        $request = [
-            'path' => "/_/collections",
-
-        ];
-        return $this->get($this->buildQuery($request));
-    }
-
-    public function DocumentCreate(string $collection, array $data): object
-    {
-        $request = [
-            'path' => "/_/{$collection}",
-            'data' => $data,
-
-        ];
-        return $this->post($this->buildQuery($request));
     }
 
     public function DocumentsDelete(string $collection, $headers = []): object
@@ -73,30 +76,23 @@ class Apps extends \Fincore\Requests
         return $this->delete($this->buildQuery($request));
     }
 
-    public function filterData(string $collection, $headers = []): object
+    public function Collections(): object
     {
         $request = [
-            'path'    => "/_/{$collection}",
-            'headers' => $headers,
+            'path' => "/_/collections",
+
         ];
         return $this->get($this->buildQuery($request));
     }
 
-    public function DocumentData(string $collection, $Id, $headers = []): object
+    public function Aggregate(string $Instructions): object
     {
         $request = [
-            'path'    => "/_/{$collection}/{$Id}",
-            'headers' => $headers,
+            'path' => "/_/aggregate",
+            'data' => [
+                'Instructions' => $Instructions,
+            ],
         ];
-        return $this->get($this->buildQuery($request));
-    }
-
-    public function TokenChecker(): object
-    {
-        $request = [
-            'path' => "/auth",
-        ];
-        return $this->head($this->buildQuery($request));
-
+        return $this->patch($this->buildQuery($request));
     }
 }

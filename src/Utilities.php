@@ -6,13 +6,14 @@ class Utilities extends \Fincore\Requests
     public function __construct()
     {
         parent::__construct();
+        $this->autoApplicationsLogin();
     }
 
     public function JsonToXls($json)
     {
         $request = [
             'path' => '/json-to-xls',
-            'data' => $json           
+            'data' => $json
         ];
 
         return $this->post($this->buildQuery($request));

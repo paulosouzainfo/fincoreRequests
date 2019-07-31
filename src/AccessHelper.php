@@ -4,8 +4,7 @@ namespace Fincore;
 class AccessHelper extends \Fincore\Requests {
   public function __construct() {
     parent::__construct();
-
-    $this->routesType = 'administrative';
+    $this->autoAdministrativeLogin();
   }
 
   public function forgot(string $email): object {
