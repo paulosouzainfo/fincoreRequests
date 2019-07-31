@@ -18,6 +18,7 @@ final class AccountTest extends \PHPUnit\Framework\TestCase
         $data = [
             'nickName' => getenv('NICKNAME'),
         ];
+
         $request = $this->Account->UpdatingRegistration($data);
         $this->assertEquals(200, $request->http_status);
     }
@@ -26,6 +27,7 @@ final class AccountTest extends \PHPUnit\Framework\TestCase
     {
         $request             = $this->Account->RecoveringData();
         $arrayRecoveringData = (array) $request->response;
+        
         $this->assertArrayHasKey('email', $arrayRecoveringData);
         $this->assertArrayHasKey('status', $arrayRecoveringData);
         $this->assertArrayHasKey('role', $arrayRecoveringData);

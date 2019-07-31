@@ -10,6 +10,7 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
     protected function setup(): void
     {
         $this->Apps = new \Fincore\Apps();
+
     }
 
     public function testDocumentsUpdate(): void

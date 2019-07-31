@@ -7,12 +7,13 @@ $dotenv->load();
 
 final class PJTest extends \PHPUnit\Framework\TestCase
 {
-
     private $PJ;
+
     protected function setup(): void
     {
         $this->PJ = new \Fincore\PJ();
     }
+
     public function Cnpj(): array
     {
         return [
@@ -34,6 +35,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     public function testbasic($cnpj): void
     {
         $request = $this->PJ->basic($cnpj);
+
         $this->assertEquals(200, $request->http_status);
         $arrayBasic = (array) $request->response;
         $this->assertArrayHasKey('TaxIdCountry', $arrayBasic);
@@ -54,7 +56,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('SOCIEDADE ANONIMA FECHADA', $arrayBasic['LegalNature']->Activity);
         $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
         $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $arrayBasic['document']));
-
     }
     /**
      * @dataProvider Cnpj
@@ -70,6 +71,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     public function testemails($cnpj): void
     {
         $request = $this->PJ->emails($cnpj);
+
         $this->assertEquals(200, $request->http_status);
         $this->assertCount(94, $request->response);
         $arrayEmails = (array) $request->response[0];
@@ -97,6 +99,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     public function testmediaExposure($cnpj): void
     {
         $request = $this->PJ->mediaExposure($cnpj);
+
         $this->assertEquals(200, $request->http_status);
         $arrayExposure = (array) $request->response;
         $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
@@ -115,6 +118,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     {
         $request         = $this->PJ->activityIndicators($cnpj);
         $arrayIndicators = (array) $request->response;
+
         $this->assertArrayHasKey('IncomeRange', $arrayIndicators);
         $this->assertArrayHasKey('ActivityLevel', $arrayIndicators);
         $this->assertArrayHasKey('HasActivity', $arrayIndicators);
@@ -149,6 +153,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
         $request            = $this->PJ->relationships($cnpj);
         $arrayrelationships = (array) $request->response;
+        
         $this->assertCount(45, $arrayrelationships['Relationships']);
         $listrelationships = (array) $arrayrelationships['Relationships'][0];
         $this->assertArrayHasKey('RelatedEntityTaxIdNumber', $listrelationships);

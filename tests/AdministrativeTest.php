@@ -133,7 +133,6 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider UpdateApp
      */
-
     public function testUpdatingApps($url, $dsn, $appId): void
     {
         $request       = $this->Administrative->UpdatingApps($url, $dsn, $appId);
