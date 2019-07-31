@@ -38,9 +38,10 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     public function testibamaNegativeCertificate($cnpj): void
     {
         $request = $this->PJOnDemand->ibamaNegativeCertificate($cnpj);
+
         $this->assertEquals(200, $request->http_status);
         $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
     }
     /**
      * @dataProvider Cnpj
@@ -57,6 +58,7 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     public function testsiproquim($cnpj): void
     {
         $request = $this->PJOnDemand->siproquim($cnpj);
+ 
         $this->assertEquals(200, $request->http_status);
         $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
         $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));

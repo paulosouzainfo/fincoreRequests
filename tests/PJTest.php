@@ -37,7 +37,9 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $request = $this->PJ->basic($cnpj);
 
         $this->assertEquals(200, $request->http_status);
+
         $arrayBasic = (array) $request->response;
+        
         $this->assertArrayHasKey('TaxIdCountry', $arrayBasic);
         $this->assertArrayHasKey('OfficialName', $arrayBasic);
         $this->assertArrayHasKey('FoundedDate', $arrayBasic);
@@ -91,7 +93,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('2014-05-28', date("Y-m-d", strtotime($arrayEmails['FirstPassageDate'])));
         $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
         $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "", $arrayEmails['document']));
-
     }
     /**
      * @dataProvider Cnpj
@@ -101,7 +102,9 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $request = $this->PJ->mediaExposure($cnpj);
 
         $this->assertEquals(200, $request->http_status);
+
         $arrayExposure = (array) $request->response;
+        
         $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
         $this->assertArrayHasKey('CelebrityLevel', $arrayExposure);
         $this->assertArrayHasKey('UnpopularityLevel', $arrayExposure);
@@ -117,6 +120,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
     public function testactivityIndicators($cnpj): void
     {
         $request         = $this->PJ->activityIndicators($cnpj);
+        
         $arrayIndicators = (array) $request->response;
 
         $this->assertArrayHasKey('IncomeRange', $arrayIndicators);
@@ -137,7 +141,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(false, $arrayIndicators['HasRecentPhone']);
         $this->assertEquals(true, $arrayIndicators['HasRecentEmail']);
         $this->assertEquals(true, $arrayIndicators['HasRecentPassages']);
-
         $this->assertEquals(true, $arrayIndicators['HasActiveDomain']);
         $this->assertEquals(true, $arrayIndicators['HasActiveSSL']);
         $this->assertEquals(false, $arrayIndicators['HasCorporateEmail']);
@@ -150,8 +153,8 @@ final class PJTest extends \PHPUnit\Framework\TestCase
      */
     public function testrelationships($cnpj): void
     {
-
         $request            = $this->PJ->relationships($cnpj);
+
         $arrayrelationships = (array) $request->response;
         
         $this->assertCount(45, $arrayrelationships['Relationships']);
@@ -181,7 +184,9 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $request = $this->PJ->phones($cnpj);
 
         $this->assertCount(32, $request->response);
+
         $arrayphones = (array) $request->response[0];
+        
         $this->assertArrayHasKey('Number', $arrayphones);
         $this->assertArrayHasKey('AreaCode', $arrayphones);
         $this->assertArrayHasKey('CountryCode', $arrayphones);
