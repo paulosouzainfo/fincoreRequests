@@ -7,6 +7,7 @@ $dotenv->load();
 final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
 {
     private $PFOnDemand;
+    
     protected function setup(): void
     {
         $this->PFOnDemand = new \Fincore\PFOnDemand();
