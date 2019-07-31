@@ -22,6 +22,7 @@ final class AccessHelperTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider InfoEmail
      */
+    
     public function testforgot($email)
     {
         $request = $this->access->forgot($email);

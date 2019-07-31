@@ -16,6 +16,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     public function testListApps(): void
     {
         $request = $this->Administrative->ListApps();
+
         $this->assertCount(2, $request->response);
         $this->assertArrayHasKey('url', $arrayList);
         $this->assertArrayHasKey('dsn', $arrayList);
@@ -43,9 +44,10 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
      */
     public function testRetrieveApp($id): void
     {
-
         $request = $this->Administrative->RetrieveApp($id);
+
         $arrayID = (array) $request->response;
+
         $this->assertArrayHasKey('_id', $arrayID);
         $this->assertArrayHasKey('url', $arrayID);
         $this->assertArrayHasKey('dsn', $arrayID);
@@ -76,6 +78,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
         $request = $this->Administrative->NewApp($url, $dsn);
 
         $arrayNew = (array) $request->response;
+
         $this->assertArrayHasKey('url', $arrayNew);
         $this->assertArrayHasKey('dsn', $arrayNew);
         $this->assertArrayHasKey('user_id', $arrayNew);
@@ -95,10 +98,12 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider ID
      */
+
     public function testDisableApps($appId): void
     {
         $request      = $this->Administrative->DisableApps($appId);
         $arrayDisable = (array) $request->response;
+
         $this->assertArrayHasKey('nModified', $arrayDisable);
         $this->assertNotEmpty($arrayDisable['nModified']);
         $this->assertEquals(1, $arrayDisable['nModified']);
@@ -111,6 +116,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     {
         $request           = $this->Administrative->ReactivatingApps($appId);
         $arrayReactivating = (array) $request->response;
+
         $this->assertArrayHasKey('nModified', $Reactivating);
         $this->assertNotEmpty($Reactivating['nModified']);
         $this->assertEquals(1, $Reactivating['nModified']);
@@ -127,10 +133,12 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider UpdateApp
      */
+
     public function testUpdatingApps($url, $dsn, $appId): void
     {
         $request       = $this->Administrative->UpdatingApps($url, $dsn, $appId);
         $arrayUpdating = (array) $request->response;
+
         $this->assertArrayHasKey('nModified', $arrayUpdating);
         $this->assertNotEmpty($arrayUpdating['nModified']);
         $this->assertEquals(1, $arrayUpdating['nModified']);
