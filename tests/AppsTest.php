@@ -114,9 +114,11 @@ final class AppsTest extends \PHPUnit\Framework\TestCase
         $request = $this->Apps->DocumentData(getenv('COLLECTION'), getenv('ID'));
         $this->assertEquals($request->response->_id, getenv('ID'));
         $this->assertEquals(200, $request->http_status);
-        public function testTokenChecker()
-        {
-            $request = $this->Apps->TokenChecker();
-            $this->assertEquals(200, $request->http_status);
-        }
+
     }
+    public function testTokenChecker()
+    {
+        $request = $this->Apps->TokenChecker();
+        $this->assertEquals(200, $request->http_status);
+    }
+}
