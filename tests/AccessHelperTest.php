@@ -1,9 +1,6 @@
 <?php
 namespace Fincore\Test;
 
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
-
 final class AccessHelperTest extends \PHPUnit\Framework\TestCase
 {
     private $access;
@@ -13,20 +10,13 @@ final class AccessHelperTest extends \PHPUnit\Framework\TestCase
         $this->access = new \Fincore\AccessHelper();
     }
 
-    public function InfoEmail(): array
+    public function testForgot()
     {
-        return [
-            [getenv('EMAIL')],
-        ];
-    }
-    /**
-     * @dataProvider InfoEmail
-     */
-    
-    public function testforgot($email)
-    {
-        $request = $this->access->forgot($email);
-        $this->assertEquals(true, strpos($request->response, $email));
-        $this->assertEquals(200, $request->http_status);
+      $email = getenv('EMAIL');
+
+      $request = $this->access->forgot($email);
+
+      $this->assertEquals(200, $request->http_status);
+      $this->assertEquals(true, strpos($request->response, $email));
     }
 }

@@ -1,9 +1,6 @@
 <?php
 namespace Fincore\Test;
 
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
-
 final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
 {
     private $PFOnDemand;

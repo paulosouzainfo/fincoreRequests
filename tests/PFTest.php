@@ -1,8 +1,6 @@
 <?php
 namespace Fincore\Test;
 
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
 final class PFTest extends \PHPUnit\Framework\TestCase
 {
     private $PF;
@@ -69,9 +67,13 @@ final class PFTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('RJ', $request->response->Memberships[0]->OrganizationChapter);
         $this->assertEquals('ENGENHEIRO DE PETROLEO', $request->response->Memberships[0]->Category);
         $this->assertEquals('NORMAL', $request->response->Memberships[0]->Status);
+
         $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response->document));
-        }
+        $this->assertEquals(
+          $cpf,
+          preg_replace("/[^0-9]/", "", $request->response->document)
+        );
+      }
         /**
          * @dataProvider CPF
          */

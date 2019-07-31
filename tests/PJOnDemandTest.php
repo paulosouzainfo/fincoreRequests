@@ -1,9 +1,5 @@
 <?php
-
 namespace Fincore\Test;
-
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
 
 final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
 {
@@ -67,7 +63,7 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     /*public function testcnpj($cnpj): void
     {
         $request = $this->PJOnDemand->cnpj($cnpj);
-        $this->assertEquals(200, $request->http_status);        
+        $this->assertEquals(200, $request->http_status);
     }*/
     /**
      * @dataProvider Cnpj

@@ -5,7 +5,7 @@ class Account extends \Fincore\Requests
 {
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct(null, null, 'administrative');
     }
 
     public function UpdatingRegistration(array $data = []): object

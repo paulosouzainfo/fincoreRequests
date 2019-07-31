@@ -1,9 +1,5 @@
 <?php
-
 namespace Fincore\Test;
-
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
 
 final class UtilitiesTest extends \PHPUnit\Framework\TestCase
 {

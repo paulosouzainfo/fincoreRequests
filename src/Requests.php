@@ -13,24 +13,57 @@ class Requests extends \Fincore\Helpers
     private $headers            = [];
     private $temporaryTokenFile = './authTemporaryToken.txt';
 
-    protected function __construct( ? string $environmentConfig = null,  ? Browser $browser = null)
+    public function __construct(?string $environmentConfig = null, ?Browser $browser = null, string $routesType = 'applications')
     {
-        if (null !== getenv('environment') and getenv('environment') !== 'production') {
-            $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
-            $dotenv->load();
-        }
-        $selectedMethod = new FileGetContents();
-        $setBrowser     = $browser;
-        if (function_exists('curl_exec')) {
-            $selectedMethod = new Curl();
-        }
+      // dotenv só é utilizado em ambiente de desenvolvimento por questões de segurança
+      if (null !== getenv('environment') and getenv('environment') !== 'production') {
+          $dotenv = \Dotenv\Dotenv::create(!is_null($environmentConfig) ? $environmentConfig : './');
+          $dotenv->load();
+      }
 
-        $selectedMethod->setTimeout(20);
-        if (is_null($setBrowser)) {
-            $setBrowser = new Browser($selectedMethod);
-        }
-        $this->browser = $setBrowser;
+      $selectedMethod = new FileGetContents();
+      $setBrowser = $browser;
+      if (function_exists('curl_exec')) {
+          $selectedMethod = new Curl();
+      }
 
+      $selectedMethod->setTimeout(20);
+      if (is_null($setBrowser)) {
+          $setBrowser = new Browser($selectedMethod);
+      }
+
+      $this->browser = $setBrowser;
+
+      if($routesType === 'administrative') $this->autoAdministrativeLogin();
+      else $this->autoApplicationsLogin();
+
+    }
+
+    private function autoAdministrativeLogin(): void {
+      $request = [
+        'path' => '/',
+        'data' => [
+         'email' => getenv('EMAIL'),
+         'password' => getenv('PASSWORD')
+        ]
+      ];
+
+      $this->put($this->buildQuery($request));
+    }
+
+    private function autoApplicationsLogin(): void {
+      $request = [
+        'path' => '/',
+        'queryString' => [
+          'secret' => getenv('SECRET')
+        ],
+        'data' => [
+          'user_id' => getenv('USERID'),
+          'token' => getenv('TOKEN')
+        ]
+      ];
+
+      $this->put($this->buildQuery($request));
     }
 
     private function setAuth(string $bearer) : void
@@ -55,13 +88,15 @@ class Requests extends \Fincore\Helpers
 
     private function setHeaders(array $headers): void
     {
-        foreach ($headers as $key => $value) {
-            $this->setHeader($key, is_array($value) ? json_encode($value) : $value);
-        }
+      $this->headers = [];
 
-        if (!empty($this->getAuth())) {
-            $this->setHeader('Authorization', $this->getAuth());
-        }
+      foreach ($headers as $key => $value) {
+          $this->setHeader($key, is_array($value) ? json_encode($value) : $value);
+      }
+
+      if (!empty($this->getAuth())) {
+          $this->setHeader('Authorization', $this->getAuth());
+      }
     }
 
     private function setHeader(string $key, $value): void
@@ -87,14 +122,16 @@ class Requests extends \Fincore\Helpers
 
     protected function get(string $path, array $queryString = [], array $headers = []): object
     {
-        $parser = $this->parseStr($path);
-        if (!empty($parser)) {
-            extract($parser);
-        }
-        $this->setHeaders($headers);
-        $this->setQueryString($queryString);        
-        $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
-        return $this->handleResponse($request);
+      $parser = $this->parseStr($path);
+      if (!empty($parser)) {
+        extract($parser);
+      }
+
+      $this->setHeaders($headers);
+      $this->setQueryString($queryString);
+
+      $request = $this->browser->get($this->setPathToRequest($path), $this->headers);
+      return $this->handleResponse($request);
     }
 
     protected function post(string $path, array $queryString = [], array $headers = [], array $data = [], $formData = 'application/json'): object
@@ -117,17 +154,22 @@ class Requests extends \Fincore\Helpers
         return $this->handleResponse($response);
     }
 
-    protected function put(string $path,  ? array $queryString = [],  ? array $headers = [],  ? array $data = []) : object
+    protected function put(string $path,  ?array $queryString = [],  ?array $headers = [],  ?array $data = []) : object
     {
-        $parser = $this->parseStr($path);
-        if (!empty($parser)) {extract($parser);}
-        $this->setHeaders($headers);
-        $this->setQueryString($queryString);
-        $data = json_encode($data);
-        $this->setHeader('Content-Type', 'application/json');
-        $this->setHeader('Content-Length', strlen($data));
-        $response = $this->browser->put($this->setPathToRequest($path), $this->headers, $data);
-        return $this->handleResponse($response);
+      $parser = $this->parseStr($path);
+      if (!empty($parser)) extract($parser);
+
+      $this->setHeaders($headers);
+      $this->setQueryString($queryString);
+
+      $data = json_encode($data);
+
+      $this->setHeader('Content-Type', 'application/json');
+      $this->setHeader('Content-Length', strlen($data));
+
+      $response = $this->browser->put($this->setPathToRequest($path), $this->headers, $data);
+
+      return $this->handleResponse($response);
     }
 
     protected function delete(string $path, array $queryString = [], array $headers = []) : object

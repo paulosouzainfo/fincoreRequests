@@ -1,9 +1,5 @@
 <?php
-
 namespace Fincore\Test;
-
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
 
 final class PJTest extends \PHPUnit\Framework\TestCase
 {
@@ -153,7 +149,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
         $request            = $this->PJ->relationships($cnpj);
         $arrayrelationships = (array) $request->response;
-        
+
         $this->assertCount(45, $arrayrelationships['Relationships']);
         $listrelationships = (array) $arrayrelationships['Relationships'][0];
         $this->assertArrayHasKey('RelatedEntityTaxIdNumber', $listrelationships);

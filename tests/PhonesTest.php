@@ -1,9 +1,5 @@
 <?php
-
 namespace Fincore\Test;
-
-$dotenv = \Dotenv\Dotenv::create('./');
-$dotenv->load();
 
 final class PhonesTest extends \PHPUnit\Framework\TestCase
 {
@@ -24,7 +20,7 @@ final class PhonesTest extends \PHPUnit\Framework\TestCase
     /*public function testPhonesHistory($phone)
     {
         $request = $this->Phones->PhonesHistory($phone);
-       
+
         //$this->assertEquals(200, $request->http_status);
     }*/
     /**
