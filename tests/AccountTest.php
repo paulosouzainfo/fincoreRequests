@@ -36,6 +36,7 @@ final class AccountTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('role', $arrayRecoveringData);
         $this->assertArrayHasKey('age', $arrayRecoveringData);
         $this->assertArrayHasKey('bornAt', $arrayRecoveringData);
+        
         $this->assertEquals('active', $arrayRecoveringData['status']);
     }
 }
