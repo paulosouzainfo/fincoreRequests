@@ -8,101 +8,117 @@ final class PJOnDemandTest extends \PHPUnit\Framework\TestCase
     protected function setup(): void
     {
         $this->PJOnDemand = new \Fincore\PJOnDemand();
+        $this->Cnpj       = getenv('CNPJ');
     }
 
-    public function Cnpj(): array
+    public function testibamaEmbargo(): void
     {
-        return [
-            [getenv('CNPJ')],
-        ];
-    }
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testibamaEmbargo($cnpj): void
-    {
-        $request = $this->PJOnDemand->ibamaEmbargo($cnpj);
+        $request = $this->PJOnDemand->ibamaEmbargo($this->Cnpj);
 
         $this->assertEquals(200, $request->http_status);
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
 
+        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
+
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testibamaNegativeCertificate($cnpj): void
+
+    public function testibamaNegativeCertificate(): void
     {
-        $request = $this->PJOnDemand->ibamaNegativeCertificate($cnpj);
+        $request = $this->PJOnDemand->ibamaNegativeCertificate($this->Cnpj);
 
         $this->assertEquals(200, $request->http_status);
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
+
+        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
+
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider Cnpj
-     */
+
     /*public function testpgfn($cnpj): void
     {
-        $request = $this->PJOnDemand->pgfn($cnpj);
-        $this->assertEquals(200, $request->http_status);
+    $request = $this->PJOnDemand->pgfn($cnpj);
+    $this->assertEquals(200, $request->http_status);
 
     }*/
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testsiproquim($cnpj): void
+
+    public function testsiproquim(): void
     {
         $request = $this->PJOnDemand->siproquim($cnpj);
- 
+
         $this->assertEquals(200, $request->http_status);
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
+
+        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
+
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider Cnpj
-     */
+
     /*public function testcnpj($cnpj): void
     {
-        $request = $this->PJOnDemand->cnpj($cnpj);
-        $this->assertEquals(200, $request->http_status);
+    $request = $this->PJOnDemand->cnpj($cnpj);
+    $this->assertEquals(200, $request->http_status);
     }*/
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testqsa($cnpj): void
+
+    public function testqsa(): void
     {
-        $request = $this->PJOnDemand->qsa($cnpj);
+        $request = $this->PJOnDemand->qsa($this->Cnpj);
 
         $this->assertEquals(200, $request->http_status);
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
+
+        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
+
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testfgts($cnpj): void
+
+    public function testfgts(): void
     {
-        $request = $this->PJOnDemand->fgts($cnpj);
+        $request = $this->PJOnDemand->fgts($this->Cnpj);
 
         $this->assertEquals(200, $request->http_status);
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $this->assertEquals($cnpj, preg_replace("/[^0-9]/", "",$request->response[0]->document));
+
+        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testlegalRepresentative($cnpj): void
+
+    public function testlegalRepresentative(): void
     {
-        $request = $this->PJOnDemand->legalRepresentative($cnpj);
+        $request = $this->PJOnDemand->legalRepresentative($this->Cnpj);
+
         $this->assertEquals(200, $request->http_status);
     }
-    /**
-     * @dataProvider Cnpj
-     */
-    public function testsimples($cnpj): void
+
+    public function testsimples(): void
     {
-        $request = $this->PJOnDemand->simples($cnpj);
+        $request = $this->PJOnDemand->simples($this->Cnpj);
+        
         $this->assertEquals(200, $request->http_status);
     }
 }
