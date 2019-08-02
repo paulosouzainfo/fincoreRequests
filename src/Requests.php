@@ -94,10 +94,11 @@ class Requests extends \Fincore\Helpers
 
     private function setQueryString(array $queryString): void
     {
-        if (!empty($queryString)) {
-            $this->queryString = '?' . $this->buildQuery($queryString);
-        }
-
+      $this->queryString = null;
+      
+      if (!empty($queryString)) {
+          $this->queryString = '?' . $this->buildQuery($queryString);
+      }
     }
 
     private function setPathToRequest(string $path): string
@@ -137,6 +138,7 @@ class Requests extends \Fincore\Helpers
         } else {
             $data = http_build_query($data);
         }
+
         $response = $this->browser->post($this->setPathToRequest($path), $this->headers, $data);
 
         return $this->handleResponse($response);
@@ -201,8 +203,18 @@ class Requests extends \Fincore\Helpers
     private function handleResponse(Response $response): object
     {
         $responseData = new \stdClass();
+        $headersToResponse = new \stdClass();
 
         if ($response->getStatusCode() < 400) {
+            foreach($response->getHeaders() as $header) {
+              if(strstr($header, ':')) {
+                $infoHeader = explode(':', $header);
+                $headersToResponse->{strtolower($infoHeader[0])} = ltrim($infoHeader[1], ' ');
+              }
+            }
+
+            $responseData->headers = $headersToResponse;
+
             $bearer = $response->getHeader('authorization');
 
             if (!is_null($bearer)) {
