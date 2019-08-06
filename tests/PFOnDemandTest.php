@@ -8,101 +8,135 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
     protected function setup(): void
     {
         $this->PFOnDemand = new \Fincore\PFOnDemand();
+        $this->Cpf        = getenv('CPF');
     }
 
-    public function CPF(): array
+    public function testcriminalRecords(): void
     {
-        return [
-            [getenv('CPF')],
-        ];
-    }
-    /**
-     * @dataProvider CPF
-     */
-    public function testcriminalRecords($cpf): void
-    {
-        $request = $this->PFOnDemand->criminalRecords($cpf);
+        $request = $this->PFOnDemand->criminalRecords($this->Cpf);
 
         $this->assertEquals(200, $request->http_status);
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
-   }
-    /**
-     * @dataProvider CPF
-     */
-    public function testibamaEmbargo($cpf): void
-    {
-        $request = $this->PFOnDemand->ibamaEmbargo($cpf);
- 
-        $this->assertEquals(200, $request->http_status);
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf, preg_replace(
+                "/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testnegativeCertificate($cpf): void
+
+    public function testibamaEmbargo(): void
     {
-        $request = $this->PFOnDemand->negativeCertificate($cpf);
- 
+        $request = $this->PFOnDemand->ibamaEmbargo($this->Cpf);
+
         $this->assertEquals(200, $request->http_status);
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf,
+            preg_replace(
+                "/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testpgfn($cpf): void
+
+    public function testnegativeCertificate(): void
     {
-        $request = $this->PFOnDemand->pgfn($cpf);
- 
+        $request = $this->PFOnDemand->negativeCertificate($this->Cpf);
+
         $this->assertEquals(200, $request->http_status);
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf,
+            preg_replace(
+                "/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testnothingContained($cpf): void
+
+    public function testpgfn(): void
     {
-        $request = $this->PFOnDemand->nothingContained($cpf);
- 
-        $cpf     = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+        $request = $this->PFOnDemand->pgfn($this->Cpf);
+
+        $this->assertEquals(200, $request->http_status);
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf,
+            preg_replace(
+                "/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
+    }
+
+    public function testnothingContained(): void
+    {
+        $request = $this->PFOnDemand->nothingContained($this->Cpf);
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf, preg_replace(
+                "/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
+
         $this->assertEquals(200, $request->http_status);
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testcpf($cpf): void
+
+    public function testcpf(): void
     {
-        $request = $this->PFOnDemand->cpf($cpf);
+        $request = $this->PFOnDemand->cpf($this->Cpf);
         $this->assertEquals(200, $request->http_status);
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testhealthPlans($cpf): void
+
+    public function testhealthPlans(): void
     {
-        $request = $this->PFOnDemand->healthPlans($cpf);
- 
+        $request = $this->PFOnDemand->healthPlans($this->Cpf);
+
         $this->assertEquals(200, $request->http_status);
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
+
+        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+
+        $this->assertEquals(
+            $this->Cpf,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
     }
-    /**
-     * @dataProvider CPF
-     */
-    public function testincomeTaxRefunds($cpf): void
+
+    public function testincomeTaxRefunds(): void
     {
-        $request = $this->PFOnDemand->incomeTaxRefunds($cpf);
- 
+        $request = $this->PFOnDemand->incomeTaxRefunds($this->Cpf);
+
         $this->assertEquals(200, $request->http_status);
-        $this->assertEquals($cpf, preg_replace("/[^0-9]/", "", $request->response[0]->document));
-   }
-    /**
-     * @dataProvider CPF
-     */
+
+        $this->assertEquals(
+            $this->Cpf,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response[0]->document
+            )
+        );
+    }
+
     /* public function testrais($cpf): void
     {
     $request = $this->PFOnDemand->rais($cpf);
@@ -110,9 +144,6 @@ final class PFOnDemandTest extends \PHPUnit\Framework\TestCase
 
     }*/
 
-    /**
-     * @dataProvider CPF
-     */
     /*public function testunemploymentInsurance($cpf): void
 {
 $request = $this->PFOnDemand->unemploymentInsurance($cpf);

@@ -16,7 +16,7 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $type     = getenv('TIPO');
         $side     = getenv('SIDE');
 
-        $request  = $this->BackgroundCheck->documents($imageURL, $type, $side);
+        $request = $this->BackgroundCheck->documents($imageURL, $type, $side);
 
         $arrayDoc = (array) $request->response;
 
@@ -32,16 +32,18 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('FATHERNAME', $arrayDoc);
         $this->assertArrayHasKey('MOTHERNAME', $arrayDoc);
         $this->assertArrayHasKey('NAME', $arrayDoc);
+
         $this->assertEquals(200, $request->http_status);
-        $this->assertEquals('2019-07-26', date("Y-m-d", strtotime($arrayDoc['createdAt'])));
-        $this->assertEquals('2019-07-26', date("Y-m-d", strtotime($arrayDoc['updatedAt'])));
         $this->assertEquals($imageURL, $arrayDoc['document']);
-        $this->assertEquals($type, $arrayDoc['type']);
-        $this->assertEquals($side, $arrayDoc['side']);
-        $this->assertEquals('21/07/1974', $arrayDoc['BIRTHDATE']);
+
+        $this->assertNotEmpty($arrayDoc['createdAt']);
+        $this->assertNotEmpty($arrayDoc['updatedAt']);
+        $this->assertNotEmpty($arrayDoc['type']);
+        $this->assertNotEmpty($arrayDoc['side']);
+        $this->assertNotEmpty($arrayDoc['BIRTHDATE']);
         $this->assertNotEmpty($arrayDoc['CPF']);
-        $this->assertEquals('RG', $arrayDoc['DOCTYPE']);
-        $this->assertEquals('08/07/2002', $arrayDoc['EXPEDITIONDATE']);
+        $this->assertNotEmpty($arrayDoc['DOCTYPE']);
+        $this->assertNotEmpty($arrayDoc['EXPEDITIONDATE']);
         $this->assertNotEmpty($arrayDoc['FATHERNAME']);
         $this->assertNotEmpty($arrayDoc['MOTHERNAME']);
         $this->assertNotEmpty($arrayDoc['NAME']);
@@ -49,14 +51,18 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
 
     public function testquestion(): void
     {
-        $document          = getenv('CPF');
-        $request           = $this->BackgroundCheck->question($document);
+        $document = getenv('CPF');
+
+        $request = $this->BackgroundCheck->question($document);
 
         $arrayTestquestion = $request->response;
 
         $this->assertNotEmpty($arrayTestquestion->TicketId);
+
         $this->assertCount(4, $arrayTestquestion->Questions);
+
         $document = preg_replace("/[^0-9]/", "", $document);
+
         $this->assertEquals($document, $arrayTestquestion->document);
         $this->assertEquals(200, $request->http_status);
     }
@@ -73,8 +79,8 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
 
     public function testFacematch(): void
     {
-        $frente  = getenv('FRENTE');
-        $selfie  = getenv('SELFIE');
+        $frente = getenv('FRENTE');
+        $selfie = getenv('SELFIE');
 
         $request = $this->BackgroundCheck->facematch($frente, $selfie);
 
@@ -92,16 +98,19 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('FATHERNAME', $arrayFace);
         $this->assertArrayHasKey('MOTHERNAME', $arrayFace);
         $this->assertArrayHasKey('NAME', $arrayFace);
+
+        $this->assertInternalType('bool', $arrayFace['match']);
+
         $this->assertEquals(200, $request->http_status);
-        $this->assertEquals('2019-07-29', date("Y-m-d", strtotime($arrayFace['createdAt'])));
-        $this->assertEquals('2019-07-29', date("Y-m-d", strtotime($arrayFace['updatedAt'])));
-        $this->assertEquals(true, $arrayFace['match']);
         $this->assertEquals($selfie, $arrayFace['selfie']);
         $this->assertEquals($frente, $arrayFace['document']);
-        $this->assertEquals('21/07/1974', $arrayFace['BIRTHDATE']);
+
+        $this->assertNotEmpty($arrayFace['createdAt']);
+        $this->assertNotEmpty($arrayFace['updatedAt']);
+        $this->assertNotEmpty($arrayFace['BIRTHDATE']);
         $this->assertNotEmpty($arrayFace['CPF']);
-        $this->assertEquals('RG', $arrayFace['DOCTYPE']);
-        $this->assertEquals('08/07/2002', $arrayFace['EXPEDITIONDATE']);
+        $this->assertNotEmpty($arrayFace['DOCTYPE']);
+        $this->assertNotEmpty($arrayFace['EXPEDITIONDATE']);
         $this->assertNotEmpty($arrayFace['FATHERNAME']);
         $this->assertNotEmpty($arrayFace['MOTHERNAME']);
         $this->assertNotEmpty($arrayFace['NAME']);
