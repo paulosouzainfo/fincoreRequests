@@ -12,6 +12,8 @@ Para para iniciarmos essa configuração, renomeie ou copie o arquivo *.env.exam
 Se você não necessita de acesso e configurações para ambientes administrativos, configure apenas os dados de aplicações ou vice-versa.
 
 ### Acesso
+#### Recuperação de Senha [#](https://api.fincore.co/doc/#api-Ajuda-Forgot)
+
 Nesta funcionalidade, apenas a ação de recuperação de senha é iniciada, sendo necessária a intervenção manual através do link enviado por e-mail para troca da senha de acesso.
 
 ```
@@ -23,7 +25,8 @@ $helper->forgot('seu@email.com');
 ```
 
 ### Conta de usuários
-#### Atualização de dados
+#### Atualização de dados [#](https://api.fincore.co/doc/#api-Ajuda-Recovery)
+
 ```
 <?php
 require 'vendor/autoload.php';
@@ -31,7 +34,7 @@ require 'vendor/autoload.php';
 $account = new \Fincore\Account();
 $account->UpdatingRegistration(['password' => 'senhaSuperSecreta']);
 ```
-#### Dados do usuário administrativo
+#### Dados do usuário administrativo [#](https://api.fincore.co/doc/#api-Ajuda-Recovery)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -40,7 +43,7 @@ $account = new \Fincore\Account();
 $account->RecoveringData();
 ```
 ### Administrativo
-#### Dados de uma aplicação
+#### Dados de uma aplicação [#](https://api.fincore.co/doc/#api-Administrativo-getApp)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -49,7 +52,7 @@ $administrative = new \Fincore\Administrative();
 $administrative->RetrieveApp($id);
 ```
 
-#### Lista de aplicações
+#### Lista de aplicações [#](https://api.fincore.co/doc/#api-Administrativo-getApps)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -58,7 +61,7 @@ $administrative = new \Fincore\Administrative();
 $administrative->ListApps();
 ```
 
-#### Criando uma nova aplicação
+#### Criando uma nova aplicação  [#](https://api.fincore.co/doc/#api-Administrativo-newApp)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -67,7 +70,7 @@ $administrative = new \Fincore\Administrative();
 $administrative->NewApp($url, $mongoDbDsn);
 ```
 
-#### Atualizando os dados de uma aplicação
+#### Atualizando os dados de uma aplicação [#](https://api.fincore.co/doc/#api-Administrativo-updateApp)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -76,7 +79,7 @@ $administrative = new \Fincore\Administrative();
 $administrative->UpdatingApps($url, $mongoDbDsn, $id);
 ```
 
-#### Desabilitando uma aplicação
+#### Desabilitando uma aplicação  [#](https://api.fincore.co/doc/#api-Administrativo-deleteApp)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -85,7 +88,7 @@ $administrative = new \Fincore\Administrative();
 $administrative->DisableApps($id);
 ```
 
-#### Reativando uma aplicação
+#### Reativando uma aplicação [#](https://api.fincore.co/doc/#api-Administrativo-reEnableApp)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -95,7 +98,7 @@ $administrative->ReactivatingApps($id);
 ```
 
 ### Aplicações
-#### Criando um múltiplos documentos
+#### Criando um múltiplos documentos [#](https://api.fincore.co/doc/#api-Apps-documentsUpdate)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -103,7 +106,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentsCreate($collection, $data);
 ```
-#### Filtrando documentos
+#### Filtrando documentos [#](https://api.fincore.co/doc/#api-Apps-filterData)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -111,7 +114,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->filterData($collection, $headers = []);
 ```
-#### Consultando um documento através do seu ID
+#### Consultando um documento através do seu ID [#](https://api.fincore.co/doc/#api-Apps-documentData)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -119,7 +122,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentData($collection, $Id, $headers = []);
 ```
-#### Atualizando um documento
+#### Atualizando um documento [#](https://api.fincore.co/doc/#api-Apps-documentUpdate)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -127,7 +130,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentUpdate($collection, $Id, $data);
 ```
-#### Atualizando múltiplos documentos
+#### Atualizando múltiplos documentos [#](https://api.fincore.co/doc/#api-Apps-documentsUpdate)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -135,7 +138,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentsUpdate($collection, $data, $headers = []);
 ```
-#### Excluindo múltiplos documentos
+#### Excluindo múltiplos documentos [#](https://api.fincore.co/doc/#api-Apps-documentsDelete)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -143,7 +146,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentsDelete($collection, $headers = []);
 ```
-#### Excluindo um documento através do seu ID
+#### Excluindo um documento através do seu ID [#](https://api.fincore.co/doc/#api-Apps-documentDelete)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -151,7 +154,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->DocumentDelete($collection, $Id);
 ```
-#### Listando suas coleções de dados
+#### Listando suas coleções de dados [#](https://api.fincore.co/doc/#api-Apps-collections)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -159,7 +162,7 @@ require 'vendor/autoload.php';
 $apps = new \Fincore\Apps();
 $apps->Collections();
 ```
-#### Agregação de documentos
+#### Agregação de documentos [#](https://api.fincore.co/doc/#api-Apps-mongoDbAggregate)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -168,7 +171,7 @@ $apps = new \Fincore\Apps();
 $apps->Aggregate($collection, $Instructions);
 ```
 ### Background Check
-#### Questionário baseado em um CPF
+#### Questionário baseado em um CPF  [#](https://api.fincore.co/doc/#api-Background_Check-outsourcingQuestions)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -176,7 +179,7 @@ require 'vendor/autoload.php';
 $bc = new \Fincore\BackgroundCheck();
 $bc->question($document);
 ```
-#### Resposta do questionário identificada pelo ticket gerado no questionário
+#### Resposta do questionário identificada pelo ticket gerado no questionário [#](https://api.fincore.co/doc/#api-Background_Check-outsourcingAnswers)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -184,7 +187,7 @@ require 'vendor/autoload.php';
 $bc = new \Fincore\BackgroundCheck();
 $bc->answers($ticket, $answers);
 ```
-#### OCR de documentos [CNH, Identidade ou Passaporte]
+#### OCR de documentos [CNH, Identidade ou Passaporte] [#](https://api.fincore.co/doc/#api-Background_Check-outsourcingDocOCR)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -192,7 +195,7 @@ require 'vendor/autoload.php';
 $bc = new \Fincore\BackgroundCheck();
 $bc->documents($imageURL, $type, $side);
 ```
-#### Facematch - Validando a foto do usuário com a selfie enviada
+#### Facematch - Validando a foto do usuário com a selfie enviada [#](https://api.fincore.co/doc/#api-Background_Check-outsourcingFacematch)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -430,8 +433,9 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->phones($document);
 ```
-### Requisições
+
 ### Utilitários
+#### JSON para XLS [#](https://api.fincore.co/doc/#api-Utilidades-jsonToXls)
 A conversão de um objeto JSON para um arquivo XLS é importante para exportar dados já normalizados, transformando a sua leitura em uma planilha Excel. Esta rota é um download de arquivo XLS.
 ```
 <?php
