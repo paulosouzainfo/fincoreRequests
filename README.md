@@ -432,3 +432,12 @@ $pj->phones($document);
 ```
 ### Requisições
 ### Utilitários
+A conversão de um objeto JSON para um arquivo XLS é importante para exportar dados já normalizados, transformando a sua leitura em uma planilha Excel. Esta rota é um download de arquivo XLS.
+```
+<?php
+require 'vendor/autoload.php';
+
+$json = new \Fincore\Utilities;
+$json->JsonToXls($json);
+
+```
