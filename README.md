@@ -202,6 +202,166 @@ $bc->facematch($documentURL, $selfieURL);
 ```
 
 ### Pessoa Física
+#### Busca por anúncios online vinculados ao número do CPF enviado.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->ads($document);
+```
+#### Dados básicos de um usuário como nome, filiação e outros documentos conhecidos, data de nascimento, signo e regularização na Receita Federal.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->basic($document);
+```
+#### Dados de profissionais conhecidos em conselhos de classe.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->memberships($document);
+```
+#### Dados de profissionais conhecidos de funcionários públicos.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->publicProfessions($document);
+```
+#### Dados de profissionais conhecidos.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->professions($document);
+```
+#### Dados de estudantes universitários.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->universityStudents($document);
+```
+#### Domínios de internet conhecidos para um CPF.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->domains($document);
+```
+#### Endereços eletrônicos conhecidos para um CPF.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->email($document);
+```
+#### Endereços físicos conhecidos para um CPF com classificação para endereços de trabalho e casa.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->addresses($document);
+```
+#### Exposição e perfil definidos em diversas mídias.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->mediaExposure($document);
+```
+#### Indicadores e características de atividades financeiras pela WEB.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->flagsAndFeatures($document);
+```
+#### Informações financeiras de IR.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->financial($document);
+```
+#### Dados de Interpol e Ofac para homônimos e similaridades.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->kyc($document);
+```
+#### Dados de interesse 
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->interests($document);
+```
+#### Dados de passagens reconhecidas pela WEB como passagens suspeitas.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->webPassages($document);
+```
+#### Informações de presença online que definem a utilização da internet.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->onlinePresence($document);
+```
+#### Dados de presença em cobranças por empresas, definindo os níveis de encontrabilidade por endereços, e-mails e telefones, por exemplo.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->recurrencyToCharging($document);
+```
+#### Dados de processos conhecidos através do CPF oriundos dos tribunais regionais.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->processes($document);
+```
+#### Informações de participação em programas de benefícios como o bolsa-família.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->socialAssistences($document);
+```
+#### Informações sobre relacionamentos econômicos.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->businessRelationships($document);
+```
 ### Pessoa Jurídica
 ### Requisições
 ### Utilitários
