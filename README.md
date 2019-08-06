@@ -95,8 +95,112 @@ $administrative->ReactivatingApps($id);
 ```
 
 ### Aplicações
+#### Criando um múltiplos documentos
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentsCreate($collection, $data);
+```
+#### Filtrando documentos
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->filterData($collection, $headers = []);
+```
+#### Consultando um documento através do seu ID
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentData($collection, $Id, $headers = []);
+```
+#### Atualizando um documento
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentUpdate($collection, $Id, $data);
+```
+#### Atualizando múltiplos documentos
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentsUpdate($collection, $data, $headers = []);
+```
+#### Excluindo múltiplos documentos
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentsDelete($collection, $headers = []);
+```
+#### Excluindo um documento através do seu ID
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->DocumentDelete($collection, $Id);
+```
+#### Listando suas coleções de dados
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->Collections();
+```
+#### Agregação de documentos
+```
+<?php
+require 'vendor/autoload.php';
+
+$apps = new \Fincore\Apps();
+$apps->Aggregate($collection, $Instructions);
+```
 ### Background Check
-### Ajuda
+#### Questionário baseado em um CPF
+```
+<?php
+require 'vendor/autoload.php';
+
+$bc = new \Fincore\BackgroundCheck();
+$bc->question($document);
+```
+#### Resposta do questionário identificada pelo ticket gerado no questionário
+```
+<?php
+require 'vendor/autoload.php';
+
+$bc = new \Fincore\BackgroundCheck();
+$bc->answers($ticket, $answers);
+```
+#### OCR de documentos [CNH, Identidade ou Passaporte]
+```
+<?php
+require 'vendor/autoload.php';
+
+$bc = new \Fincore\BackgroundCheck();
+$bc->documents($imageURL, $type, $side);
+```
+#### Facematch - Validando a foto do usuário com a selfie enviada
+```
+<?php
+require 'vendor/autoload.php';
+
+$bc = new \Fincore\BackgroundCheck();
+$bc->facematch($documentURL, $selfieURL);
+```
+
 ### Pessoa Física
 ### Pessoa Jurídica
 ### Requisições
