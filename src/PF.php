@@ -51,7 +51,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request));
   }
 
-   public function professions(string $document): object {
+  public function professions(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/professions',
       'queryString' => [
@@ -105,7 +105,6 @@ class PF extends \Fincore\Requests {
 
     return $this->get($this->buildQuery($request));
   }
-
 
   public function mediaExposure(string $document): object {
   	$request = [
@@ -195,7 +194,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request));
   }
 
-   public function processes(string $document): object {
+  public function processes(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/processes',
       'queryString' => [
@@ -206,7 +205,7 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request));
   }
 
-   public function socialAssistences(string $document): object {
+  public function socialAssistences(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/social-assistences',
       'queryString' => [
