@@ -12,12 +12,11 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
 
     public function testDocuments(): void
     {
-        $imageURL = getenv('FRENTE');
+        $imageURL = getenv('DOCUMENTO');
         $type     = getenv('TIPO');
         $side     = getenv('SIDE');
 
         $request = $this->BackgroundCheck->documents($imageURL, $type, $side);
-
         $arrayDoc = (array) $request->response;
 
         $this->assertArrayHasKey('createdAt', $arrayDoc);
@@ -49,42 +48,37 @@ final class BackgroundCheckTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEmpty($arrayDoc['NAME']);
     }
 
-    public function testquestion(): void
+    public function testQuestion(): void
     {
-        $document = getenv('CPF');
+        $document = preg_replace("/[^0-9]/", "", getenv('CPF'));
 
         $request = $this->BackgroundCheck->question($document);
 
-        $arrayTestquestion = $request->response;
+        putenv("TICKET={$request->response->TicketId}");
 
-        $this->assertNotEmpty($arrayTestquestion->TicketId);
+        $this->assertNotEmpty($request->response->TicketId);
+        $this->assertCount(4, $request->response->Questions);
 
-        $this->assertCount(4, $arrayTestquestion->Questions);
-
-        $document = preg_replace("/[^0-9]/", "", $document);
-
-        $this->assertEquals($document, $arrayTestquestion->document);
+        $this->assertEquals($document, $request->response->document);
         $this->assertEquals(200, $request->http_status);
     }
 
-    public function testanswers(): void
+    public function testAnswers(): void
     {
         $ticket  = getenv('TICKET');
-        $answers = array('3', '2', '2', '1');
+        $answers = [rand(0, 3), rand(0, 3), rand(0, 3), rand(0, 3)];
 
         $request = $this->BackgroundCheck->answers($ticket, $answers);
         $this->assertEquals(200, $request->http_status);
-
     }
 
     public function testFacematch(): void
     {
-        $frente = getenv('FRENTE');
+        $frente = getenv('DOCUMENTO');
         $selfie = getenv('SELFIE');
 
         $request = $this->BackgroundCheck->facematch($frente, $selfie);
-
-        $arrayFace = (array) $request->response;
+        $arrayFace = (array)$request->response;
 
         $this->assertArrayHasKey('createdAt', $arrayFace);
         $this->assertArrayHasKey('updatedAt', $arrayFace);

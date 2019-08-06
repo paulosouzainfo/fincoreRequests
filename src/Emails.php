@@ -9,12 +9,12 @@ class Emails extends \Fincore\Requests {
 
   public function SearchNetworks(string $email): object {
     $request = [
-    'path' => '_/outsourcing/emails',
-    'queryString' => [
-    'email' => $email
-    ]
+      'path' => '_/outsourcing/emails',
+      'queryString' => [
+        'email' => $email
+      ]
     ];
 
-    return  $this->get($this->buildQuery($request));
+    return $this->get($this->buildQuery($request));
   }
 }

@@ -17,6 +17,7 @@ class BackgroundCheck extends \Fincore\Requests
                 'document' => $document,
             ],
         ];
+
         return $this->get($this->buildQuery($request));
     }
 
@@ -26,6 +27,7 @@ class BackgroundCheck extends \Fincore\Requests
             'path' => "/_/outsourcing/background-check/answer-me/{$ticket}",
             'data' => $answers,
         ];
+
         return $this->post($this->buildQuery($request));
     }
 

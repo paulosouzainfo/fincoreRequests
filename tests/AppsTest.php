@@ -3,188 +3,227 @@ namespace Fincore\Test;
 
 final class AppsTest extends \PHPUnit\Framework\TestCase
 {
-    protected function setup(): void
-    {
-      $this->Administrative = new \Fincore\Administrative();
+  private $apps;
 
-      $identity = preg_replace('/[^0-9]/', '', time());
+  protected function setup(): void
+  {
+    $this->apps = new \Fincore\Apps();
+  }
 
-      putenv("URL=https://{$identity}.fincore.co");
-      putenv("DSN=mongodb://localhost:27017/{$identity}");
+  public function testDocumentsCreate(): void
+  {
+    $data = [
+        [
+          'name' => 'Juca',
+          'lastname' => 'Pirama',
+          'age' => rand(12, 100)
+        ],
+        [
+          'name' => 'Tonho',
+          'lastname' => 'da Lua',
+          'age' => rand(12, 100)
+        ],
+        [
+          'name' => 'Patrícia',
+          'lastname' => 'Amaral',
+          'age' => rand(12, 100)
+        ],
+        [
+          'name' => 'Roberto',
+          'lastname' => 'da Silva',
+          'age' => rand(12, 100)
+        ],
+        [
+          'name' => 'Agostinho',
+          'lastname' => 'Carrara',
+          'age' => rand(12, 100)
+        ]
+    ];
 
-      $request = $this->Administrative->NewApp(getenv('URL'), getenv('DSN'));
-      putenv("SECRET={$request->response->token}");
+    $request  = $this->apps->DocumentsCreate('people', $data);
+
+    if(sizeof($request->response)) {
+      foreach($request->response as $items) {
+        $arrayDoc = (array)$items;
+
+        $this->assertArrayHasKey('name', $arrayDoc);
+        $this->assertArrayHasKey('lastname', $arrayDoc);
+        $this->assertArrayHasKey('age', $arrayDoc);
+        $this->assertArrayHasKey('updatedAt', $arrayDoc);
+        $this->assertArrayHasKey('createdAt', $arrayDoc);
+        $this->assertArrayHasKey('_id', $arrayDoc);
+
+        $this->assertNotEmpty('name', $items->name);
+        $this->assertNotEmpty('lastname', $items->lastname);
+        $this->assertNotEmpty('age', $items->age);
+        $this->assertNotEmpty('updatedAt', $items->updatedAt);
+        $this->assertNotEmpty('createdAt', $items->createdAt);
+        $this->assertNotEmpty('_id', $items->_id);
+      }
     }
 
-    public function testDocumentsCreate(): void
-    {
-      $apps = new \Fincore\Apps();
+    $this->assertEquals(200, $request->http_status);
+  }
 
-      $data = [
-          [
-            'name'     => 'Juca',
-            'lastname' => 'Pirama',
-            'age'      => '44'
+  public function testDocumentCreate(): void
+  {
+    $data = [
+      'name' => 'Caipira',
+      'lastname' => 'Pira Pora',
+      'age' => rand(25, 85)
+    ];
+
+    $request  = $this->apps->DocumentsCreate('people', $data);
+    $arrayDoc = (array)$request->response;
+
+    $this->assertArrayHasKey('name', $arrayDoc);
+    $this->assertArrayHasKey('lastname', $arrayDoc);
+    $this->assertArrayHasKey('age', $arrayDoc);
+    $this->assertArrayHasKey('updatedAt', $arrayDoc);
+    $this->assertArrayHasKey('createdAt', $arrayDoc);
+    $this->assertArrayHasKey('_id', $arrayDoc);
+
+    $this->assertNotEmpty('name', $request->response->name);
+    $this->assertNotEmpty('lastname', $request->response->lastname);
+    $this->assertNotEmpty('age', $request->response->age);
+    $this->assertNotEmpty('updatedAt', $request->response->updatedAt);
+    $this->assertNotEmpty('createdAt', $request->response->createdAt);
+    $this->assertNotEmpty('_id', $request->response->_id);
+
+    $this->assertEquals(200, $request->http_status);
+  }
+
+  public function testfilterData(): void
+  {
+      $headers = [
+          'Filter' => [
+              'lastname' => 'Amaral',
           ],
-          [
-            'name'     => 'Tonho',
-            'lastname' => 'da Lua',
-            'age'      => '22'
-          ],
-          [
-            'name'     => 'Patrícia',
-            'lastname' => 'Amaral',
-            'age'      => '53'
-          ],
-          [
-            'name'     => 'Roberto',
-            'lastname' => 'da Silva',
-            'age'      => '82'
-          ],
-          [
-            'name'     => 'Agostinho',
-            'lastname' => 'Carrara',
-            'age'      => '38'
-          ]
       ];
 
-      $request  = $apps->DocumentsCreate('people', $data);
-      die(print_r($request, true));
+      $request  = $this->apps->filterData('people', $headers);
+      $arraydoc = (array)$request->response;
+
+      putenv("PEOPLEID={$request->response->data[0]->_id}");
+
+      $this->assertEquals($headers['Filter']['lastname'], $arraydoc['data'][0]->lastname);
+      $this->assertEquals(200, $request->http_status);
+  }
+
+  public function testDocumentData(): void
+  {
+      $request = $this->apps->DocumentData('people', getenv('PEOPLEID'));
+      $arrayDoc = (array)$request->response;
+
+      $this->assertEquals($request->response->_id, getenv('PEOPLEID'));
+      $this->assertEquals(200, $request->http_status);
+
+      $this->assertArrayHasKey('name', $arrayDoc);
+      $this->assertArrayHasKey('lastname', $arrayDoc);
+  }
+
+  public function testDocumentsUpdate(): void
+  {
+      $headers = [
+          'Filter' => [
+              'lastname' => 'da Silva',
+          ],
+      ];
+
+      $data = [
+          '$set' => [
+              'idade'  => '19',
+              'status' => 'ativo',
+          ],
+      ];
+
+      $request = $this->apps->DocumentsUpdate('people', $data, $headers);
+      $arrayDoc = (array)$request->response;
+
+      $this->assertEquals($headers['Filter']['lastname'], $request->response->data[0]->lastname);
+      $this->assertEquals($data['$set']['idade'], $request->response->data[0]->idade);
+      $this->assertEquals($data['$set']['status'], $request->response->data[0]->status);
+      $this->assertEquals(200, $request->http_status);
+  }
+
+  public function testDocumentUpdate(): void
+  {
+      $data = [
+          '$set' => [
+              'idade'  => '30',
+              'status' => 'ativo',
+              'tipo'   => 'Pai',
+          ],
+      ];
+
+      $request  = $this->apps->DocumentUpdate('people', getenv('PEOPLEID'), $data);
+
       $arrayDoc = (array) $request->response;
 
-      $this->assertEquals($data['name'], $arrayDoc['name']);
-      $this->assertEquals($data['lastname'], $arrayDoc['lastname']);
-      $this->assertEquals($data['age'], $arrayDoc['age']);
+      $this->assertEquals(1, $arrayDoc['status']->nModified);
+      $this->assertEquals($data['$set']['idade'], $arrayDoc['data']->idade);
+      $this->assertEquals($data['$set']['status'], $arrayDoc['data']->status);
+      $this->assertEquals($data['$set']['tipo'], $arrayDoc['data']->tipo);
+  }
+
+  public function testDocumentsDelete(): void
+  {
+      $headers = [
+          'Filter' => [
+              'tipo' => 'Pai',
+          ],
+      ];
+
+      $request = $this->apps->DocumentsDelete('people', $headers);
+      $arrayDoc = (array)$request->response;
+
       $this->assertEquals(200, $request->http_status);
+      $this->assertEquals(1, $request->response->result->n);
+      $this->assertEquals(1, $request->response->result->ok);
+      $this->assertEquals(1, $request->response->deletedCount);
+      $this->assertEquals(1, $request->response->n);
+      $this->assertEquals(1, $request->response->ok);
+
+      $this->assertArrayHasKey('result', $arrayDoc);
+      $this->assertArrayHasKey('connection', $arrayDoc);
+      $this->assertArrayHasKey('deletedCount', $arrayDoc);
+      $this->assertArrayHasKey('n', $arrayDoc);
+      $this->assertArrayHasKey('ok', $arrayDoc);
+  }
+
+  public function testCollections(): void
+  {
+      $request = $this->apps->Collections();
+
+      $this->assertEquals(200, $request->http_status);
+  }
+
+  public function testAggregate(): void
+  {
+    $aggregate = [
+      [
+        '$match' => [
+          'lastname' => 'Pira Pora'
+        ]
+      ]
+    ];
+
+    $request = $this->apps->Aggregate('people', $aggregate);
+
+    $this->assertEquals(200, $request->http_status);
+
+    foreach($request->response as $data) {
+      $arrayDoc = (array)$data;
+
+      $this->assertArrayHasKey('_id', $arrayDoc);
+      $this->assertArrayHasKey('name', $arrayDoc);
+      $this->assertArrayHasKey('lastname', $arrayDoc);
+      $this->assertArrayHasKey('age', $arrayDoc);
+      $this->assertArrayHasKey('createdAt', $arrayDoc);
+      $this->assertArrayHasKey('updatedAt', $arrayDoc);
+
+      $this->assertEquals('Caipira', $data->name);
+      $this->assertEquals('Pira Pora', $data->lastname);
     }
-
-    public function testDocumentCreate(): void
-    {
-        $data = [
-            'name'     => 'David',
-            'lastname' => 'Brasil',
-            'age'      => '44',
-        ];
-
-        $request  = $this->Apps->DocumentsCreate('people', $data);
-        $arrayDoc = (array) $request->response;
-
-        $this->assertEquals($data['name'], $arrayDoc['name']);
-        $this->assertEquals($data['lastname'], $arrayDoc['lastname']);
-        $this->assertEquals($data['age'], $arrayDoc['age']);
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testfilterData(): void
-    {
-        $headers = [
-            'Filter' => [
-                'lastname' => 'brasil11',
-            ],
-        ];
-
-        $request  = $this->Apps->filterData(getenv('COLLECTION'), $headers);
-
-        $arraydoc = (array) $request->response;
-
-        $this->assertEquals($headers['Filter']['lastname'], $arraydoc['data'][0]->lastname);
-        $this->assertEquals(1, $arraydoc['docs']);
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testDocumentData(): void
-    {
-        $request = $this->Apps->DocumentData(getenv('COLLECTION'), getenv('ID'));
-
-        $this->assertEquals($request->response->_id, getenv('ID'));
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testDocumentsUpdate(): void
-    {
-        $headers = [
-            'Filter' => [
-                'tipo' => 'PAi',
-            ],
-        ];
-
-        $data = [
-            '$set' => [
-                'idade'  => '19',
-                'status' => 'ativo',
-            ],
-        ];
-
-        $request = $this->Apps->DocumentsUpdate(getenv('COLLECTION'), $data, $headers);
-        $arrayDoc = (array) $request->response;
-
-        $this->assertEquals(1, $arrayDoc['status']->nModified);
-        $this->assertEquals($headers['Filter']['tipo'], $arrayDoc['data'][0]->tipo);
-        $this->assertEquals($data['$set']['idade'], $arrayDoc['data'][0]->idade);
-        $this->assertEquals($data['$set']['status'], $arrayDoc['data'][0]->status);
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testDocumentUpdate(): void
-    {
-        $data = [
-            '$set' => [
-                'idade'  => '30',
-                'status' => 'atualizado',
-                'tipo'   => 'Pai',
-            ],
-        ];
-
-        $request  = $this->Apps->DocumentUpdate(getenv('COLLECTION'), getenv('ID'), $data);
-
-        $arrayDoc = (array) $request->response;
-
-        $this->assertEquals(1, $arrayDoc['status']->nModified);
-        $this->assertEquals($data['$set']['idade'], $arrayDoc['data']->idade);
-        $this->assertEquals($data['$set']['status'], $arrayDoc['data']->status);
-        $this->assertEquals($data['$set']['tipo'], $arrayDoc['data']->tipo);
-    }
-
-    public function testDocumentsDelete(): void
-    {
-        $headers = [
-            'Filter' => [
-                'tipo' => 'pai',
-            ],
-        ];
-
-        $request = $this->Apps->DocumentsDelete(getenv('COLLECTION'), $headers);
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testDocumentDelete(): void
-    {
-        $request  = $this->Apps->DocumentDelete(getenv('COLLECTION'), getenv('ID'));
-
-        $arrayDel = (array) $request->response;
-
-        $this->assertEquals(1, $arrayDel['n']);
-        $this->assertEquals(1, $arrayDel['ok']);
-        $this->assertEquals(200, $request->http_status);
-    }
-
-    public function testCollections(): void
-    {
-        $request = $this->Apps->Collections();
-
-        $this->assertCount(5, $request->response);
-        $this->assertEquals(200, $request->http_status);
-
-        $arrayCollections = (array) $request->response[0];
-
-        $this->assertArrayHasKey('name', $arrayCollections);
-        $this->assertArrayHasKey('type', $arrayCollections);
-        $this->assertEquals('fotos', $arrayCollections['name']);
-        $this->assertEquals('collection', $arrayCollections['type']);
-    }
-
-    public function testAggregate(): void
-    {
-      return;
-    }
+  }
 }

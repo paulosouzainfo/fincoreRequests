@@ -26,13 +26,12 @@ class Requests extends \Fincore\Helpers
           $selectedMethod = new Curl();
       }
 
-      $selectedMethod->setTimeout(20);
+      $selectedMethod->setTimeout(30);
       if (is_null($setBrowser)) {
           $setBrowser = new Browser($selectedMethod);
       }
 
       $this->browser = $setBrowser;
-
     }
 
     protected function autoAdministrativeLogin(): void {
@@ -95,7 +94,7 @@ class Requests extends \Fincore\Helpers
     private function setQueryString(array $queryString): void
     {
       $this->queryString = null;
-      
+
       if (!empty($queryString)) {
           $this->queryString = '?' . $this->buildQuery($queryString);
       }
@@ -180,6 +179,9 @@ class Requests extends \Fincore\Helpers
         if (!empty($parser)) {
             extract($parser);
         }
+
+        if(isset($header['Instructions'])) $header['Instructions'] = json_encode($header['Instructions']);
+
         $this->setHeaders($headers);
         $this->setQueryString($queryString);
         $request = $this->browser->patch($this->setPathToRequest($path), $this->headers);

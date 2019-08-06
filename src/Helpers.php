@@ -13,7 +13,6 @@ class Helpers
         } else {
             echo $textArrayOrObject . PHP_EOL;
         }
-
     }
 
     public static function parseStr(string $string): array
@@ -38,14 +37,18 @@ class Helpers
         return urldecode(http_build_query($data));
     }
 
-    public static function Filexlsx(string $header, string $content)
+    public static function FileXlsx(string $header, string $content): string
     {
         preg_match('/([A-Za-z0-9]+)\.xlsx$/', $header, $output);
-        $dirpath = substr($output[0], 0, 3) . '/' . substr($output[0], 3, 3);
-        is_dir($dirpath) || mkdir($dirpath, 0755, true);
-        file_put_contents($dirpath . '/' . substr($output[0], 6), $content);
-        return ('File criado com sucesso em ' . $dirpath . '/' . substr($output[0], 6));
 
+        $dirpath = substr($output[0], 0, 3) . '/' . substr($output[0], 3, 3);
+        if(!is_dir($dirpath)) mkdir($dirpath, 0755, true);
+
+        if(file_put_contents($dirpath . '/' . substr($output[0], 6), $content)) {
+          return $dirpath.'/'.substr($output[0], 6);
+        }
+
+        return '';
     }
 
 }

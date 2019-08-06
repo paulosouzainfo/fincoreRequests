@@ -9,3 +9,4 @@ phpunit.xml
 authTemporaryToken.txt
 .gitignore.orig
 *.orig
+tests/*.php_

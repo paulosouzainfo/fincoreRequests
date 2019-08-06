@@ -15,7 +15,7 @@ class PF extends \Fincore\Requests {
       ]
     ];
 
-    return  $this->get($this->buildQuery($request));
+    return $this->get($this->buildQuery($request));
   }
 
   public function basic(string $document): object {

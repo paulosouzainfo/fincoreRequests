@@ -3,29 +3,30 @@ namespace Fincore\Test;
 
 final class PFTest extends \PHPUnit\Framework\TestCase
 {
-    private $PF;
+    private $pf;
+    private $cpf;
+
     protected function setup(): void
     {
-        $this->PF  = new \Fincore\PF();
-        $this->Cpf = getenv('CPF');
-
+        $this->pf  = new \Fincore\PF();
+        $this->cpf = getenv('CPF');
     }
 
     public function testAds(): void
     {
-        $request = $this->PF->ads($this->Cpf);
+        $request = $this->pf->ads($this->cpf);
         $this->assertEquals(200, $request->http_status);
     }
 
     public function testBasic(): void
     {
-        $request = $this->PF->basic($this->Cpf);
+        $request = $this->pf->basic($this->cpf);
 
         $this->assertEquals(200, $request->http_status);
-        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+        $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
         $this->assertEquals(
-            $this->Cpf,
+            $this->cpf,
             preg_replace("/[^0-9]/",
                 "",
                 $request->response->document
@@ -45,9 +46,11 @@ final class PFTest extends \PHPUnit\Framework\TestCase
 
     public function testMemberships(): void
     {
-        $request = $this->PF->memberships($this->Cpf);
+        $request = $this->pf->memberships($this->cpf);
 
-        if (sizeof($request->response->Memberships)) {
+        $this->assertEquals(200, $request->http_status);
+
+        if(isset($request->response->Memberships)) {
             foreach ($request->response->Memberships as $application) {
 
                 $arrayMemberships = (array) $application;
@@ -70,34 +73,45 @@ final class PFTest extends \PHPUnit\Framework\TestCase
             }
 
             $this->assertEquals(
-                $this->Cpf,
+                $this->cpf,
                 preg_replace("/[^0-9]/",
                     "",
                     $request->response->document
                 ));
         }
-
     }
 
     public function testPublicProfessions(): void
     {
-        $request = $this->PF->publicProfessions($this->Cpf);
+      $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
-        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+      $request = $this->pf->publicProfessions($this->cpf);
 
-        $this->assertEquals($this->Cpf, $request->response->document);
-        $this->assertEquals(200, $request->http_status);
+      $responseArray = (array)$request->response;
+
+      $this->assertEquals(200, $request->http_status);
+      $this->assertEquals($this->cpf, preg_replace('/[^0-9]/', '', $request->response->document));
+
+      $this->assertArrayHasKey('TotalProfessions', $responseArray);
+      $this->assertArrayHasKey('TotalActiveProfessions', $responseArray);
+      $this->assertArrayHasKey('TotalIncome', $responseArray);
+      $this->assertArrayHasKey('TotalIncomeRange', $responseArray);
+      $this->assertArrayHasKey('IsEmployed', $responseArray);
+      $this->assertArrayHasKey('updatedAt', $responseArray);
+      $this->assertArrayHasKey('createdAt', $responseArray);
+      $this->assertArrayHasKey('document', $responseArray);
+      $this->assertArrayHasKey('_id', $responseArray);
     }
 
     public function testProfessions(): void
     {
-        $request = $this->PF->professions($this->Cpf);
+        $request = $this->pf->professions($this->cpf);
 
         $this->assertEquals(200, $request->http_status);
-        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+        $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
         $this->assertEquals(
-            $this->Cpf,
+            $this->cpf,
             preg_replace(
                 "/[^0-9]/",
                 "",
@@ -108,13 +122,13 @@ final class PFTest extends \PHPUnit\Framework\TestCase
 
     public function testUniversityStudents(): void
     {
-        $request = $this->PF->universityStudents($this->Cpf);
+        $request = $this->pf->universityStudents($this->cpf);
 
         $this->assertEquals(200, $request->http_status);
-        $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+        $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
         $this->assertEquals(
-            $this->Cpf,
+            $this->cpf,
             preg_replace(
                 "/[^0-9]/",
                 "",
@@ -127,11 +141,11 @@ final class PFTest extends \PHPUnit\Framework\TestCase
 
     public function testDomains(): void
     {
-        $request = $this->PF->domains($this->Cpf);
+        $request = $this->pf->domains($this->cpf);
 
         $this->assertEquals(200, $request->http_status);
 
-        if (sizeof($request->response)) {
+        if(!empty($request->response)) {
             foreach ($request->response as $application) {
                 //loop
                 $Domains = (array) $application;
@@ -168,10 +182,10 @@ final class PFTest extends \PHPUnit\Framework\TestCase
                 //$this->assertNotEmpty($Domains['IsActive']);
                 //$this->assertNotEmpty($Domains['HasSsl']);
 
-                $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+                $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
                 $this->assertEquals(
-                    $this->Cpf,
+                    $this->cpf,
                     preg_replace("/[^0-9]/",
                         "",
                         $Domains['document']
@@ -183,7 +197,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
 
     public function testEmails(): void
     {
-        $request = $this->PF->email($this->Cpf);
+        $request = $this->pf->email($this->cpf);
 
         // $this->assertCount(3, $request->response);
         // esta embaixo
@@ -210,10 +224,10 @@ final class PFTest extends \PHPUnit\Framework\TestCase
                 $this->assertEquals('VALID', $Email['ValidationStatus']);
                 $this->assertEquals(200, $request->http_status);
 
-                $this->Cpf = preg_replace("/[^0-9]/", "", $this->Cpf);
+                $this->cpf = preg_replace("/[^0-9]/", "", $this->cpf);
 
                 $this->assertEquals(
-                    $this->Cpf,
+                    $this->cpf,
                     preg_replace("/[^0-9]/",
                         "", $Email['document']
                     )
@@ -223,7 +237,7 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     }
     /*public function testvehicles($cpf): void
 {
-$request = $this->PF->vehicles($cpf);
+$request = $this->pf->vehicles($cpf);
 $this->assertEquals(200, $request->http_status);
 }*/
 

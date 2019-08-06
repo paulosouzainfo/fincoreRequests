@@ -7,19 +7,19 @@ class Phones extends \Fincore\Requests {
     $this->autoApplicationsLogin();
   }
 
-  public function PhonesHistory($phone)
+  public function PhonesHistory(string $phone): object
   {
-	$request = [
+    $request = [
       'path' => '/_/outsourcing/phones/history?phone='.$phone
     ];
 
     return  $this->get($this->buildQuery($request));
   }
 
-  public function PhoneData($phone)
+  public function PhoneData(string $phone): object
   {
-	$request = [
-      'path' => '/_/outsourcing/phones/data?phone='.$phone
+    $request = [
+        'path' => '/_/outsourcing/phones/data?phone='.$phone
     ];
 
     return  $this->get($this->buildQuery($request));

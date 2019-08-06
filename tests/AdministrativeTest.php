@@ -71,7 +71,7 @@ final class AdministrativeTest extends \PHPUnit\Framework\TestCase
       $identity = preg_replace('/[^0-9]/', '', time());
 
       putenv("URL=https://{$identity}.fincore.co");
-      putenv("DSN=mongodb://localhost:27017/{$identity}");
+      putenv("DSN=mongodb://localhost:27017/test-{$identity}");
 
       $request = $this->Administrative->NewApp(getenv('URL'), getenv('DSN'));
       $arrayList = (array)$request->response;

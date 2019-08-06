@@ -85,11 +85,11 @@ class Apps extends \Fincore\Requests
         return $this->get($this->buildQuery($request));
     }
 
-    public function Aggregate(string $Instructions): object
+    public function Aggregate(string $collection, array $Instructions): object
     {
         $request = [
-            'path' => "/_/aggregate",
-            'data' => [
+            'path' => "/_/aggregate/{$collection}",
+            'headers' => [
                 'Instructions' => $Instructions,
             ],
         ];

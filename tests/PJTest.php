@@ -4,11 +4,12 @@ namespace Fincore\Test;
 final class PJTest extends \PHPUnit\Framework\TestCase
 {
     private $PJ;
+    private $Cnpj;
 
     protected function setup(): void
     {
         $this->PJ   = new \Fincore\PJ();
-        $this->Cnpj = getenv('CNPJ');
+        $this->Cnpj = preg_replace("/[^0-9]/", "", getenv('CNPJ'));
     }
 
     public function testads(): void
@@ -44,8 +45,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
             $this->assertNOtEmpty($arrayBasic['TaxIdCountry']);
 
             $this->assertEquals(200, $request->http_status);
-
-            $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
 
             $this->assertEquals(
                 $this->Cnpj,
@@ -93,8 +92,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(200, $request->http_status);
 
-        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
-
         $this->assertEquals(
             $this->Cnpj,
             preg_replace("/[^0-9]/",
@@ -104,31 +101,31 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testmediaExposure(): void
+    public function testMediaExposure(): void
     {
-        $request = $this->PJ->mediaExposure($this->Cnpj);
+      $request = $this->PJ->mediaExposure($this->Cnpj);
+      $arrayExposure = (array)$request->response;
 
-        $arrayExposure = (array) $request->response;
+      $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
+      $this->assertArrayHasKey('CelebrityLevel', $arrayExposure);
+      $this->assertArrayHasKey('UnpopularityLevel', $arrayExposure);
+      $this->assertArrayHasKey('CreationDate', $arrayExposure);
+      $this->assertArrayHasKey('LastUpdateDate', $arrayExposure);
+      $this->assertArrayHasKey('Next', $arrayExposure);
+      $this->assertArrayHasKey('updatedAt', $arrayExposure);
+      $this->assertArrayHasKey('createdAt', $arrayExposure);
+      $this->assertArrayHasKey('document', $arrayExposure);
+      $this->assertArrayHasKey('_id', $arrayExposure);
 
-        $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
-        $this->assertArrayHasKey('CelebrityLevel', $arrayExposure);
-        $this->assertArrayHasKey('UnpopularityLevel', $arrayExposure);
+      $this->assertEquals(
+          $this->Cnpj,
+          preg_replace("/[^0-9]/",
+              "",
+              $request->response->document
+          )
+      );
 
-        $this->assertNotEmpty($arrayExposure['MediaExposureLevel']);
-        $this->assertNotEmpty($arrayExposure['CelebrityLevel']);
-        $this->assertNotEmpty($arrayExposure['UnpopularityLevel']);
-
-        $this->Cnpj = preg_replace("/[^0-9]/", "", $this->Cnpj);
-
-        $this->assertEquals(
-            $this->Cnpj,
-            preg_replace("/[^0-9]/",
-                "",
-                $arrayExposure['document']
-            )
-        );
-
-        $this->assertEquals(200, $request->http_status);
+      $this->assertEquals(200, $request->http_status);
     }
 
     public function testactivityIndicators(): void
@@ -221,7 +218,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
                 $this->assertInternalType('bool', $arrayphones['IsActive']);
                 $this->assertInternalType('bool', $arrayphones['IsActive']);
-              
+
                 $this->assertNotEmpty($arrayphones['FirstPassageDate']);
 
             }
