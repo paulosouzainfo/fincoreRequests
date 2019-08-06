@@ -363,5 +363,72 @@ $pf = new \Fincore\PF();
 $pf->businessRelationships($document);
 ```
 ### Pessoa Jurídica
+
+#### Busca por anúncios online vinculados ao número do CNPJ enviado.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->ads($document);
+
+```
+#### Consulta de dados para o Seguro Desemprego.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->basic($document)
+```
+#### Domínios de internet conhecidos para um CNPJ.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->domains($document)
+```
+#### Endereços eletrônicos conhecidos para um CNPJ.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj-> emails($document)
+```
+
+#### Exposição e perfil definidos em diversas mídias.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->mediaExposure($document);
+```
+#### Indicadores e características de atividades financeiras pela WEB.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj-> activityIndicators($document);
+```
+#### Informações sobre relacionamentos econômicos.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->relationships($document);
+```
+#### Dados de telefones associados ao CNPJ consultado.
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->phones($document);
+```
 ### Requisições
 ### Utilitários
