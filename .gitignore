@@ -2,8 +2,6 @@ vendor/
 composer.lock
 examples/
 .env
-README.md
-LICENSE
 composer.json
 phpunit.xml
 authTemporaryToken.txt
