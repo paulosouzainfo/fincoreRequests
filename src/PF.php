@@ -139,6 +139,19 @@ class PF extends \Fincore\Requests {
     return $this->get($this->buildQuery($request));
   }
 
+  public function Demographic(string $document): object {
+    $request = [
+      'path' => '/_/outsourcing/persons/demographic',
+      'queryString' => [
+        'document' => $document
+      ]
+    ];
+
+    return $this->get($this->buildQuery($request));
+  }
+
+
+
   public function kyc(string $document): object {
   	$request = [
       'path' => '/_/outsourcing/persons/kyc',
