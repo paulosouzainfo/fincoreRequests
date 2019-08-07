@@ -331,8 +331,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->webPassages($document);
 ```
-#### Informações de presença online que definem a utilização da internet.
-[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
+#### Informações de presença online que definem a utilização da internet.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -348,8 +347,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->recurrencyToCharging($document);
 ```
-#### Dados de processos conhecidos através do CPF oriundos dos tribunais regionais.
-[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProcesses)
+#### Dados de processos conhecidos através do CPF oriundos dos tribunais regionais. [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProcesses)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -357,8 +355,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->processes($document);
 ```
-#### Informações de participação em programas de benefícios como o bolsa-família.
-[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsSocialAssistences)
+#### Informações de participação em programas de benefícios como o bolsa-família.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsSocialAssistences)
 ```
 <?php
 require 'vendor/autoload.php';
