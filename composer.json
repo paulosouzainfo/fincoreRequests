@@ -1,5 +1,5 @@
 {
-    "name": "Fincore Requests",
+    "name": "fincore/requests",
     "description": "Biblioteca PHP para integração e consultas na API Fincore.",
     "keywords": ["fintech", "API", "Fincore", "integração", "consultas"],
     "type": "library",
@@ -38,5 +38,6 @@
           "email": "ti@fincore.co"
       }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "license": "MIT"
 }
