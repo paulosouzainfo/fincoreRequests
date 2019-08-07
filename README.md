@@ -313,7 +313,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->kyc($document);
 ```
-#### Dados de interesse
+#### A consulta retorna informações relacionadas com comportamentos ou com o interesse em determinadas categorias de produtos e serviços.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsDemographic)
 ```
 <?php
 require 'vendor/autoload.php';
