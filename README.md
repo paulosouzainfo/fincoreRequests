@@ -321,8 +321,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->interests($document);
 ```
-#### Dados de passagens reconhecidas pela WEB como passagens suspeitas.
-[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
+#### Dados de passagens reconhecidas pela WEB como passagens suspeitas. [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
 
 ```
 <?php
