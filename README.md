@@ -381,7 +381,7 @@ $pj = new \Fincore\PJ();
 $pj->ads($document);
 
 ```
-#### Consulta de dados Base Para CNPJ Fornecido .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
+#### Consulta contém o conjunto mais simples de informações dentre todos os datasets, com informações cadastrais recuperadas de fontes oficiais .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
 ```
 <?php
 require 'vendor/autoload.php';
