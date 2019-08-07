@@ -2,6 +2,10 @@
 # FINCORE Requests
 Biblioteca PHP para integração e consultas na API Fincore https://api.fincore.co/doc
 
+## Instalação
+```
+composer require fincore/requests
+```
 ## Variáveis de ambiente
 Aqui, utilizamos a biblioteca [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) para facilitar os testes através de variáveis de ambiente que podem ser recuperadas por qualquer classe através de [getenv](https://www.php.net/manual/en/function.getenv.php).
 
@@ -309,7 +313,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->kyc($document);
 ```
-#### Dados de interesse 
+#### Dados de interesse
 ```
 <?php
 require 'vendor/autoload.php';
