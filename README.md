@@ -372,7 +372,7 @@ $pf->businessRelationships($document);
 ```
 ### Pessoa Jurídica
 
-#### Busca por anúncios online vinculados ao número do CNPJ enviado.
+#### Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -381,7 +381,7 @@ $pj = new \Fincore\PJ();
 $pj->ads($document);
 
 ```
-#### Consulta de dados para o Seguro Desemprego.
+#### Consulta de dados Base Para CNPJ Fornecido .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -389,7 +389,7 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->basic($document)
 ```
-#### Domínios de internet conhecidos para um CNPJ.
+#### Domínios de internet conhecidos para um CNPJ.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesDomains)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -397,7 +397,7 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->domains($document)
 ```
-#### Endereços eletrônicos conhecidos para um CNPJ.
+#### Endereços eletrônicos conhecidos para um CNPJ.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEmails)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -406,7 +406,7 @@ $pj = new \Fincore\PJ();
 $pj-> emails($document)
 ```
 
-#### Exposição e perfil definidos em diversas mídias.
+#### Exposição e perfil definidos em diversas mídias. 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -414,7 +414,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
-#### Indicadores e características de atividades financeiras pela WEB.
+#### Indicadores e características de atividades financeiras pela WEB.[#](
+https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -422,7 +423,7 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> activityIndicators($document);
 ```
-#### Informações sobre relacionamentos econômicos.
+#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesunemployment_insurance)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -430,7 +431,7 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->relationships($document);
 ```
-#### Dados de telefones associados ao CNPJ consultado.
+#### Dados de telefones associados ao CNPJ consultado.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesPhones)
 ```
 <?php
 require 'vendor/autoload.php';
