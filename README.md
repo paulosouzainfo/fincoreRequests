@@ -406,7 +406,7 @@ $pj = new \Fincore\PJ();
 $pj-> emails($document)
 ```
 
-#### Exposição e perfil definidos em diversas mídias. 
+#### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure) 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -414,8 +414,7 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
-#### Indicadores e características de atividades financeiras pela WEB.[#](
-https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
+#### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 ```
 <?php
 require 'vendor/autoload.php';
