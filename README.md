@@ -9,9 +9,9 @@ composer require fincore/requests
 ## Variáveis de ambiente
 Aqui, utilizamos a biblioteca [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) para facilitar os testes através de variáveis de ambiente que podem ser recuperadas por qualquer classe através de [getenv](https://www.php.net/manual/en/function.getenv.php).
 
-**É importante saber** que não é recomendado utilizar o arquivo *.env* no seu ambiente de produção. Mas nada impede que você proteja ele da leitura de ambientes abertos ou configure suas chaves no seu *.profile*, *.bashrc* ou equivalente no seu sistema operacional preferido.
+**É importante saber** que não é recomendado utilizar o arquivo *.env* no seu ambiente de produção. Mas nada impede que você proteja ele da leitura de ambientes abertos quando ele estiver fora da pasta *public_html* - ou equivalente.
 
-Para para iniciarmos essa configuração, renomeie ou copie o arquivo *.env.example* para *.env* e insira as informações necessárias para integração com os nossos dados e sua conta.
+Para para iniciarmos essa configuração, renomeie ou copie o arquivo *.env.example* para *.env* na pasta protegida de acesso de sua preferência e insira as informações necessárias para integração com os nossos dados e sua conta, configurando uma única variável de ambiente no seu sistema operacional preferido como *ENVIRONMENTS=/caminho/do/seu/arquivo/env*.
 
 Se você não necessita de acesso e configurações para ambientes administrativos, configure apenas os dados de aplicações ou vice-versa.
 
@@ -406,7 +406,7 @@ $pj = new \Fincore\PJ();
 $pj-> emails($document)
 ```
 
-#### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure) 
+#### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure)
 ```
 <?php
 require 'vendor/autoload.php';
