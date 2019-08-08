@@ -14,11 +14,12 @@ class Requests extends \Fincore\Helpers
 
     public function __construct(?Browser $browser = null)
     {
-      // dotenv só é utilizado em ambiente de desenvolvimento ou fora do "public_html" por questões de segurança
-      $environments = '../';
-      if(null !== getenv('ENVIRONMENTS') $environments = getenv('ENVIRONMENTS');
+      $environmentConfig = getenv('ENVIRONMENTS');
 
-      $dotenv = \Dotenv\Dotenv::create($environments);
+      if(!is_null($environmentConfig)) $configEnvironment = $environmentConfig;
+      else $configEnvironment = './';
+
+      $dotenv = \Dotenv\Dotenv::create($configEnvironment);
       $dotenv->load();
 
       $selectedMethod = new FileGetContents();
