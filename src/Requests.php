@@ -16,7 +16,7 @@ class Requests extends \Fincore\Helpers
     {
       // dotenv só é utilizado em ambiente de desenvolvimento ou fora do "public_html" por questões de segurança
       $environments = '../';
-      if(null !== getenv('environments') $environments = getenv('environments');
+      if(null !== getenv('ENVIRONMENTS') $environments = getenv('ENVIRONMENTS');
 
       $dotenv = \Dotenv\Dotenv::create($environments);
       $dotenv->load();
