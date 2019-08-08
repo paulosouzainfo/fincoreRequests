@@ -47,7 +47,6 @@ class PJ extends \Fincore\Requests {
         'document' => $document
       ]
     ];
-
     return  $this->get($this->buildQuery($request));
   }
 
