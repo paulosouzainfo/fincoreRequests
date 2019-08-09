@@ -414,6 +414,17 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
+
+#### Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->EconomicGroups($document);
+```
+
+
 #### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 ```
 <?php
@@ -422,7 +433,18 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> activityIndicators($document);
 ```
-#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesunemployment_insurance)
+
+####Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj-> Processes($document);
+```
+
+
+#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
 ```
 <?php
 require 'vendor/autoload.php';
