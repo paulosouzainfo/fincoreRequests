@@ -747,9 +747,9 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     }
     /*final de adicionados*/
 
-    /*public function testvehicles(): void
+    public function testvehicles(): void
     {
         $request = $this->pf->vehicles($this->cpf);
         $this->assertEquals(200, $request->http_status);
-    }*/
+    }
 }
