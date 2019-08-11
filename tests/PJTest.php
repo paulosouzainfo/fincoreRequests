@@ -12,7 +12,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->Cnpj = preg_replace("/[^0-9]/", "", getenv('CNPJ'));
     }
 
-    public function testads(): void
+   /* public function testads(): void
     {
         $request = $this->PJ->ads($this->Cnpj);
         $this->assertEquals(200, $request->http_status);
@@ -85,7 +85,6 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
                 $this->assertNotEmpty($arrayEmails['Type']);
                 $this->assertInternalType('bool', $arrayEmails['IsRecent']);
-                //$this->assertNotEmpty($arrayEmails['IsRecent']);
                 $this->assertNotEmpty($arrayEmails['FirstPassageDate']);
             }
         }
@@ -103,29 +102,91 @@ final class PJTest extends \PHPUnit\Framework\TestCase
 
     public function testMediaExposure(): void
     {
-      $request = $this->PJ->mediaExposure($this->Cnpj);
-      $arrayExposure = (array)$request->response;
+        $request       = $this->PJ->mediaExposure($this->Cnpj);
+        $arrayExposure = (array) $request->response;
 
-      $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
-      $this->assertArrayHasKey('CelebrityLevel', $arrayExposure);
-      $this->assertArrayHasKey('UnpopularityLevel', $arrayExposure);
-      $this->assertArrayHasKey('CreationDate', $arrayExposure);
-      $this->assertArrayHasKey('LastUpdateDate', $arrayExposure);
-      $this->assertArrayHasKey('Next', $arrayExposure);
-      $this->assertArrayHasKey('updatedAt', $arrayExposure);
-      $this->assertArrayHasKey('createdAt', $arrayExposure);
-      $this->assertArrayHasKey('document', $arrayExposure);
-      $this->assertArrayHasKey('_id', $arrayExposure);
+        $this->assertArrayHasKey('MediaExposureLevel', $arrayExposure);
+        $this->assertArrayHasKey('CelebrityLevel', $arrayExposure);
+        $this->assertArrayHasKey('UnpopularityLevel', $arrayExposure);
+        $this->assertArrayHasKey('updatedAt', $arrayExposure);
+        $this->assertArrayHasKey('createdAt', $arrayExposure);
+        $this->assertArrayHasKey('document', $arrayExposure);
+        $this->assertArrayHasKey('_id', $arrayExposure);
 
-      $this->assertEquals(
-          $this->Cnpj,
-          preg_replace("/[^0-9]/",
-              "",
-              $request->response->document
-          )
-      );
+        $this->assertEquals(
+            $this->Cnpj,
+            preg_replace("/[^0-9]/",
+                "",
+                $request->response->document
+            )
+        );
 
-      $this->assertEquals(200, $request->http_status);
+        $this->assertEquals(200, $request->http_status);
+    }
+
+    public function testEconomicGroups(): void
+    {
+        $request = $this->PJ->EconomicGroups($this->Cnpj);
+        if (!empty($request->response)) {
+            foreach ($request->response as $application) {
+                $EconomicGroups = (array) $application;
+
+                $this->assertArrayHaskey('MainCompanyTaxId', $EconomicGroups);
+                $this->assertArrayHaskey('EconomicGroupType', $EconomicGroups);
+                $this->assertArrayHaskey('TotalCompanies', $EconomicGroups);
+                $this->assertArrayHaskey('TotalHeadquarters', $EconomicGroups);
+                $this->assertArrayHaskey('TotalBranches', $EconomicGroups);
+                $this->assertArrayHaskey('TotalStates', $EconomicGroups);
+                $this->assertArrayHaskey('TotalCities', $EconomicGroups);
+                $this->assertArrayHaskey('TotalActiveCompanies', $EconomicGroups);
+                $this->assertArrayHaskey('TotalInactiveCompanies', $EconomicGroups);
+                $this->assertArrayHaskey('MinActivityLevel', $EconomicGroups);
+                $this->assertArrayHaskey('MaxActivityLevel', $EconomicGroups);
+                $this->assertArrayHaskey('AverageActivityLevel', $EconomicGroups);
+                $this->assertArrayHaskey('TotalIncomeRange', $EconomicGroups);
+                $this->assertArrayHaskey('TotalEmployeesRange', $EconomicGroups);
+                $this->assertArrayHaskey('TotalPeople', $EconomicGroups);
+                $this->assertArrayHaskey('TotalOwners', $EconomicGroups);
+                $this->assertArrayHaskey('TotalPEPs', $EconomicGroups);
+                $this->assertArrayHaskey('TotalSanctioned', $EconomicGroups);
+                $this->assertArrayHaskey('TotalLawsuits', $EconomicGroups);
+                $this->assertArrayHaskey('TotalWebsites', $EconomicGroups);
+                $this->assertArrayHaskey('TotalAddresses', $EconomicGroups);
+                $this->assertArrayHaskey('TotalPhones', $EconomicGroups);
+                $this->assertArrayHaskey('TotalEmails', $EconomicGroups);
+                $this->assertArrayHaskey('TotalPassages', $EconomicGroups);
+                $this->assertArrayHaskey('TotalBadPassages', $EconomicGroups);
+
+                $this->assertNotEmpty($EconomicGroups['MainCompanyTaxId']);
+                $this->assertNotEmpty($EconomicGroups['EconomicGroupType']);
+
+                $this->assertInternalType('int', $EconomicGroups['TotalCompanies']);
+                $this->assertInternalType('int', $EconomicGroups['TotalHeadquarters']);
+                $this->assertInternalType('int', $EconomicGroups['TotalBranches']);
+                $this->assertInternalType('int', $EconomicGroups['TotalStates']);
+                $this->assertInternalType('int', $EconomicGroups['TotalCities']);
+                $this->assertInternalType('int', $EconomicGroups['TotalActiveCompanies']);
+                $this->assertInternalType('int', $EconomicGroups['TotalInactiveCompanies']);
+                $this->assertInternalType('int', $EconomicGroups['MinActivityLevel']);
+                $this->assertInternalType('int', $EconomicGroups['MaxActivityLevel']);
+                $this->assertInternalType('int', $EconomicGroups['AverageActivityLevel']);
+
+                $this->assertArrayHaskey('TotalIncomeRange', $EconomicGroups);
+                $this->assertArrayHaskey('TotalEmployeesRange', $EconomicGroups);
+
+                $this->assertInternalType('int', $EconomicGroups['TotalPeople']);
+                $this->assertInternalType('int', $EconomicGroups['TotalOwners']);
+                $this->assertInternalType('int', $EconomicGroups['TotalPEPs']);
+                $this->assertInternalType('int', $EconomicGroups['TotalSanctioned']);
+                $this->assertInternalType('int', $EconomicGroups['TotalLawsuits']);
+                $this->assertInternalType('int', $EconomicGroups['TotalWebsites']);
+                $this->assertInternalType('int', $EconomicGroups['TotalAddresses']);
+                $this->assertInternalType('int', $EconomicGroups['TotalPhones']);
+                $this->assertInternalType('int', $EconomicGroups['TotalEmails']);
+                $this->assertInternalType('int', $EconomicGroups['TotalPassages']);
+                $this->assertInternalType('int', $EconomicGroups['TotalBadPassages']);
+            }
+        }
     }
 
     public function testactivityIndicators(): void
@@ -149,19 +210,23 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEmpty($arrayIndicators['IncomeRange']);
         $this->assertNotEmpty($arrayIndicators['ActivityLevel']);
         $this->assertNotEmpty($arrayIndicators['HasActivity']);
-        //$this->assertNotEmpty($arrayIndicators['HasRecentAddress']);
-        //$this->assertNotEmpty($arrayIndicators['HasRecentPhone']);
         $this->assertNotEmpty($arrayIndicators['HasRecentEmail']);
         $this->assertNotEmpty($arrayIndicators['HasRecentPassages']);
         $this->assertNotEmpty($arrayIndicators['HasActiveDomain']);
         $this->assertNotEmpty($arrayIndicators['HasActiveSSL']);
-        //$this->assertNotEmpty($arrayIndicators['HasCorporateEmail']);
+
         $this->assertNotEmpty($arrayIndicators['NumberOfBranches']);
         $this->assertNotEmpty($request->http_status);
 
     }
+*/
+    public function testProcesses(): void
+    {
+        $request = $this->PJ->Processes($this->Cnpj);
+        die(print_r($request));
+    }
 
-    public function testrelationships(): void
+   /* public function testrelationships(): void
     {
         $request = $this->PJ->relationships($this->Cnpj);
 
@@ -184,9 +249,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
                 $this->assertNotEmpty($listrelationships['RelatedEntityTaxIdType']);
                 $this->assertNotEmpty($listrelationships['RelatedEntityTaxIdCountry']);
                 $this->assertNotEmpty($listrelationships['RelationshipType']);
-                //$this->assertNotEmpty($listrelationships['RelationshipName']);
-                //$this->assertNotEmpty($listrelationships['RelationshipLevel']);
-                // $this->assertNotEmpty($listrelationships['RelationshipStarDate']);
+
             }
 
             $this->assertEquals(200, $request->http_status);
@@ -224,5 +287,5 @@ final class PJTest extends \PHPUnit\Framework\TestCase
             }
         }
         $this->assertEquals(200, $request->http_status);
-    }
+    }*/
 }

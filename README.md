@@ -330,7 +330,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->webPassages($document);
 ```
-#### Informações de presença online que definem a utilização da internet.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
+#### Informações de presença online que definem a utilização da internet.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsOnlinePresence)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -360,7 +360,7 @@ $pf->processes($document);
 require 'vendor/autoload.php';
 
 $pf = new \Fincore\PF();
-$pf->socialAssistences($document);
+$pf->socialAssistences($document); 
 ```
 #### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBusiness)
 ```
@@ -370,6 +370,36 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->businessRelationships($document);
 ```
+
+
+#### Relacionamentos em torno do CPF como familiares, vizinhos e colegas de trabalho.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsNearbyRelationships)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->nearbyRelationships($document);
+```
+
+#### Dados de telefones associados ao CPF consultado.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsPhones)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->phones($document);
+```
+#### Dados de veículos registrados para o CPF informado.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsVehicles)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pf = new \Fincore\PF();
+$pf->vehicles($document);
+```
+
+
+
 ### Pessoa Jurídica
 
 #### Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
@@ -414,6 +444,17 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
+
+#### Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj->EconomicGroups($document);
+```
+
+
 #### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 ```
 <?php
@@ -422,7 +463,18 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> activityIndicators($document);
 ```
-#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesunemployment_insurance)
+
+#### Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj-> Processes($document);
+```
+
+
+#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
 ```
 <?php
 require 'vendor/autoload.php';
