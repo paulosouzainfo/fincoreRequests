@@ -4,9 +4,13 @@ php:
   - 7.3
 git:
   clone: false
+  submodules: false
 branches:
   only:
-  - master
   - dev
+  except:
+  - master
 env:
   - ENVIRONMENTS=./
+matrix:
+  fast_finish: true
