@@ -209,8 +209,8 @@ $bc->facematch($documentURL, $selfieURL);
 ```
 
 ### Pessoa Física
-####PF - Anúncios online
-#####Busca por anúncios online vinculados ao número do CPF enviado [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
+#### PF - Anúncios online
+##### Busca por anúncios online vinculados ao número do CPF enviado [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
 ```
 <?php
 require 'vendor/autoload.php';
