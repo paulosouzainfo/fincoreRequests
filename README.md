@@ -425,7 +425,9 @@ $pf->vehicles($document);
 
 ### Pessoa Jurídica
 
-#### Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
+#### PJ - Anúncios Online
+
+##### Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -434,7 +436,8 @@ $pj = new \Fincore\PJ();
 $pj->ads($document);
 
 ```
-#### Consulta contém o conjunto mais simples de informações dentre todos os datasets, com informações cadastrais recuperadas de fontes oficiais .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
+#### PJ - Dados Cadastrais Básicos
+##### Consulta contém o conjunto mais simples de informações dentre todos os datasets, com informações cadastrais recuperadas de fontes oficiais .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -442,7 +445,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->basic($document)
 ```
-#### Domínios de internet conhecidos para um CNPJ.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesDomains)
+#### PJ - Dados de Sites
+##### Consulta retorna informações dos sites e domínios que estão associados com a entidade consultada, seja através do registro de domínios ou através de informações contidas dentro do próprio conteúdo do site.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesDomains)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -450,7 +454,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->domains($document)
 ```
-#### Endereços eletrônicos conhecidos para um CNPJ.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEmails)
+#### PJ - E-mails
+##### Consulta retorna não só os e-mails relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o e-mail foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEmails)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -459,7 +464,19 @@ $pj = new \Fincore\PJ();
 $pj-> emails($document)
 ```
 
-#### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure)
+#### PJ - Endereços
+
+##### A consulta retorna não só os endereços relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o endereço foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades..[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAddresses)
+```
+<?php
+require 'vendor/autoload.php';
+
+$pj = new \Fincore\PJ();
+$pj-> Addresses($document)
+```
+
+#### PJ - Exposição e Perfil na Mídia
+##### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -467,8 +484,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
-
-#### Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
+#### PJ - Grupos Econômicos
+##### Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -476,9 +493,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->EconomicGroups($document);
 ```
-
-
-#### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
+####PJ - Indicadores de Atividade
+##### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -487,7 +503,8 @@ $pj = new \Fincore\PJ();
 $pj-> activityIndicators($document);
 ```
 
-#### Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
+#### PJ - Processos
+##### Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -496,8 +513,8 @@ $pj = new \Fincore\PJ();
 $pj-> Processes($document);
 ```
 
-
-#### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
+#### PJ - Relacionamentos
+##### Consulta retorna informações sobre outras entidades, sejam elas pessoas ou empresas, que estão relacionadas com a empresa consultada.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -505,7 +522,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->relationships($document);
 ```
-#### Dados de telefones associados ao CNPJ consultado.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesPhones)
+#### PJ - Telefones
+##### Dados de telefones associados ao CNPJ consultado.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesPhones)
 ```
 <?php
 require 'vendor/autoload.php';
