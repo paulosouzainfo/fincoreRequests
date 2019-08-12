@@ -56,6 +56,17 @@ class PJ extends \Fincore\Requests
         return $this->get($this->buildQuery($request));
     }
 
+    public function Addresses(string $document): object
+    {
+        $request = [
+            'path'        => '/_/outsourcing/companies/addresses',
+            'queryString' => [
+               'document' => $document,
+            ],
+        ];
+        return $this->get($this->buildQuery($request));
+    }
+
     public function mediaExposure(string $document): object
     {
         $request = [

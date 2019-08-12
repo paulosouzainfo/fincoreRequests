@@ -688,13 +688,11 @@ final class PFTest extends \PHPUnit\Framework\TestCase
     public function testPhones(): void
     {
         $request = $this->pf->phones($this->cpf);
+        $this->assertEquals(200, $request->http_status);
 
         if (!empty($request->response)) {
-
             foreach ($request->response as $application) {
-
                 $Phones = (array) $application;
-
                 $this->assertArrayHasKey('Number', $Phones);
                 $this->assertArrayHasKey('AreaCode', $Phones);
                 $this->assertArrayHasKey('CountryCode', $Phones);
@@ -718,30 +716,28 @@ final class PFTest extends \PHPUnit\Framework\TestCase
                 $this->assertArrayHasKey('CreationDate', $Phones);
                 $this->assertArrayHasKey('LastUpdateDate', $Phones);
 
-                $this->assertNotEmpty($Phones['Number']);
-                $this->assertNotEmpty($Phones['AreaCode']);
-                $this->assertNotEmpty($Phones['CountryCode']);
-                $this->assertNotEmpty($Phones['Type']);
-                $this->assertNotEmpty($Phones['Priority']);
+                $this->assertNotEmpty($request->response->Number);
+                $this->assertNotEmpty($request->response->AreaCode);
+                $this->assertNotEmpty($request->response->CountryCode);
+                $this->assertNotEmpty($request->response->Type);
+                $this->assertNotEmpty($request->response->Priority);
 
-                $this->assertInternalType('int', $Phones['PhoneTotalPassages']);
-                $this->assertInternalType('int', $Phones['PhoneCrawlingPassages']);
-                $this->assertInternalType('int', $Phones['PhoneBadPassages']);
-                $this->assertInternalType('int', $Phones['PhoneQueryPassages']);
-                $this->assertInternalType('int', $Phones['PhoneValidationPassages']);
+                $this->assertInternalType('int', $request->response->PhoneTotalPassages);
+                $this->assertInternalType('int', $request->response->PhoneCrawlingPassages);
+                $this->assertInternalType('int', $request->response->PhoneBadPassages);
+                $this->assertInternalType('int', $request->response->PhoneQueryPassages);
+                $this->assertInternalType('int', $request->response->PhoneValidationPassages);
 
-                $this->assertInternalType('bool', $Phones['IsMain']);
-                $this->assertInternalType('bool', $Phones['IsRecent']);
-                $this->assertInternalType('bool', $Phones['IsActive']);
-                $this->assertInternalType('bool', $Phones['IsInDoNotCallList']);
+                $this->assertInternalType('bool', $request->response->IsMain);
+                $this->assertInternalType('bool', $request->response->IsRecent);
+                $this->assertInternalType('bool', $request->response->IsActive);
+                $this->assertInternalType('bool', $request->response->IsInDoNotCallList);
 
-                $this->assertNotEmpty($Phones['FirstPassageDate']);
-                $this->assertNotEmpty($Phones['LastPassageDate']);
-                $this->assertNotEmpty($Phones['CreationDate']);
-                $this->assertNotEmpty($Phones['LastUpdateDate']);
+                $this->assertNotEmpty($request->response->FirstPassageDate);
+                $this->assertNotEmpty($request->response->LastPassageDate);
+                $this->assertNotEmpty($request->response->CreationDate);
+                $this->assertNotEmpty($request->response->LastUpdateDate);
             }
-
-            $this->assertEquals(200, $request->http_status);
         }
 
     }
