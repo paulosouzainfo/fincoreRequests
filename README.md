@@ -209,7 +209,8 @@ $bc->facematch($documentURL, $selfieURL);
 ```
 
 ### Pessoa Física
-#### Busca por anúncios online vinculados ao número do CPF enviado [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
+####PF - Anúncios online
+#####Busca por anúncios online vinculados ao número do CPF enviado [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
 ```
 <?php
 require 'vendor/autoload.php';
@@ -217,7 +218,7 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->ads($document);
 ```
-#### Dados básicos de um usuário como nome, filiação e outros documentos conhecidos, data de nascimento, signo e regularização na Receita Federal.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBasic)
+####Dados básicos de um usuário como nome, filiação e outros documentos conhecidos, data de nascimento, signo e regularização na Receita Federal.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBasic)
 ```
 <?php
 require 'vendor/autoload.php';
