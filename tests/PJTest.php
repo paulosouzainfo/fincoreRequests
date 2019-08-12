@@ -12,7 +12,7 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->Cnpj = preg_replace("/[^0-9]/", "", getenv('CNPJ'));
     }
 
-   /* public function testads(): void
+    public function testads(): void
     {
         $request = $this->PJ->ads($this->Cnpj);
         $this->assertEquals(200, $request->http_status);
@@ -219,14 +219,14 @@ final class PJTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEmpty($request->http_status);
 
     }
-*/
+
     public function testProcesses(): void
     {
         $request = $this->PJ->Processes($this->Cnpj);
         die(print_r($request));
     }
 
-   /* public function testrelationships(): void
+    public function testrelationships(): void
     {
         $request = $this->PJ->relationships($this->Cnpj);
 
@@ -287,5 +287,5 @@ final class PJTest extends \PHPUnit\Framework\TestCase
             }
         }
         $this->assertEquals(200, $request->http_status);
-    }*/
+    }
 }

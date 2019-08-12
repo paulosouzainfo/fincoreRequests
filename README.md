@@ -209,8 +209,8 @@ $bc->facematch($documentURL, $selfieURL);
 ```
 
 ### Pessoa Física
-#### PF - Anúncios online
-##### Busca por anúncios online vinculados ao número do CPF enviado [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
+#### PF - Anúncios online [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAds)
+Busca por anúncios online vinculados ao número do CPF enviado 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -219,8 +219,8 @@ $pf = new \Fincore\PF();
 $pf->ads($document);
 ```
 
-#### PF - Dados Cadastrais Básicos
-##### Dados básicos de um usuário como nome, filiação e outros documentos conhecidos, data de nascimento, signo e regularização na Receita Federal.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBasic)
+#### PF - Dados Cadastrais Básicos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBasic)
+Dados básicos de um usuário como nome, filiação e outros documentos conhecidos, data de nascimento, signo e regularização na Receita Federal.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -228,8 +228,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->basic($document);
 ```
-#### PF - Dados Profissionais - Conselhos de Classe
-##### Dados de profissionais conhecidos em conselhos de classe.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsMemberships)
+#### PF - Dados Profissionais - Conselhos de Classe [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsMemberships)
+Dados de profissionais conhecidos em conselhos de classe.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -237,8 +237,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->memberships($document);
 ```
-#### PF - Dados Profissionais - Servidores Públicos
-##### Dados de profissionais conhecidos de funcionários públicos.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsPublicProfessions)
+#### PF - Dados Profissionais - Servidores Públicos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsPublicProfessions)
+Dados de profissionais conhecidos de funcionários públicos.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -246,8 +246,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->publicProfessions($document);
 ```
-#### PF - Dados Profissionais
-##### Dados de profissionais conhecidos.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProfessions)
+#### PF - Dados Profissionais [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProfessions)
+Dados de profissionais conhecidos.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -255,8 +255,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->professions($document);
 ```
-#### PF - Dados de Estudantes Universitários
-##### Dados de estudantes universitários.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsUniversity)
+#### PF - Dados de Estudantes Universitários [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsUniversity)
+Dados de estudantes universitários.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -264,8 +264,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->universityStudents($document);
 ```
-#### PF - Dados de Sites
-##### Domínios de internet conhecidos para um CPF.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsDomains)
+#### PF - Dados de Sites [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsDomains)
+Domínios de internet conhecidos para um CPF.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -273,8 +273,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->domains($document);
 ```
-#### PF - E-mails
-##### Endereços eletrônicos conhecidos para um CPF.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsEmails)
+#### PF - E-mails [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsEmails)
+Endereços eletrônicos conhecidos para um CPF.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -282,8 +282,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->email($document);
 ```
-#### PF - Endereços físicos
-##### Endereços físicos conhecidos para um CPF com classificação para endereços de trabalho e casa.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAddresses)
+#### PF - Endereços físicos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsAddresses)
+Endereços físicos conhecidos para um CPF com classificação para endereços de trabalho e casa.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -291,8 +291,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->addresses($document);
 ```
-#### PF - Exposição e Perfil na Mídia
-#### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsMediaExposure)
+#### PF - Exposição e Perfil na Mídia [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsMediaExposure)
+Exposição e perfil definidos em diversas mídias.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -300,8 +300,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->mediaExposure($document);
 ```
-#### PF - Indicadores e Características
-##### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsFlagsAndFeatures)
+#### PF - Indicadores e Características [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsFlagsAndFeatures)
+Indicadores e características de atividades financeiras pela WEB.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -309,8 +309,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->flagsAndFeatures($document);
 ```
-#### PF - Informações Financeiras
-##### Informações financeiras de IR.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsFinancial)
+#### PF - Informações Financeiras [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsFinancial)
+Informações financeiras de IR.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -319,8 +319,8 @@ $pf = new \Fincore\PF();
 $pf->financial($document);
 ```
 
-#### PF - Interesses e Comportamentos
-##### A consulta retorna informações relacionadas com comportamentos ou com o interesse em determinadas categorias de produtos e serviços.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsDemographic)
+#### PF - Interesses e Comportamentos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsDemographic)
+A consulta retorna informações relacionadas com comportamentos ou com o interesse em determinadas categorias de produtos e serviços.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -328,8 +328,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->interests($document);
 ```
-#### PF - Informações de KYC
-##### Dados de Interpol e Ofac para homônimos e similaridades.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsKyc)
+#### PF - Informações de KYC [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsKyc)
+Dados de Interpol e Ofac para homônimos e similaridades.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -337,10 +337,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->kyc($document);
 ```
-
-#### PF - Passagens pela Web
-##### Dados de passagens reconhecidas pela WEB como passagens suspeitas. [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
-
+#### PF - Passagens pela Web [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsWebPassages)
+Dados de passagens reconhecidas pela WEB como passagens suspeitas. 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -348,8 +346,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->webPassages($document);
 ```
-#### PF - Presença Online
-##### Informações de presença online que definem a utilização da internet.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsOnlinePresence)
+#### PF - Presença Online [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsOnlinePresence)
+Informações de presença online que definem a utilização da internet.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -357,8 +355,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->onlinePresence($document);
 ```
-#### PF - Presença em Cobrança
-##### Dados de presença em cobranças por empresas, definindo os níveis de encontrabilidade por endereços, e-mails e telefones, por exemplo.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsRecurrencyToCharging)
+#### PF - Presença em Cobrança [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsRecurrencyToCharging)
+Dados de presença em cobranças por empresas, definindo os níveis de encontrabilidade por endereços, e-mails e telefones, por exemplo.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -366,8 +364,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->recurrencyToCharging($document);
 ```
-#### PF - Processos
-##### Dados de processos conhecidos através do CPF oriundos dos tribunais regionais. [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProcesses)
+#### PF - Processos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsProcesses)
+Dados de processos conhecidos através do CPF oriundos dos tribunais regionais. 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -375,8 +373,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->processes($document);
 ```
-#### PF - Programas de Benefícios e Assistência Social
-##### Informações de participação em programas de benefícios como o bolsa-família.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsSocialAssistences)
+#### PF - Programas de Benefícios e Assistência Social [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsSocialAssistences)
+Informações de participação em programas de benefícios como o bolsa-família.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -384,8 +382,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->socialAssistences($document); 
 ```
-#### PF - Relacionamentos Econômicos
-##### Informações sobre relacionamentos econômicos.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBusiness)
+#### PF - Relacionamentos Econômicos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsBusiness)
+Informações sobre relacionamentos econômicos.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -393,8 +391,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->businessRelationships($document);
 ```
-#### PF - Relacionamentos Pessoais
-##### Relacionamentos em torno do CPF como familiares, vizinhos e colegas de trabalho.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsNearbyRelationships)
+#### PF - Relacionamentos Pessoais [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsNearbyRelationships)
+Relacionamentos em torno do CPF como familiares, vizinhos e colegas de trabalho.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -402,8 +400,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->nearbyRelationships($document);
 ```
-#### PF - Telefones
-##### Dados de telefones associados ao CPF consultado.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsPhones)
+#### PF - Telefones [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsPhones)
+Dados de telefones associados ao CPF consultado.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -411,8 +409,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->phones($document);
 ```
-#### PF - Veículos
-##### Dados de veículos registrados para o CPF informado.[#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsVehicles)
+#### PF - Veículos [#](https://api.fincore.co/doc/#api-PF-outsourcingPersonsVehicles)
+ Dados de veículos registrados para o CPF informado.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -420,14 +418,9 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->vehicles($document);
 ```
-
-
-
-### Pessoa Jurídica
-
+### Pessoa Jurídica [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
 #### PJ - Anúncios Online
-
-##### Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
+Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. 
 ```
 <?php
 require 'vendor/autoload.php';
@@ -436,8 +429,8 @@ $pj = new \Fincore\PJ();
 $pj->ads($document);
 
 ```
-#### PJ - Dados Cadastrais Básicos
-##### Consulta contém o conjunto mais simples de informações dentre todos os datasets, com informações cadastrais recuperadas de fontes oficiais .[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
+#### PJ - Dados Cadastrais Básicos [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesBasic)
+Consulta contém o conjunto mais simples de informações dentre todos os datasets, com informações cadastrais recuperadas de fontes oficiais .
 ```
 <?php
 require 'vendor/autoload.php';
@@ -445,8 +438,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->basic($document)
 ```
-#### PJ - Dados de Sites
-##### Consulta retorna informações dos sites e domínios que estão associados com a entidade consultada, seja através do registro de domínios ou através de informações contidas dentro do próprio conteúdo do site.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesDomains)
+#### PJ - Dados de Sites [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesDomains)
+Consulta retorna informações dos sites e domínios que estão associados com a entidade consultada, seja através do registro de domínios ou através de informações contidas dentro do próprio conteúdo do site.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -454,8 +447,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->domains($document)
 ```
-#### PJ - E-mails
-##### Consulta retorna não só os e-mails relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o e-mail foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEmails)
+#### PJ - E-mails [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEmails)
+Consulta retorna não só os e-mails relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o e-mail foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -463,10 +456,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> emails($document)
 ```
-
-#### PJ - Endereços
-
-##### A consulta retorna não só os endereços relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o endereço foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades..[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAddresses)
+#### PJ - Endereços [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAddresses)
+A consulta retorna não só os endereços relacionados com a entidade consultada, como também uma série de qualificadores desse relacionamento, tais como quantas vezes o endereço foi visto para aquela entidade, e quantas vezes foi visto associado com outras entidades.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -474,9 +465,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> Addresses($document)
 ```
-
-#### PJ - Exposição e Perfil na Mídia
-##### Exposição e perfil definidos em diversas mídias.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure)
+#### PJ - Exposição e Perfil na Mídia [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesMediaExposure)
+Exposição e perfil definidos em diversas mídias.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -484,17 +474,17 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
-#### PJ - Grupos Econômicos
-##### Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
+#### PJ - Grupos Econômicos [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
 ```
+Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.
 <?php
 require 'vendor/autoload.php';
 
 $pj = new \Fincore\PJ();
 $pj->EconomicGroups($document);
 ```
-####PJ - Indicadores de Atividade
-##### Indicadores e características de atividades financeiras pela WEB.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
+####PJ - Indicadores de Atividade [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
+Indicadores e características de atividades financeiras pela WEB.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -502,9 +492,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> activityIndicators($document);
 ```
-
-#### PJ - Processos
-##### Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
+#### PJ - Processos [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesProcesses)
+Os Processos Judiciais e Administrativos retorna informações, tanto atuais quanto históricas, do envolvimento da entidade consultada em ações judiciais de todos os tipos (civil, trabalhista, criminal, etc).
 ```
 <?php
 require 'vendor/autoload.php';
@@ -512,9 +501,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj-> Processes($document);
 ```
-
-#### PJ - Relacionamentos
-##### Consulta retorna informações sobre outras entidades, sejam elas pessoas ou empresas, que estão relacionadas com a empresa consultada.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
+#### PJ - Relacionamentos [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesRelationships)
+Consulta retorna informações sobre outras entidades, sejam elas pessoas ou empresas, que estão relacionadas com a empresa consultada.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -522,8 +510,8 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->relationships($document);
 ```
-#### PJ - Telefones
-##### Dados de telefones associados ao CNPJ consultado.[#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesPhones)
+#### PJ - Telefones [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesPhones)
+Dados de telefones associados ao CNPJ consultado.
 ```
 <?php
 require 'vendor/autoload.php';
@@ -531,7 +519,6 @@ require 'vendor/autoload.php';
 $pj = new \Fincore\PJ();
 $pj->phones($document);
 ```
-
 ### Utilitários
 #### JSON para XLS [#](https://api.fincore.co/doc/#api-Utilidades-jsonToXls)
 A conversão de um objeto JSON para um arquivo XLS é importante para exportar dados já normalizados, transformando a sua leitura em uma planilha Excel. Esta rota é um download de arquivo XLS.
@@ -541,5 +528,4 @@ require 'vendor/autoload.php';
 
 $json = new \Fincore\Utilities;
 $json->JsonToXls($json);
-
 ```
