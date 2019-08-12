@@ -418,8 +418,8 @@ require 'vendor/autoload.php';
 $pf = new \Fincore\PF();
 $pf->vehicles($document);
 ```
-### Pessoa Jurídica [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
-#### PJ - Anúncios Online
+### Pessoa Jurídica 
+#### PJ - Anúncios Online [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesAds)
 Consulta com informações relacionadas dos anuncios postados pela empresa consultado nos principais marketplaces e portais de anúncios da internet. 
 ```
 <?php
@@ -475,15 +475,15 @@ $pj = new \Fincore\PJ();
 $pj->mediaExposure($document);
 ```
 #### PJ - Grupos Econômicos [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesEconomicGroups)
-```
 Os dados retornam informações agrupadas e agregadas do grupo econômico relacionado com a empresa principal sendo consultada, em todas as direções.
+```
 <?php
 require 'vendor/autoload.php';
 
 $pj = new \Fincore\PJ();
 $pj->EconomicGroups($document);
 ```
-####PJ - Indicadores de Atividade [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
+#### PJ - Indicadores de Atividade [#](https://api.fincore.co/doc/#api-PJ-outsourcingCompaniesactivity_indicators)
 Indicadores e características de atividades financeiras pela WEB.
 ```
 <?php
